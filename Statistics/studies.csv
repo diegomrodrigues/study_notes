@@ -1,0 +1,53 @@
+Folder,Subfolder,Filename,Was Studied?,Was Printed?,Was Reviewed?
+Additive Models,GAMs,Flexibilidade e Interpretabilidade.md,No,No,No
+Additive Models,GAMs,Funcoes de Link.md,No,No,No
+Additive Models,GAMs,Modelos Aditivos Generalizados (GAMs).md,No,No,No
+Additive Models,GAMs,"Modelos Aditivos, Estrutura e Aplicacoes.md",No,No,No
+Basis Expansion,Splines,B-Spline Basis.md,No,No,No
+Basis Expansion,Splines,Funcoes Polinomiais por Partes.md,No,No,No
+Basis Expansion,Splines,Funcoes Spline.md,No,No,No
+Basis Expansion,Splines,Nos e Restricoes de Continuidade em Splines.md,No,No,No
+Basis Expansion,Splines,Regression Splines.md,No,No,No
+Basis Expansion,Splines,Splines Cubicos.md,No,No,No
+Basis Expansion,Splines,Splines de Ordem M.md,No,No,No
+Boosting,,AdaBoost M1.md,No,No,No
+Boosting,,Modificacoes de Dados no Boosting.md,No,No,No
+Boosting,,Potencializando Classificadores Fracos.md,No,No,No
+Boosting,,Votacao por Maioria Ponderada.md,No,No,No
+Boosting,,Weak Classifiers.md,No,No,No
+Classification,Discriminant Analysis,"Analise Comparativa de LDA e QDA Vantagens, Limitacoes e Aplicacoes.md",No,No,No
+Classification,Discriminant Analysis,Analise Discriminante Linear (LDA) e Densidades Gaussianas.md,No,No,No
+Classification,Discriminant Analysis,Analise Discriminante Quadratica (QDA) Uma Generalizacao Poderosa da LDA.md,No,No,No
+Classification,Discriminant Analysis,Funcoes Discriminantes Lineares na Analise Discriminante Linear (LDA).md,No,No,No
+Classification,Discriminant Analysis,Relacao entre Regressao Linear e Analise Discriminante Linear (LDA).md,No,No,No
+Classification,Discriminant Analysis,Teorema de Bayes e Densidades de Classe na Classificacao.md,No,No,No
+Classification,Linear Classification,"Classificacao, Fundamentos e Tecnicas.md",No,No,No
+Classification,Linear Classification,Regra de Classificacao em Analise Discriminante Linear.md,No,No,No
+Classification,Linear Classification,"Regressao Linear para Classificacao Fundamentos, Limitacoes e Aplicacoes Avancadas.md",No,No,No
+Classification,Linear Classification,Regressao Linear para Multiplas Respostas.md,No,No,No
+Classification,Linear Classification,Variaveis Indicadoras em Classificacao Linear.md,No,No,No
+Kernel Methods,,Kernel Functions and Bandwidth Selection in Nonparametric Regression.md,No,No,No
+Kernel Methods,,Kernel-Weighted Averages.md,No,No,No
+Kernel Methods,,Larguras de Banda Adaptativas em Suavizacao por Kernel.md,No,No,No
+Kernel Methods,,Nadaraya-Watson Kernel Smoother.md,No,No,No
+Kernel Methods,,Problemas de Limite em Suavizadores de Kernel.md,No,No,No
+Model Assessment and Selection,,Erro de Generalizacao.md,No,No,No
+Model Assessment and Selection,,Erro de Predicao Esperado.md,No,No,No
+Model Assessment and Selection,,Erro de Treinamento.md,No,No,No
+Model Assessment and Selection,,O Dilema do Vies-Variancia.md,No,No,No
+Model Assessment and Selection,,Overfitting.md,No,No,No
+Model Inference and Averaging,Bootstraping,Bootstrap Nao Parametrico e Parametrico.md,No,No,No
+Model Inference and Averaging,Bootstraping,Bootstrap para Avaliacao de Incerteza.md,No,No,No
+Neural Networks,Back-propagation,Algoritmo de Retropropagacao.md,No,No,No
+Neural Networks,Back-propagation,Batch Learning e Online Learning.md,No,No,No
+Neural Networks,Back-propagation,Inicializacao de Pesos em Redes Neurais.md,No,No,No
+Neural Networks,Back-propagation,Overfitting e Regularizacao.md,No,No,No
+Neural Networks,Back-propagation,Taxa de Aprendizagem.md,No,No,No
+Neural Networks,Neural Networks,Funcao de Erro.md,No,No,No
+Neural Networks,Neural Networks,Funcao de Saida em Redes Neurais.md,No,No,No
+Neural Networks,Neural Networks,Modelo de Rede Neural.md,No,No,No
+Neural Networks,Neural Networks,Relacao entre Redes Neurais e PPR.md,No,No,No
+Neural Networks,Neural Networks,Unidades Ocultas e Funcao de Ativacao.md,No,No,No
+Neural Networks,Projection Pursuit Regression,Ajuste de Modelos de PPR.md,No,No,No
+Neural Networks,Projection Pursuit Regression,Regressao de Projecao de Busca.md,No,No,No
+Neural Networks,Projection Pursuit Regression,Ridge Functions.md,No,No,No
