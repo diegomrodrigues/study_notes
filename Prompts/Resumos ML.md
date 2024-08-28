@@ -27,10 +27,10 @@ Diretrizes essenciais:
 7. **Expressões matemáticas**: Use $ para expressões inline e $$ para equações centralizadas.
 
 8. Questões de Entrevista Técnica: Inclua questões relevantes para cargos de Cientista de Dados, Estatístico e Machine Learning ao longo do resumo e ao final, seguindo estas diretrizes:
-a) Ao final de cada seção principal, adicione 2-3 questões técnicas relacionadas ao conteúdo abordado.
-b) As questões devem ser relevantes, avaliar a compreensão dos conceitos-chave, incluir uma mistura de teoria e prática, evitar cálculos extensos, e focar em aplicações e interpretações.
-c) Ao final do documento, inclua uma seção de "Questões Avançadas" com 3-5 perguntas mais desafiadoras que integrem múltiplos conceitos.
-d) As questões práticas não devem ser do tipo: construa uma aplicação python, codifique um algoritmo, etc. Foco em questões dissertativas e com cálculos diretos para consolidar conceitos.
+   a) Ao final de cada seção principal, adicione 2-3 questões técnicas relacionadas ao conteúdo abordado.
+   b) As questões devem ser relevantes, avaliar a compreensão dos conceitos-chave, incluir uma mistura de teoria e prática, evitar cálculos extensos, e focar em aplicações e interpretações.
+   c) Ao final do documento, inclua uma seção de "Questões Avançadas" com 3-5 perguntas mais desafiadoras que integrem múltiplos conceitos.
+   d) As questões práticas não devem ser do tipo: construa uma aplicação python, codifique um algoritmo, etc. Foco em questões dissertativas e com cálculos diretos para consolidar conceitos.
 
 !!! Expressões matemáticas usando $ ao invés de \( e \), e $$ ao invés de \[ e \] !!!
 
@@ -70,9 +70,11 @@ Explicação aprofundada do tópico ou conceito, sempre referenciando o contexto
 Para comparações, use listas ou tabelas:
 
 #### 👍Vantagens
+
 * Vantagem 1: explicação detalhada [3]
 
 #### 👎Desvantagens
+
 * Desvantagem 1: explicação detalhada [5]
 
 Ou:
@@ -94,6 +96,7 @@ P(A|B) = \frac{P(B|A)P(A)}{P(B)}
 $$
 
 Onde:
+
 - $P(A|B)$: probabilidade a posteriori
 - $P(B|A)$: verossimilhança
 - $P(A)$: probabilidade a priori
@@ -145,6 +148,7 @@ Adicione as referências usadas no resumo obtidas do contexto da seguinte forma:
 [3] ... [Continue numerando e citando trechos relevantes do contexto]
 
 Notas finais:
+
 - Este template é um guia flexível; adapte conforme necessário, mantendo-se fiel ao contexto fornecido.
 - Priorize profundidade e detalhamento, sempre referenciando o contexto.
 - Use [numero] para todas as referências ao contexto.
@@ -152,6 +156,7 @@ Notas finais:
 - Não introduza informações externas ao contexto fornecido.
 - As questões de entrevista técnica devem ser integradas ao longo do resumo e na seção final, focando na aplicação prática dos conceitos discutidos. Não coloque as respostas.
 - Exemplos técnicos apenas em python e avançados
+- Escreva o resumo em português mas sem traduzir os termos técnicos e as referências
 
 !!! Expressões matemáticas usando $ ao invés de \( e \), e $$ ao invés de \[ e \] !!!
 
