@@ -1,6 +1,6 @@
 ## Mecanismo de Atenção: Fundamentos Matemáticos e Papel nas Relações entre Palavras
 
-<image: Um diagrama mostrando vetores de consulta, chave e valor convergindo para formar um mecanismo de atenção, com setas destacando as conexões entre palavras em uma sequência>
+![image-20240829091351429](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829091351429.png)
 
 ### Introdução
 
@@ -11,14 +11,14 @@ O mecanismo de atenção revolucionou o processamento de linguagem natural (NLP)
 | Conceito                               | Explicação                                                   |
 | -------------------------------------- | ------------------------------------------------------------ |
 | **Self-Attention**                     | Mecanismo que permite a um modelo considerar outras palavras na mesma sequência ao codificar uma palavra específica, capturando dependências de longo alcance [1]. |
-| **Produto Escalar**                    | Operação matemática fundamental usada para calcular a similaridade entre vetores no espaço de atenção [2]. |
-| **Vetores de Consulta, Chave e Valor** | Transformações lineares das entradas que permitem o cálculo eficiente da atenção [1]. |
+| **Produto Escalar**                    | ==Operação matemática fundamental usada para calcular a similaridade entre vetores no espaço de atenção [2].== |
+| **Vetores de Consulta, Chave e Valor** | ==Transformações lineares das entradas que permitem o cálculo eficiente da atenção [1].== |
 
 > ✔️ **Ponto de Destaque**: A auto-atenção permite que cada posição em uma sequência atenda a todas as posições na sequência de entrada, facilitando a modelagem de dependências complexas e de longo alcance.
 
 ### Decomposição do Mecanismo de Atenção
 
-<image: Um fluxograma detalhando as etapas do cálculo de atenção, desde a entrada até a saída ponderada>
+![image-20240829095159866](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829095159866.png)
 
 O mecanismo de atenção pode ser decomposto em várias etapas cruciais, cada uma com seu próprio papel matemático e conceitual [1][2]:
 
@@ -28,7 +28,7 @@ O mecanismo de atenção pode ser decomposto em várias etapas cruciais, cada um
 
    Onde $x_i$ é o vetor de entrada na posição $i$, e $W^Q, W^K, W^V$ são matrizes de peso aprendíveis [1].
 
-2. **Cálculo de Pontuações de Atenção**: As pontuações de atenção são computadas usando o produto escalar entre consultas e chaves:
+2. **Cálculo de Pontuações de Atenção**: ==As pontuações de atenção são computadas usando o produto escalar entre consultas e chaves:==
 
    $$\text{score}(q_i, k_j) = \frac{q_i \cdot k_j}{\sqrt{d_k}}$$
 
@@ -42,7 +42,7 @@ O mecanismo de atenção pode ser decomposto em várias etapas cruciais, cada um
 
    $$\text{output}_i = \sum_{j=1}^n \alpha_{ij}v_j$$
 
-> ❗ **Ponto de Atenção**: A normalização por $\sqrt{d_k}$ é crucial para manter a estabilidade dos gradientes durante o treinamento, especialmente em modelos com alta dimensionalidade.
+> ❗ **Ponto de Atenção**: ==A normalização por $\sqrt{d_k}$ é crucial para manter a estabilidade dos gradientes durante o treinamento==, especialmente em modelos com alta dimensionalidade.
 
 #### Questões Técnicas/Teóricas
 
@@ -59,23 +59,23 @@ O mecanismo de atenção desempenha um papel fundamental na captura de relaçõe
 
 3. **Interpretabilidade**: As pontuações de atenção podem ser visualizadas para entender quais partes da entrada o modelo considera importantes.
 
-<image: Um heatmap mostrando as pontuações de atenção entre diferentes palavras em uma frase, destacando as relações capturadas>
-
 > 💡 **Insight**: A capacidade do mecanismo de atenção de capturar relações complexas entre palavras é crucial para tarefas como análise de sentimento, tradução e resposta a perguntas.
 
 ### Conexão com Medidas de Similaridade
 
-A conexão entre o mecanismo de atenção e medidas de similaridade, particularmente o produto escalar, é fundamental para sua eficácia [2][4]:
+![image-20240829092741482](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829092741482.png)
+
+==A conexão entre o mecanismo de atenção e medidas de similaridade, particularmente o produto escalar, é fundamental para sua eficácia [2][4]:==
 
 1. **Produto Escalar como Medida de Similaridade**: 
-   O produto escalar entre vetores de consulta e chave ($q_i \cdot k_j$) mede quão "similares" ou "compatíveis" duas representações são no espaço de atenção.
+   ==O produto escalar entre vetores de consulta e chave ($q_i \cdot k_j$) mede quão "similares" ou "compatíveis" duas representações são no espaço de atenção.==
 
 2. **Interpretação Geométrica**: 
    $$q_i \cdot k_j = \|q_i\| \|k_j\| \cos(\theta)$$
    Onde $\theta$ é o ângulo entre os vetores. Isso significa que palavras com representações mais similares (ângulo menor) terão pontuações de atenção mais altas.
 
 3. **Normalização e Temperatura**: 
-   A divisão por $\sqrt{d_k}$ atua como um fator de temperatura, controlando a "nitidez" da distribuição de atenção. Valores menores de $\sqrt{d_k}$ levam a distribuições mais concentradas.
+   ==A divisão por $\sqrt{d_k}$ atua como um fator de temperatura, controlando a "nitidez" da distribuição de atenção. Valores menores de $\sqrt{d_k}$ levam a distribuições mais concentradas.==
 
 > ⚠️ **Nota Importante**: A escolha do produto escalar como medida de similaridade no mecanismo de atenção não é arbitrária. Ela permite cálculos eficientes em larga escala e possui propriedades matemáticas desejáveis para o aprendizado de representações.
 

@@ -1,29 +1,28 @@
 ## Scaled Dot-Product Attention: Fundamentos, Formulação Matemática e Impacto na Estabilidade de Modelos
 
-<image: Um diagrama mostrando o fluxo de informações em uma camada de atenção, com destaque para a operação de produto escalar escalado entre queries e keys, seguido pela operação de softmax e multiplicação pelos values. O diagrama deve incluir símbolos matemáticos para Q, K, V e o fator de escala √dk.>
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829113857364.png" alt="image-20240829113857364" style="zoom:67%;" />
+
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829113918302.png" alt="image-20240829113918302" style="zoom:67%;" />
 
 ### Introdução
 
 A **Scaled Dot-Product Attention** é um componente fundamental dos modelos Transformer, revolucionando o processamento de sequências em tarefas de aprendizado profundo, especialmente em processamento de linguagem natural (NLP) [1]. Este mecanismo permite que os modelos foquem seletivamente em diferentes partes da entrada, melhorando significativamente a capacidade de capturar dependências de longo alcance e relações complexas entre os elementos de uma sequência.
 
-Este resumo explora em profundidade a formulação matemática da atenção por produto escalar escalado, sua motivação, implementação e impacto na estabilidade e desempenho dos modelos. Analisaremos também como diferentes fatores de escala podem influenciar o comportamento e a eficácia dos modelos Transformer.
+Este resumo explora em profundidade a formulação matemática da ==atenção por produto escalar escalado==, sua motivação, implementação e ==impacto na estabilidade e desempenho dos modelos==. Analisaremos também como ==diferentes fatores de escala podem influenciar o comportamento e a eficácia dos modelos Transformer.==
 
 ### Conceitos Fundamentais
 
 | Conceito                  | Explicação                                                   |
 | ------------------------- | ------------------------------------------------------------ |
-| **Dot-Product Attention** | Mecanismo de atenção baseado no produto escalar entre queries e keys para computar scores de atenção. [2] |
-| **Scaling Factor**        | Fator introduzido para mitigar instabilidades numéricas em dimensões elevadas, tipicamente √dk. [2] |
+| **Dot-Product Attention** | Mecanismo de atenção baseado no ==produto escalar entre queries e keys== para computar scores de atenção. [2] |
+| **Scaling Factor**        | ==Fator introduzido para mitigar instabilidades numéricas em dimensões elevadas, tipicamente √dk. [2]== |
 | **Softmax**               | Função aplicada aos scores de atenção para obter pesos normalizados. [2] |
 
-> ⚠️ **Nota Importante**: A escala no dot-product attention é crucial para manter gradientes estáveis durante o treinamento, especialmente em modelos com alta dimensionalidade.
+> ⚠️ **Nota Importante**: A escala no dot-product attention é crucial para ==manter gradientes estáveis durante o treinamento==, especialmente em modelos com alta dimensionalidade.
 
 ### Formulação Matemática do Scaled Dot-Product Attention
 
-<image: Um gráfico 3D mostrando como os valores do produto escalar entre queries e keys crescem com o aumento da dimensionalidade, e como a aplicação do fator de escala √dk suaviza este crescimento.>
-
 A atenção por produto escalar escalado é definida matematicamente como [2]:
-
 $$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 $$
@@ -32,7 +31,7 @@ Onde:
 - $Q \in \mathbb{R}^{n \times d_k}$: matriz de queries
 - $K \in \mathbb{R}^{m \times d_k}$: matriz de keys
 - $V \in \mathbb{R}^{m \times d_v}$: matriz de values
-- $d_k$: dimensão das queries e keys
+- $d_k$: ==dimensão das queries e keys==
 - $d_v$: dimensão dos values
 - $n$: número de queries
 - $m$: número de key-value pairs
@@ -40,12 +39,12 @@ Onde:
 Vamos analisar cada componente desta fórmula:
 
 1. **Produto Matricial $QK^T$**: 
-   - Computa os scores de atenção brutos entre cada query e key.
+   - ==Computa os scores de atenção brutos entre cada query e key.==
    - Resultado: matriz $n \times m$ de scores de atenção.
 
 2. **Fator de Escala $\frac{1}{\sqrt{d_k}}$**:
-   - Mitiga o problema de gradientes pequenos em dimensões elevadas.
-   - Mantém a variância dos scores de atenção aproximadamente constante, independentemente de $d_k$.
+   - ==Mitiga o problema de gradientes pequenos em dimensões elevadas.==
+   - ==Mantém a variância dos scores de atenção aproximadamente constante==, independentemente de $d_k$.
 
 3. **Softmax**:
    - Normaliza os scores de atenção escalados.
@@ -55,9 +54,11 @@ Vamos analisar cada componente desta fórmula:
    - Pondera os values pelos pesos de atenção normalizados.
    - Produz a saída final da camada de atenção.
 
-> ✔️ **Ponto de Destaque**: A escala $\frac{1}{\sqrt{d_k}}$ é crucial para evitar que o argumento do softmax cresça descontroladamente com $d_k$, o que levaria a gradientes extremamente pequenos.
+> ✔️ **Ponto de Destaque**: ==A escala $\frac{1}{\sqrt{d_k}}$ é crucial para evitar que o argumento do softmax cresça descontroladamente com $d_k$==, o que levaria a gradientes extremamente pequenos.
 
 #### Demonstração da Necessidade de Escala
+
+![image-20240829113115775](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829113115775.png)
 
 Para entender por que a escala é necessária, consideremos o comportamento do produto escalar em alta dimensão:
 
@@ -66,7 +67,7 @@ Para entender por que a escala é necessária, consideremos o comportamento do p
    - $\mathbb{E}[q \cdot k] = 0$
    - $\text{Var}(q \cdot k) = d_k$
 
-3. Sem escala, à medida que $d_k$ aumenta, a variância do produto escalar cresce linearmente, levando a valores extremos no softmax.
+3. Sem escala, ==à medida que $d_k$ aumenta, a variância do produto escalar cresce linearmente==, levando a valores extremos no softmax.
 
 4. Aplicando a escala $\frac{1}{\sqrt{d_k}}$:
    - $\mathbb{E}[\frac{q \cdot k}{\sqrt{d_k}}] = 0$
@@ -125,14 +126,14 @@ O fator de escala $\frac{1}{\sqrt{d_k}}$ foi escolhido empiricamente por Vaswani
 
 4. **Escala Adaptativa**:
    - Ideia: Ajustar o fator de escala durante o treinamento.
-   - 👍 Potencial para melhor adaptação a diferentes regimes.
-   - 👎 Aumenta a complexidade do modelo e pode ser instável.
-
-<image: Um gráfico comparativo mostrando a evolução da perplexidade durante o treinamento para modelos usando diferentes fatores de escala (1, √dk, dk, adaptativo).>
+   - 👍 ==Potencial para melhor adaptação a diferentes regimes.==
+   - 👎 ==Aumenta a complexidade do modelo e pode ser instável.==
 
 > 💡 **Insight**: A escolha do fator de escala ideal pode depender da arquitetura específica e da tarefa. Experimentos empíricos são cruciais para determinar o melhor fator para um dado modelo.
 
 #### Análise Matemática do Impacto da Escala
+
+![image-20240829114439625](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829114439625.png)
 
 Consideremos o gradiente da função softmax em relação aos scores de atenção:
 
@@ -145,16 +146,16 @@ Onde $\delta_{ij}$ é o delta de Kronecker.
 Para scores de atenção $s = \frac{QK^T}{\alpha}$, onde $\alpha$ é o fator de escala:
 
 1. Se $\alpha$ for muito pequeno (ou ausente), $s$ terá valores grandes, levando a:
-   - softmax(s) próximo a one-hot vectors.
+   - ==softmax(s) próximo a one-hot vectors.==
    - Gradientes próximos a zero, dificultando o aprendizado.
 
 2. Se $\alpha$ for muito grande, $s$ terá valores pequenos, resultando em:
-   - softmax(s) próximo a distribuição uniforme.
+   - ==softmax(s) próximo a distribuição uniforme.==
    - Gradientes pequenos, mas não tão próximos de zero.
 
 3. Com $\alpha = \sqrt{d_k}$:
-   - Mantém $s$ em uma faixa que permite gradientes informativos.
-   - Facilita o fluxo de gradientes através da rede.
+   - ==Mantém $s$ em uma faixa que permite gradientes informativos.==
+   - ==Facilita o fluxo de gradientes através da rede.==
 
 #### Questões Técnicas/Teóricas
 

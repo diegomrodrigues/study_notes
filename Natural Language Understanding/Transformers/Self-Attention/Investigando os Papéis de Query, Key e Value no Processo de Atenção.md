@@ -1,35 +1,35 @@
 ## Transformers: Investigando os Papéis de Query, Key e Value no Processo de Atenção
 
-<image: Um diagrama mostrando três vetores coloridos (query, key, value) interagindo em um espaço vetorial multidimensional, com linhas pontilhadas representando a atenção entre eles>
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829101530063.png" alt="image-20240829101530063" style="zoom: 67%;" />
 
 ### Introdução
 
-Os transformers revolucionaram o processamento de linguagem natural (NLP) ao introduzir um mecanismo de atenção baseado em Query, Key e Value (QKV). Este resumo aprofunda-se na interpretação geométrica e funcional desses componentes, explorando como eles capturam diferentes aspectos das relações entre palavras e investigando mecanismos alternativos de atenção além da atenção de produto escalar escalado.
+Os transformers revolucionaram o processamento de linguagem natural (NLP) ao introduzir um mecanismo de atenção baseado em Query, Key e Value (QKV). Este resumo aprofunda-se na interpretação geométrica e funcional desses componentes, explorando como ==eles capturam diferentes aspectos das relações entre palavras== e investigando mecanismos alternativos de atenção além da atenção de produto escalar escalado.
 
 ### Conceitos Fundamentais
 
 | Conceito    | Explicação                                                   |
 | ----------- | ------------------------------------------------------------ |
-| **Query**   | Vetor que representa a palavra atual sendo processada, usado para consultar informações relevantes no contexto. [1] |
-| **Key**     | Vetor que codifica informações sobre palavras no contexto, usado para comparação com a query. [1] |
-| **Value**   | Vetor que contém o conteúdo semântico real da palavra, usado para computar a saída da camada de atenção. [1] |
+| **Query**   | ==Vetor que representa a palavra atual sendo processada==, usado para consultar informações relevantes no contexto. [1] |
+| **Key**     | ==Vetor que codifica informações sobre palavras no contexto==, usado para comparação com a query. [1] |
+| **Value**   | ==Vetor que contém o conteúdo semântico real da palavra==, usado para computar a saída da camada de atenção. [1] |
 | **Atenção** | Mecanismo que permite ao modelo focar em partes relevantes do input ao processar uma sequência. [2] |
 
-> ✔️ **Ponto de Destaque**: A decomposição em Query, Key e Value permite que o modelo aprenda diferentes aspectos das relações entre palavras de forma paralela e eficiente.
+> ✔️ **Ponto de Destaque**: ==A decomposição em Query, Key e Value permite que o modelo aprenda diferentes aspectos das relações entre palavras de forma paralela e eficiente.==
 
 ### Interpretação Geométrica dos Vetores QKV
 
-<image: Um espaço vetorial 3D com vetores query, key e value representados como setas coloridas, mostrando ângulos e projeções entre eles>
+![image-20240829100823305](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829100823305.png)
 
 A interpretação geométrica dos vetores QKV oferece insights valiosos sobre o funcionamento do mecanismo de atenção:
 
-1. **Query como Direção de Busca**: O vetor query pode ser visto como uma direção no espaço vetorial que representa a informação que estamos buscando. [3]
+1. **Query como ==Direção de Busca==**: O vetor query pode ser visto como uma direção no espaço vetorial que representa a informação que estamos buscando. [3]
 
-2. **Key como Descritor de Conteúdo**: Os vetores key funcionam como descritores do conteúdo de cada palavra no contexto. [3]
+2. **Key como ==Descritor de Conteúdo==**: Os vetores key funcionam como descritores do conteúdo de cada palavra no contexto. [3]
 
-3. **Value como Conteúdo Semântico**: Os vetores value carregam o conteúdo semântico real que será usado para computar a saída. [3]
+3. **Value como ==Conteúdo Semântico==**: Os vetores value carregam o conteúdo semântico real que será usado para computar a saída. [3]
 
-4. **Produto Escalar como Similaridade**: A operação de produto escalar entre query e key mede a similaridade entre a informação buscada e o conteúdo disponível. [4]
+4. **Produto Escalar como ==Similaridade==**: A operação de produto escalar entre query e key mede a ==similaridade entre a informação buscada e o conteúdo disponível. [4]==
 
 Matematicamente, podemos expressar a atenção como:
 
@@ -55,25 +55,25 @@ Onde:
 Os vetores QKV desempenham papéis complementares no processo de atenção:
 
 1. **Query: Foco da Atenção**
-   - Determina o que é relevante para a palavra atual
-   - Projeta a "pergunta" que o modelo está fazendo ao contexto [5]
+   - ==Determina o que é relevante para a palavra atual==
+   - ==Projeta a "pergunta" que o modelo está fazendo ao contexto [5]==
 
 2. **Key: Índice de Conteúdo**
-   - Fornece um "índice" para o conteúdo de cada palavra no contexto
-   - Permite comparação eficiente com a query [5]
+   - ==Fornece um "índice" para o conteúdo de cada palavra no contexto==
+   - ==Permite comparação eficiente com a query [5]==
 
 3. **Value: Informação Contextual**
-   - Contém a informação real que será agregada
-   - Representa o "conteúdo" que será ponderado pela atenção [5]
+   - ==Contém a informação real que será agregada==
+   - ==Representa o "conteúdo" que será ponderado pela atenção [5]==
 
-> ❗ **Ponto de Atenção**: A separação em QKV permite que o modelo aprenda diferentes transformações para cada aspecto da atenção, aumentando a flexibilidade e expressividade do mecanismo.
+> ❗ **Ponto de Atenção**: ==A separação em QKV permite que o modelo aprenda diferentes transformações para cada aspecto da atenção==, aumentando a flexibilidade e expressividade do mecanismo.
 
 ### Contribuição para Captura de Relações entre Palavras
 
 Os vetores QKV permitem capturar diferentes tipos de relações entre palavras:
 
 1. **Relações Sintáticas**: 
-   - Query e Key podem aprender a capturar padrões sintáticos, como concordância sujeito-verbo. [6]
+   - ==Query e Key podem aprender a capturar padrões sintáticos, como concordância sujeito-verbo. [6]==
    - Exemplo: Em "The keys to the cabinet are on the table", a atenção pode focar em "keys" ao processar "are".
 
 2. **Relações Semânticas**:

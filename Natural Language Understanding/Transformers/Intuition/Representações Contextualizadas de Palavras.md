@@ -1,17 +1,17 @@
 ## Representações Contextualizadas de Palavras: Transformando a Compreensão Linguística em IA
 
-<image: Um diagrama mostrando várias instâncias da palavra "banco" em diferentes contextos, com vetores de embedding dinâmicos se ajustando para capturar os diferentes significados (financeiro, de sentar, de areia, etc.), contrastando com um único vetor estático para a mesma palavra.>
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829075422899.png" alt="image-20240829075422899" style="zoom: 80%;" />
 
 ### Introdução
 
-As representações contextualizadas de palavras representam um avanço significativo na modelagem de linguagem natural, superando as limitações das representações estáticas tradicionais [1]. Este conceito, fundamental para os modelos transformer, permite capturar nuances semânticas e sintáticas que variam de acordo com o contexto, revolucionando tarefas de processamento de linguagem natural (NLP) que exigem uma compreensão profunda de polissemia e homonímia [2].
+==As representações contextualizadas de palavras representam um avanço significativo na modelagem de linguagem natural, superando as limitações das representações estáticas tradicionais [1]==. Este conceito, fundamental para os ==modelos transformer, permite capturar nuances semânticas e sintáticas que variam de acordo com o contexto==, revolucionando tarefas de processamento de linguagem natural (NLP) que exigem uma compreensão profunda de polissemia e homonímia [2].
 
 ### Conceitos Fundamentais
 
 | Conceito                            | Explicação                                                   |
 | ----------------------------------- | ------------------------------------------------------------ |
-| **Representações Contextualizadas** | Vetores dinâmicos que representam palavras considerando seu contexto específico, permitindo múltiplas representações para uma mesma palavra [1]. |
-| **Embeddings Estáticos**            | Representações fixas de palavras, como Word2Vec ou GloVe, que atribuem um único vetor a cada palavra, independente do contexto [2]. |
+| **Representações Contextualizadas** | ==Vetores dinâmicos que representam palavras considerando seu contexto específico==, permitindo múltiplas representações para uma mesma palavra [1]. |
+| **Embeddings Estáticos**            | ==Representações fixas de palavras==, como Word2Vec ou GloVe, que ==atribuem um único vetor a cada palavra, independente do contexto [2].== |
 | **Polissemia**                      | Fenômeno linguístico onde uma palavra tem múltiplos significados relacionados, capturado eficientemente por representações contextualizadas [3]. |
 | **Homonímia**                       | Palavras com a mesma grafia ou pronúncia, mas significados distintos, um desafio superado por modelos contextuais [3]. |
 
@@ -19,15 +19,15 @@ As representações contextualizadas de palavras representam um avanço signific
 
 ### Transformers e Representações Contextualizadas
 
-<image: Um diagrama de arquitetura transformer, destacando como os mecanismos de self-attention geram representações contextualizadas em cada camada.>
+[<img src="https://mermaid.ink/img/pako:eNp9lG9P6jAUxr9KU-N9VRbYBshMbqIOFOU_5t7kFl_U7Ywtbi3ZuggSvrtdZ6QquXvVc86vz9Oetd3jQISAPbzO2SZGj_6KI_UV5XOdWOEh35QS9bNnCMOEr1e4JqrvitbFR_ECvHhCjcZvdE0_UTRiO8ifjvy1Jm7oTBSJTARnKepz5a_YDwp4uOI_lqAhyNFSsuDFXMCNFvTpEtKocSUl8Eq29kUtw9nXYJ8OAEI0EPkry8MTWF9jg9N6tgEONHh7Ss_EbjV2Ry3LMrJ3Ojs87TIxwKEG70-5TP7bsGkp1X8xO3WvpR5oXfnyZwyJ83P0bVFjCGLGkyL74fEN9EGyJDUtR3ReQr57Qr_QmD6AHkzoH5aWYOxxVJX14qb7o9oyEDkUhyM21ciMLkUkM7Y1BGaVrK7O6V9I1rFUzVqWmYHMdXlBbwSXsJUlS5M3BS1go0yUI6s8T3ZDzeAQyOowf9uvFChjCUe6HTWvDpmlfEZfovGXaFJHizrqm32Xu7S6XjoOUlYUPkQoVvtJqz2hKElT7yzqRaSQubpv3pnjOB_jxmsSythzN9tLYz7yyYAMyYiMyYRMyYzMyeIoeIkJziBXewjV7d9X81ZYxpDBCntqGELEylSfoYNCWSnFcscD7Mm8BIJzUa5j7EUsLVRUbkImwU-Y6kb2mYUwkSIf1--LfmYI3jD-T4gjo2Ls7fEWew2ndWE5bsfp2rbdtdvdLsG7Kt3uWB233em63Wbbdju9A8FvWqJltS_avU6zd-HaTrPptpzDO6LgbQA?type=png" style="zoom: 50%;" />](https://mermaid.live/edit#pako:eNp9lG9P6jAUxr9KU-N9VRbYBshMbqIOFOU_5t7kFl_U7Ywtbi3ZuggSvrtdZ6QquXvVc86vz9Oetd3jQISAPbzO2SZGj_6KI_UV5XOdWOEh35QS9bNnCMOEr1e4JqrvitbFR_ECvHhCjcZvdE0_UTRiO8ifjvy1Jm7oTBSJTARnKepz5a_YDwp4uOI_lqAhyNFSsuDFXMCNFvTpEtKocSUl8Eq29kUtw9nXYJ8OAEI0EPkry8MTWF9jg9N6tgEONHh7Ss_EbjV2Ry3LMrJ3Ojs87TIxwKEG70-5TP7bsGkp1X8xO3WvpR5oXfnyZwyJ83P0bVFjCGLGkyL74fEN9EGyJDUtR3ReQr57Qr_QmD6AHkzoH5aWYOxxVJX14qb7o9oyEDkUhyM21ciMLkUkM7Y1BGaVrK7O6V9I1rFUzVqWmYHMdXlBbwSXsJUlS5M3BS1go0yUI6s8T3ZDzeAQyOowf9uvFChjCUe6HTWvDpmlfEZfovGXaFJHizrqm32Xu7S6XjoOUlYUPkQoVvtJqz2hKElT7yzqRaSQubpv3pnjOB_jxmsSythzN9tLYz7yyYAMyYiMyYRMyYzMyeIoeIkJziBXewjV7d9X81ZYxpDBCntqGELEylSfoYNCWSnFcscD7Mm8BIJzUa5j7EUsLVRUbkImwU-Y6kb2mYUwkSIf1--LfmYI3jD-T4gjo2Ls7fEWew2ndWE5bsfp2rbdtdvdLsG7Kt3uWB233em63Wbbdju9A8FvWqJltS_avU6zd-HaTrPptpzDO6LgbQA)
 
-Os transformers revolucionaram o NLP ao introduzir um mecanismo de atenção que permite modelar eficientemente dependências de longo alcance sem recorrência [4]. Este mecanismo é crucial para a geração de representações contextualizadas:
+Os transformers revolucionaram o NLP ao ==introduzir um mecanismo de atenção que permite modelar eficientemente dependências de longo alcance sem recorrência [4]==. Este mecanismo é crucial para a ==geração de representações contextualizadas:==
 
-1. **Self-Attention**: O coração do transformer, permitindo que cada palavra "atenda" a todas as outras palavras na sequência [4].
+1. **Self-Attention**: O coração do transformer, ==permitindo que cada palavra "atenda" a todas as outras palavras na sequência [4].==
 
-2. **Camadas Empilhadas**: Múltiplas camadas de transformer permitem refinar progressivamente as representações [5].
+2. **Camadas Empilhadas**: Múltiplas camadas de transformer permitem ==refinar progressivamente as representações [5].==
 
-3. **Embeddings Posicionais**: Incorporam informações sobre a posição relativa das palavras [4].
+3. **Embeddings Posicionais**: Incorporam ==informações sobre a posição relativa das palavras [4].==
 
 A fórmula central para o cálculo da atenção em transformers é [4]:
 
@@ -41,7 +41,7 @@ Onde:
 - $V$: Value matrix
 - $d_k$: Dimensionalidade das chaves
 
-Esta fórmula permite que o modelo pondere dinamicamente a importância de diferentes palavras no contexto, crucial para gerar representações contextualizadas [4].
+==Esta fórmula permite que o modelo pondere dinamicamente a importância de diferentes palavras no contexto==, crucial para gerar representações contextualizadas [4].
 
 #### Questões Técnicas/Teóricas
 
@@ -52,13 +52,13 @@ Esta fórmula permite que o modelo pondere dinamicamente a importância de difer
 
 As representações contextualizadas superam várias limitações dos embeddings estáticos:
 
-| 👍 Vantagens das Representações Contextualizadas           | 👎 Limitações dos Embeddings Estáticos                        |
-| --------------------------------------------------------- | ------------------------------------------------------------ |
-| Capturam nuances de significado baseadas no contexto [6]  | Um único vetor por palavra, incapaz de distinguir significados [6] |
-| Adaptam-se a novos domínios e tarefas com fine-tuning [7] | Requerem retreinamento para novos domínios [7]               |
-| Modelam eficientemente polissemia e homonímia [3]         | Dificuldade em lidar com ambiguidades lexicais [3]           |
+| 👍 Vantagens das Representações Contextualizadas              | 👎 Limitações dos Embeddings Estáticos                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Capturam ==nuances de significado baseadas no contexto [6]== | Um único vetor por palavra, incapaz de distinguir significados [6] |
+| ==Adaptam-se a novos domínios e tarefas com fine-tuning [7]== | Requerem retreinamento para novos domínios [7]               |
+| Modelam eficientemente polissemia e homonímia [3]            | Dificuldade em lidar com ambiguidades lexicais [3]           |
 
-> ✔️ **Ponto de Destaque**: Representações contextualizadas permitem que uma palavra como "banco" tenha vetores distintos em "banco financeiro" e "banco de areia", capturando precisamente os diferentes significados baseados no contexto.
+> ✔️ **Ponto de Destaque**: ==Representações contextualizadas permitem que uma palavra como "banco" tenha vetores distintos em "banco financeiro" e "banco de areia"==, capturando precisamente os diferentes significados baseados no contexto.
 
 ### Implicações para Tarefas Downstream
 
@@ -72,8 +72,7 @@ As representações contextualizadas têm impacto significativo em várias taref
 
 4. **Resposta a Perguntas**: Melhora a compreensão de consultas complexas e a extração de respostas relevantes [11].
 
-Para ilustrar o impacto, considere a seguinte equação que representa a probabilidade de uma palavra $w_i$ dado seu contexto em um modelo de linguagem neural [12]:
-
+==Para ilustrar o impacto, considere a seguinte equação que representa a probabilidade de uma palavra $w_i$ dado seu contexto== em um modelo de linguagem neural [12]:
 $$
 P(w_i | w_{1:i-1}) = \text{softmax}(W h_i + b)
 $$

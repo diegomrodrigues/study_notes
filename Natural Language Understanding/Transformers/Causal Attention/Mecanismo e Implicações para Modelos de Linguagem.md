@@ -1,28 +1,27 @@
 ## Causal Attention: Mecanismo e Implicações para Modelos de Linguagem
 
-<image: Um diagrama mostrando um fluxo de informação unidirecional em uma estrutura de atenção, com setas apontando apenas para a esquerda, ilustrando o conceito de atenção causal>
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829085136200.png" alt="image-20240829085136200" style="zoom:67%;" />
 
 ### Introdução
 
-A atenção causal é um componente fundamental dos modelos de linguagem modernos baseados em transformers, desempenhando um papel crucial na geração autoregressiva de texto [1]. Este mecanismo, ao contrário da atenção bidirecional, garante que a previsão de cada token seja baseada apenas nos tokens anteriores, evitando assim o vazamento de informações do futuro [2]. Este resumo aprofundará os detalhes técnicos da atenção causal, sua implementação, vantagens e desvantagens, bem como sua comparação com modelos de atenção bidirecional.
+==A atenção causal é um componente fundamental dos modelos de linguagem modernos baseados em transformers, desempenhando um papel crucial na geração autoregressiva de texto [1]==. Este mecanismo, ao contrário da atenção bidirecional, ==garante que a previsão de cada token seja baseada apenas nos tokens anteriores, evitando assim o vazamento de informações do futuro [2].== Este resumo aprofundará os detalhes técnicos da atenção causal, sua implementação, vantagens e desvantagens, bem como sua comparação com modelos de atenção bidirecional.
 
 ### Conceitos Fundamentais
 
 | Conceito                   | Explicação                                                   |
 | -------------------------- | ------------------------------------------------------------ |
-| **Atenção Causal**         | Mecanismo que permite que um modelo atenda apenas aos tokens anteriores na sequência, crucial para a geração autoregressiva de texto [1]. |
+| **Atenção Causal**         | ==Mecanismo que permite que um modelo atenda apenas aos tokens anteriores na sequência==, crucial para a geração autoregressiva de texto [1]. |
 | **Geração Autoregressiva** | Processo de geração de texto onde cada token é previsto com base apenas nos tokens anteriores, mantendo a coerência e evitando vazamento de informações futuras [2]. |
-| **Mascaramento**           | Técnica utilizada na atenção causal para garantir que o modelo não acesse informações de tokens futuros durante o treinamento e a inferência [3]. |
-| **Atenção Bidirecional**   | Mecanismo que permite ao modelo atender a todos os tokens em uma sequência, independentemente de sua posição, útil para tarefas de compreensão de linguagem, mas não para geração de texto [4]. |
+| **Mascaramento**           | ==Técnica utilizada na atenção causal para garantir que o modelo não acesse informações de tokens futuros durante o treinamento e a inferência [3].== |
+| **Atenção Bidirecional**   | Mecanismo que permite ao modelo atender a todos os tokens em uma sequência, independentemente de sua posição, ==útil para tarefas de compreensão de linguagem, mas não para geração de texto [4].== |
 
 > ⚠️ **Nota Importante**: A atenção causal é essencial para modelos de linguagem generativos, pois impede o vazamento de informações futuras durante a geração de texto, mantendo a coerência e a naturalidade da saída [5].
 
 ### Mecanismo de Atenção Causal
 
-<image: Um diagrama detalhado mostrando a matriz de atenção com a parte superior triangular mascarada, ilustrando como a atenção causal previne o fluxo de informação do futuro>
+![image-20240829085502687](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829085502687.png)
 
-A atenção causal é implementada através de um mecanismo de mascaramento na matriz de atenção [6]. Este processo pode ser descrito matematicamente da seguinte forma:
-
+==A atenção causal é implementada através de um mecanismo de mascaramento na matriz de atenção [6].== Este processo pode ser descrito matematicamente da seguinte forma:
 $$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T + M}{\sqrt{d_k}}\right)V
 $$
@@ -41,9 +40,9 @@ M_{ij} = \begin{cases}
 \end{cases}
 $$
 
-Esta máscara garante que, para cada posição $i$, o modelo só possa atender às posições $j \leq i$ [7].
+Esta máscara garante que, para ==cada posição $i$, o modelo só possa atender às posições $j \leq i$ [7].==
 
-> ✔️ **Ponto de Destaque**: A aplicação da máscara antes da operação de softmax efetivamente zera as probabilidades de atenção para tokens futuros, garantindo a causalidade do modelo [8].
+> ✔️ **Ponto de Destaque**: ==A aplicação da máscara antes da operação de softmax efetivamente zera as probabilidades de atenção para tokens futuros==, garantindo a causalidade do modelo [8].
 
 ### Implementação da Atenção Causal
 
@@ -107,10 +106,10 @@ A atenção causal apresenta diversas vantagens e desvantagens em comparação c
 
 | 👍 Vantagens                                                  | 👎 Desvantagens                                               |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Permite geração autoregressiva de texto, mantendo a coerência e naturalidade [12] | Limitada em tarefas que requerem compreensão bidirecional do contexto [13] |
-| Previne vazamento de informações futuras, crucial para modelos de linguagem generativos [14] | Pode ser menos eficiente em tarefas de classificação ou análise de sentimento [15] |
-| Facilita o treinamento de modelos para tarefas de geração de sequência, como tradução [16] | Requer mais camadas ou parâmetros para capturar contextos longos eficientemente [17] |
-| Permite paralelização eficiente durante o treinamento, acelerando o processo [18] | Pode ter dificuldades em capturar dependências de longo alcance em certos cenários [19] |
+| ==Permite geração autoregressiva de texto, mantendo a coerência e naturalidade [12]== | ==Limitada em tarefas que requerem compreensão bidirecional do contexto [13]== |
+| Previne vazamento de informações futuras, crucial para modelos de linguagem generativos [14] | ==Pode ser menos eficiente em tarefas de classificação ou análise de sentimento [15]== |
+| Facilita o treinamento de modelos para tarefas de geração de sequência, como tradução [16] | ==Requer mais camadas ou parâmetros para capturar contextos longos eficientemente [17]== |
+| ==Permite paralelização eficiente durante o treinamento, acelerando o processo [18]== | Pode ter dificuldades em capturar dependências de longo alcance em certos cenários [19] |
 
 > ❗ **Ponto de Atenção**: A escolha entre atenção causal e bidirecional deve ser baseada na natureza específica da tarefa e nos requisitos do modelo [20].
 
@@ -127,7 +126,7 @@ A atenção causal e a atenção bidirecional representam abordagens distintas p
    - Atenção Bidirecional: Compreensão de linguagem, classificação de texto [25]
 
 3. **Complexidade Computacional**:
-   - Atenção Causal: $O(n)$ durante a inferência, onde $n$ é o comprimento da sequência [26]
+   - ==Atenção Causal: $O(n)$ durante a inferência, onde $n$ é o comprimento da sequência [26]==
    - Atenção Bidirecional: $O(n^2)$ durante a inferência [27]
 
 4. **Capacidade de Capturar Contexto**:

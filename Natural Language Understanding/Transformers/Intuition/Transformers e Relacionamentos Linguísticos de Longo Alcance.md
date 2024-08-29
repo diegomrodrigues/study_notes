@@ -1,36 +1,35 @@
 ## Transformers e Relacionamentos Linguísticos de Longo Alcance
 
-<image: Um diagrama complexo mostrando uma arquitetura de transformer com setas bidirecionais conectando tokens distantes, destacando a capacidade de capturar dependências de longo alcance>
+![image-20240829081443658](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829081443658.png)
 
 ### Introdução
 
-Os transformers revolucionaram o processamento de linguagem natural (NLP) ao introduzir um mecanismo capaz de capturar eficientemente relacionamentos linguísticos de longo alcance. Esta capacidade é crucial para compreender fenômenos linguísticos complexos como concordância, correferência e desambiguação de sentido de palavras, superando significativamente as limitações de modelos tradicionais de NLP com janelas de contexto limitadas [1][2].
+Os transformers revolucionaram o processamento de linguagem natural (NLP) ao introduzir um mecanismo ==capaz de capturar eficientemente relacionamentos linguísticos de longo alcance.== Esta capacidade é crucial para ==compreender fenômenos linguísticos complexos como concordância, correferência e desambiguação de sentido de palavras==, superando significativamente as limitações de modelos tradicionais de NLP com janelas de contexto limitadas [1][2].
 
 ### Conceitos Fundamentais
 
 | Conceito                       | Explicação                                                   |
 | ------------------------------ | ------------------------------------------------------------ |
-| **Self-Attention**             | Mecanismo central dos transformers que permite a cada token atender diretamente a todos os outros tokens na sequência, facilitando a captura de dependências de longo alcance [3]. |
-| **Contexto Amplo**             | Capacidade dos transformers de processar sequências muito longas (até 4096 tokens em alguns modelos), permitindo a incorporação de um contexto muito mais rico do que modelos anteriores [4]. |
+| **Self-Attention**             | Mecanismo central dos transformers que permite a ==cada token atender diretamente a todos os outros tokens na sequência==, facilitando a captura de dependências de longo alcance [3]. |
+| **Contexto Amplo**             | ==Capacidade dos transformers de processar sequências muito longas== (até 4096 tokens em alguns modelos), permitindo a incorporação de um contexto muito mais rico do que modelos anteriores [4]. |
 | **Representações Contextuais** | Embeddings dinâmicos que se adaptam ao contexto específico em que uma palavra aparece, essenciais para capturar nuances semânticas e relações complexas [5]. |
 
 > ✔️ **Ponto de Destaque**: A habilidade dos transformers de processar contextos amplos e gerar representações contextuais dinâmicas é fundamental para sua eficácia em capturar relacionamentos linguísticos de longo alcance.
 
 ### Mecanismo de Self-Attention e Relacionamentos de Longo Alcance
 
-<image: Uma visualização detalhada do mecanismo de self-attention, mostrando como diferentes cabeças de atenção se concentram em diferentes aspectos da entrada, incluindo relações de longo alcance>
+![image-20240829081950391](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829081950391.png)
 
-O mecanismo de self-attention é o componente chave que permite aos transformers capturar relacionamentos linguísticos de longo alcance. Vamos analisar como isso funciona matematicamente:
+==O mecanismo de self-attention é o componente chave que permite aos transformers capturar relacionamentos linguísticos de longo alcance.== Vamos analisar como isso funciona matematicamente:
 
-1. Para cada token na sequência, calculamos vetores de query ($q$), key ($k$) e value ($v$) [6]:
-
+1. ==Para cada token na sequência==, calculamos vetores de query ($q$), key ($k$) e value ($v$) [6]:
    $$
    q_i = x_iW^Q, \quad k_i = x_iW^K, \quad v_i = x_iW^V
    $$
-
-   onde $x_i$ é o embedding do token de entrada e $W^Q, W^K, W^V$ são matrizes de peso aprendidas.
-
-2. O score de atenção entre dois tokens é calculado como [6]:
+   
+   onde $x_i$ é o embedding do token de entrada e ==$W^Q, W^K, W^V$ são matrizes de peso aprendidas.==
+   
+2. O ==score de atenção entre dois tokens== é calculado como [6]:
 
    $$
    \text{score}(q_i, k_j) = \frac{q_i \cdot k_j}{\sqrt{d_k}}
@@ -38,21 +37,21 @@ O mecanismo de self-attention é o componente chave que permite aos transformers
 
    onde $d_k$ é a dimensão dos vetores de key.
 
-3. Estes scores são normalizados usando softmax para obter os pesos de atenção [6]:
+3. Estes scores são ==normalizados usando softmax== para obter os pesos de atenção [6]:
 
    $$
    \alpha_{ij} = \frac{\exp(\text{score}(q_i, k_j))}{\sum_k \exp(\text{score}(q_i, k_k))}
    $$
 
-4. O output final para cada posição é uma soma ponderada dos valores [6]:
+4. O output final para cada posição é uma ==soma ponderada dos valores [6]:==
 
    $$
    a_i = \sum_j \alpha_{ij}v_j
    $$
 
-Este mecanismo permite que cada token "atenda" diretamente a todos os outros tokens na sequência, independentemente da distância entre eles. Isso é crucial para capturar dependências de longo alcance, como concordância entre sujeito e verbo em frases longas ou resolução de correferência entre entidades mencionadas em diferentes partes do texto [7].
+==Este mecanismo permite que cada token "atenda" diretamente a todos os outros tokens na sequência, independentemente da distância entre eles.== Isso é crucial para capturar dependências de longo alcance, como concordância entre sujeito e verbo em frases longas ou resolução de correferência entre entidades mencionadas em diferentes partes do texto [7].
 
-> ❗ **Ponto de Atenção**: A normalização dos scores de atenção pelo softmax garante que o modelo possa focar em relações relevantes, mesmo em sequências muito longas.
+> ❗ **Ponto de Atenção**: ==A normalização dos scores de atenção pelo softmax garante que o modelo possa focar em relações relevantes, mesmo em sequências muito longas.==
 
 #### Questões Técnicas/Teóricas
 
@@ -65,7 +64,7 @@ Os transformers demonstram uma notável capacidade de capturar fenômenos lingu�
 
 #### 1. Concordância Gramatical
 
-A concordância gramatical, especialmente em frases longas e complexas, é um desafio significativo para modelos de NLP. Os transformers excel em:
+==A concordância gramatical, especialmente em frases longas e complexas, é um desafio significativo para modelos de NLP.== Os transformers excel em:
 
 - **Concordância sujeito-verbo**: Mesmo quando o sujeito e o verbo estão separados por muitas palavras, os transformers podem manter a concordância correta [8].
 
@@ -75,7 +74,7 @@ A concordância gramatical, especialmente em frases longas e complexas, é um de
 
 #### 2. Correferência
 
-A resolução de correferência requer a capacidade de relacionar pronomes e outras expressões anafóricas a seus antecedentes, muitas vezes distantes no texto [9].
+==A resolução de correferência requer a capacidade de relacionar pronomes e outras expressões anafóricas a seus antecedentes, muitas vezes distantes no texto [9].==
 
 Exemplo: "The chicken crossed the road because *it* wanted to get to the other side."
 
@@ -85,7 +84,7 @@ Os transformers podem efetivamente:
 
 #### 3. Desambiguação de Sentido de Palavras
 
-A capacidade de considerar um amplo contexto permite aos transformers desambiguar palavras com múltiplos sentidos de forma mais precisa [10].
+==A capacidade de considerar um amplo contexto permite aos transformers desambiguar palavras com múltiplos sentidos de forma mais precisa [10].==
 
 Exemplo: "I walked along the pond, and noticed that one of the trees along the *bank* had fallen into the water after the storm."
 
@@ -95,21 +94,23 @@ Aqui, o transformer pode corretamente interpretar "bank" como a margem do lago, 
 
 ### Análise Matemática da Captura de Dependências de Longo Alcance
 
-Para entender como os transformers capturam efetivamente dependências de longo alcance, vamos analisar o comportamento das atenções em diferentes camadas do modelo.
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829083833153.png" alt="image-20240829083833153" style="zoom: 67%;" />
 
-Seja $A^l_{ij}$ a matriz de atenção na camada $l$, onde $i$ é a posição do token de query e $j$ é a posição do token de key. Podemos definir uma medida de "alcance efetivo" $R^l$ para cada camada como [11]:
+Para entender como os transformers capturam efetivamente dependências de longo alcance, vamos ==analisar o comportamento das atenções em diferentes camadas do modelo.==
+
+Seja $A^l_{ij}$ a matriz de atenção na camada $l$, onde $i$ é a posição do token de query e $j$ é a posição do token de key. ==Podemos definir uma medida de "alcance efetivo" $R^l$ para cada camada como [11]:==
 
 $$
 R^l = \sum_{i,j} A^l_{ij} |i-j|
 $$
 
-Esta medida nos dá uma ideia de quão "longe" a atenção está olhando em média. Empiricamente, observa-se que:
+==Esta medida nos dá uma ideia de quão "longe" a atenção está olhando em média.== Empiricamente, observa-se que:
 
 1. Nas camadas iniciais, $R^l$ tende a ser pequeno, indicando um foco em contextos locais.
 2. Nas camadas intermediárias, $R^l$ aumenta, sugerindo que o modelo está integrando informações de contextos mais amplos.
 3. Nas camadas finais, $R^l$ pode se estabilizar ou até diminuir, à medida que o modelo se concentra em informações mais relevantes para a tarefa final.
 
-Esta progressão permite ao modelo construir gradualmente representações que capturam dependências de longo alcance de maneira hierárquica e eficiente.
+==Esta progressão permite ao modelo construir gradualmente representações que capturam dependências de longo alcance de maneira hierárquica e eficiente.==
 
 #### Questões Técnicas/Teóricas
 
@@ -121,7 +122,7 @@ Esta progressão permite ao modelo construir gradualmente representações que c
 | 👍 Vantagens dos Transformers                                 | 👎 Limitações de Modelos Tradicionais                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Capacidade de processar sequências muito longas (até 4096 tokens) [12] | Janelas de contexto limitadas (e.g., n-gramas fixos)         |
-| Atenção paralela a todos os tokens, permitindo captura eficiente de dependências de longo alcance [13] | Dificuldade em propagar informações através de longas sequências (problema do gradiente de longa distância em RNNs) |
+| ==Atenção paralela a todos os tokens, permitindo captura eficiente de dependências de longo alcance [13]== | Dificuldade em propagar informações através de longas sequências (problema do gradiente de longa distância em RNNs) |
 | Representações contextuais dinâmicas que se adaptam ao contexto específico [14] | Representações estáticas que não capturam nuances contextuais |
 | Capacidade de modelar múltiplos tipos de relações simultaneamente através de múltiplas cabeças de atenção [15] | Foco em um tipo específico de relação ou dependência         |
 

@@ -1,6 +1,8 @@
 ## Relações Linguísticas Contextuais em Modelos de Linguagem Avançados
 
-<image: Um diagrama de rede neural mostrando múltiplas camadas de atenção, com setas bidirecionais conectando diferentes palavras em uma frase, ilustrando relações linguísticas de longa distância>
+![image-20240829084353580](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829084353580.png)
+
+![image-20240829084335145](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829084335145.png)
 
 ### Introdução
 
@@ -65,8 +67,8 @@ O modelo deve:
 3. Atribuir a intenção expressa ao sujeito correto.
 
 **Abordagem Transformer**:
-- Utiliza atenção multi-cabeça para manter múltiplas perspectivas sobre as relações entre palavras.
-- Constrói representações contextuais que incorporam informações semânticas e sintáticas.
+- ==Utiliza atenção multi-cabeça para manter múltiplas perspectivas sobre as relações entre palavras.==
+- ==Constrói representações contextuais que incorporam informações semânticas e sintáticas.==
 
 $$
 P(\text{it} \rightarrow \text{chicken}) = \frac{\exp(s(\text{it}, \text{chicken}))}{\sum_{w \in \{\text{chicken}, \text{road}\}} \exp(s(\text{it}, w))}
@@ -91,8 +93,8 @@ O modelo deve:
 3. Resolver a ambiguidade considerando todo o contexto, não apenas palavras adjacentes.
 
 **Abordagem Transformer**:
-- Utiliza atenção de longo alcance para considerar todo o contexto da frase.
-- Constrói representações contextuais dinâmicas que se atualizam com cada nova informação processada.
+- ==Utiliza atenção de longo alcance para considerar todo o contexto da frase.==
+- ==Constrói representações contextuais dinâmicas que se atualizam com cada nova informação processada.==
 
 $$
 \text{Sense}(\text{bank}) = \argmax_{s \in \text{Senses}(\text{bank})} \sum_{w \in \text{Context}} \text{Similarity}(s, w)
@@ -134,7 +136,7 @@ A arquitetura Transformer, através de seus mecanismos de atenção, é particul
 
    Onde $h_i^l$ é a representação do token $i$ na camada $l$, e $H^{l-1}$ é a matriz de todas as representações da camada anterior.
 
-> ❗ **Ponto de Atenção**: A eficácia dos Transformers em resolver relações linguísticas complexas depende crucialmente da qualidade e diversidade dos dados de treinamento, bem como da profundidade e largura da arquitetura.
+> ❗ **Ponto de Atenção**: ==A eficácia dos Transformers em resolver relações linguísticas complexas depende crucialmente da qualidade e diversidade dos dados de treinamento, bem como da profundidade e largura da arquitetura.==
 
 #### Questões Técnicas/Teóricas
 

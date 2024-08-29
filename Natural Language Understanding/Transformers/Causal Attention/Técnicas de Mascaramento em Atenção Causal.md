@@ -1,10 +1,10 @@
 ## Masking the Future: Técnicas de Mascaramento em Atenção Causal
 
-<image: Um diagrama mostrando uma matriz de atenção com a parte superior direita sombreada, representando o mascaramento do futuro em um modelo transformer>
+![image-20240829090632795](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829090632795.png)
 
 ### Introdução
 
-O mascaramento do futuro é uma técnica crucial em modelos de linguagem baseados em transformers, especialmente na configuração de atenção causal. Esta técnica é fundamental para garantir que o modelo não tenha acesso a informações futuras durante o processo de geração de texto ou previsão de palavras subsequentes [1]. Este resumo explorará diferentes técnicas de mascaramento, seu impacto no desempenho do modelo e os desafios associados à implementação eficiente dessas técnicas para sequências longas.
+O mascaramento do futuro é uma técnica crucial em modelos de linguagem baseados em transformers, especialmente na configuração de atenção causal. ==Esta técnica é fundamental para garantir que o modelo não tenha acesso a informações futuras durante o processo de geração de texto ou previsão de palavras subsequentes [1]==. Este resumo explorará diferentes técnicas de mascaramento, seu impacto no desempenho do modelo e os desafios associados à implementação eficiente dessas técnicas para sequências longas.
 
 ### Conceitos Fundamentais
 
@@ -14,15 +14,15 @@ O mascaramento do futuro é uma técnica crucial em modelos de linguagem baseado
 | **Mascaramento**      | Técnica utilizada para ocultar informações futuras durante o treinamento e inferência em modelos de linguagem [3]. |
 | **Sequências Longas** | Contextos de entrada extensos que desafiam a eficiência computacional e a capacidade de memória dos modelos transformer [4]. |
 
-> ⚠️ **Nota Importante**: O mascaramento é essencial para preservar a causalidade em modelos de linguagem, evitando vazamento de informações futuras durante o treinamento e a inferência.
+> ⚠️ **Nota Importante**: ==O mascaramento é essencial para preservar a causalidade em modelos de linguagem==, evitando vazamento de informações futuras durante o treinamento e a inferência.
 
 ### Técnicas de Mascaramento
 
-<image: Uma série de matrizes de atenção lado a lado, cada uma ilustrando uma técnica diferente de mascaramento, como mascaramento triangular, mascaramento de bloco e mascaramento adaptativo>
+![image-20240829090846174](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240829090846174.png)
 
 #### 1. Mascaramento Triangular Superior
 
-O mascaramento triangular superior é a técnica mais comum e direta para implementar atenção causal [5]. Nesta abordagem, todos os elementos acima da diagonal principal da matriz de atenção são mascarados, efetivamente zerando as atenções para tokens futuros.
+==O mascaramento triangular superior é a técnica mais comum e direta para implementar atenção causal [5].== Nesta abordagem, todos os elementos acima da diagonal principal da matriz de atenção são mascarados, efetivamente zerando as atenções para tokens futuros.
 
 Matematicamente, podemos representar o mascaramento triangular superior como:
 
@@ -45,7 +45,7 @@ $$
 
 #### 2. Mascaramento de Bloco
 
-Para sequências muito longas, o mascaramento de bloco pode ser mais eficiente computacionalmente [6]. Nesta técnica, a sequência é dividida em blocos, e o mascaramento é aplicado em nível de bloco, permitindo otimizações de hardware.
+==Para sequências muito longas, o mascaramento de bloco pode ser mais eficiente computacionalmente [6].== Nesta técnica, ==a sequência é dividida em blocos, e o mascaramento é aplicado em nível de bloco, permitindo otimizações de hardware.==
 
 A matriz de mascaramento de bloco pode ser representada como:
 
@@ -60,7 +60,7 @@ Onde $b$ é o tamanho do bloco.
 
 #### 3. Mascaramento Adaptativo
 
-O mascaramento adaptativo ajusta dinamicamente o padrão de mascaramento com base no conteúdo ou na estrutura da sequência [7]. Esta técnica pode ser particularmente útil em tarefas onde certas partes do futuro podem ser relevantes sem violar a causalidade geral.
+==O mascaramento adaptativo ajusta dinamicamente o padrão de mascaramento com base no conteúdo ou na estrutura da sequência [7]. Esta técnica pode ser particularmente útil em tarefas onde certas partes do futuro podem ser relevantes sem violar a causalidade geral.==
 
 Um exemplo de mascaramento adaptativo pode ser representado como:
 
