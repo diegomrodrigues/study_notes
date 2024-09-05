@@ -4,7 +4,7 @@ Crie uma lista de tópicos e subtópicos de estudo para cada capítulo e subcap�
 
 * Os tópicos devem ser avançados;
 * Os tópicos devem ser baseados nos principais aspectos do conceito abordado no livro, como técnicas ou funcionalidades específicas demonstradas em cada subcapítulo;
-* Os tópicos devem ser concisos, precisos e abrangentes, sem serem muito gerais. Inclua uma breve descrição do contexto em que cada tópico é usado no subcapítulo;
+* Os tópicos devem ser aprofundados, precisos e abrangentes, sem serem muito gerais. Inclua uma breve descrição do contexto em que cada tópico é usado no subcapítulo;
 * O objetivo da lista é auxiliar o aprofundamento no tópico então mantenha concisa, teórica e não coloque ações, apenas conceitos teóricos e práticos.
 * Lembre-se de que o objetivo da lista de tópicos é servir como um guia de estudo para um Cientista de 
 * Dados especialista em AI, Estatística e Deep Learning, com conhecimentos avançados em tecnologia e programação.
@@ -30,7 +30,7 @@ etc...
 
 
 
-Como pode ver, os assuntos tem conceitos claros, avançados e específicos associados com o texto base como **Shrinkage of canonical variates** e **Univariate vs. multivariate approaches**, e um contexto de como esse conceito é explorado no texto de mandeira aprofundada, específica e bastante relevante ao texto base.
+Como pode ver, os assuntos tem conceitos claros, avançados e específicos associados com o texto base como **Shrinkage of canonical variates** e **Univariate vs. multivariate approaches**, e um contexto de como esse conceito é explorado no texto de mandeira aprofundada, específica e bastante relevante ao texto base. Não escreva "contexto", deve ser um texto corrido como os de cima. Seja aprofundado.
 
 
 

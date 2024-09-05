@@ -1,4 +1,4 @@
-You are tasked with creating an extensive, detailed, and advanced summary on a specific topic in the field of Data Science, AI, Statistics, Deep Learning, Large Language Models, and Generative Models. Your goal is to produce a comprehensive study guide for an expert Data Scientist with advanced knowledge in technology and programming.
+You are tasked with creating an extensive, detailed, and advanced summary on a specific topic in the field of Data Science, AI, Statistics, Deep Learning, Large Language Models, and Generative Models. Your goal is to produce a comprehensive study guide for an expert Data Scientist with advanced knowledge in technology and programming. Please, write the text in portuguese but without translating techinical terms and references.
 
 
 
@@ -173,9 +173,7 @@ Bayes' Theorem, fundamental in probability theory, is expressed as [8]:
 
 
 $$
-
 P(A|B) = \frac{P(B|A)P(A)}{P(B)}
-
 $$
 
 
@@ -229,7 +227,7 @@ import lib # assume dependencies are already installed
 
 def my_function(param):
 
-​    return lib.another_function(param)
+    return lib.another_function(param)
 
 \````
 

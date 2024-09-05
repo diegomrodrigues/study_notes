@@ -6,7 +6,7 @@
 
 A maximização da log-verossimilhança é uma técnica fundamental no treinamento de Modelos Autorregressivos (ARMs), desempenhando um papel crucial na estimação de parâmetros e na avaliação do desempenho do modelo [1]. Esta abordagem baseia-se em princípios estatísticos sólidos e oferece várias vantagens computacionais e teóricas, tornando-a uma escolha preferencial para uma ampla gama de aplicações em aprendizado de máquina e modelagem estatística [2].
 
-No contexto dos ARMs, a log-verossimilhança captura a probabilidade de observar os dados de treinamento dado o modelo atual, fornecendo uma medida direta de quão bem o modelo se ajusta aos dados [3]. Ao maximizar esta função, buscamos encontrar os parâmetros do modelo que melhor explicam os dados observados, permitindo assim a geração de amostras realistas e a realização de inferências precisas [4].
+==No contexto dos ARMs, a log-verossimilhança captura a probabilidade de observar os dados de treinamento dado o modelo atual, fornecendo uma medida direta de quão bem o modelo se ajusta aos dados [3]==. Ao maximizar esta função, buscamos encontrar os parâmetros do modelo que melhor explicam os dados observados, permitindo assim a geração de amostras realistas e a realização de inferências precisas [4].
 
 Este resumo explorará em profundidade os fundamentos matemáticos, as técnicas de implementação e as considerações práticas envolvidas na utilização da log-verossimilhança como função objetivo para o treinamento de ARMs, com foco particular em aplicações de processamento de imagens e modelagem de sequências [5].
 
@@ -14,7 +14,7 @@ Este resumo explorará em profundidade os fundamentos matemáticos, as técnicas
 
 | Conceito                         | Explicação                                                   |
 | -------------------------------- | ------------------------------------------------------------ |
-| **Log-verossimilhança**          | Uma medida logarítmica da probabilidade de observar os dados dado um modelo estatístico. Para ARMs, representa a soma dos logaritmos das probabilidades condicionais de cada elemento da sequência [1]. |
+| **Log-verossimilhança**          | ==Uma medida logarítmica da probabilidade de observar os dados dado um modelo estatístico.== Para ARMs, representa ==a soma dos logaritmos das probabilidades condicionais de cada elemento da sequência [1].== |
 | **Modelo Autorregressivo (ARM)** | Um modelo estatístico que expressa uma variável aleatória como uma função de seus valores passados. Em processamento de imagens, modela cada pixel como dependente dos pixels anteriores [3]. |
 | **Gradiente Ascendente**         | Técnica de otimização utilizada para maximizar a log-verossimilhança, atualizando iterativamente os parâmetros do modelo na direção do gradiente positivo [6]. |
 
@@ -45,8 +45,8 @@ $$
 Esta formulação tem várias vantagens importantes:
 
 1. **Estabilidade Numérica**: O uso de logaritmos previne underflow numérico ao lidar com probabilidades muito pequenas [2].
-2. **Aditividade**: A soma de log-probabilidades é computacionalmente mais eficiente e numericamente estável do que o produto de probabilidades [2].
-3. **Monotonicidade**: Maximizar a log-verossimilhança é equivalente a maximizar a verossimilhança, devido à natureza monotônica da função logarítmica [1].
+2. **Aditividade**: ==A soma de log-probabilidades é computacionalmente mais eficiente e numericamente estável do que o produto de probabilidades [2].==
+3. **Monotonicidade**: ==Maximizar a log-verossimilhança é equivalente a maximizar a verossimilhança==, devido à natureza monotônica da função logarítmica [1].
 
 > ✔️ **Ponto de Destaque**: A decomposição da log-verossimilhança em somas de termos individuais facilita a aplicação de técnicas de otimização baseadas em gradiente, permitindo o treinamento eficiente de ARMs em larga escala [6].
 
