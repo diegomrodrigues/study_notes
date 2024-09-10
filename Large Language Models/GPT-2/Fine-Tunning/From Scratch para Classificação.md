@@ -99,9 +99,9 @@ train_loader = DataLoader(
 
 O `DataLoader` oferece várias vantagens [8]:
 - Carregamento em lotes (batching) automático
-- Shuffling dos dados para melhor generalização
+- ==Shuffling dos dados para melhor generalização==
 - Paralelização do carregamento de dados com `num_workers`
-- Opção de descartar o último lote incompleto com `drop_last`
+- ==Opção de descartar o último lote incompleto com `drop_last`==
 
 #### Técnicas de Attention Masking para Sequências com Padding
 
@@ -207,13 +207,13 @@ Se o modelo gerar texto coerente, é um bom indicador de que os pesos foram carr
 
 Utilizar modelos pré-treinados diretamente para tarefas downstream sem finetuning apresenta vários desafios [13]:
 
-1. **Desalinhamento de Tarefas**: O modelo pré-treinado é otimizado para modelagem de linguagem, não para classificação ou outras tarefas específicas.
+1. ==**Desalinhamento de Tarefas**: O modelo pré-treinado é otimizado para modelagem de linguagem, não para classificação ou outras tarefas específicas.==
 
 2. **Viés do Domínio**: O corpus de pré-treinamento pode não representar adequadamente o domínio da tarefa alvo.
 
-3. **Ausência de Camada de Saída Específica**: Modelos como GPT não possuem naturalmente uma camada de saída adequada para classificação.
+3. ==**Ausência de Camada de Saída Específica**: Modelos como GPT não possuem naturalmente uma camada de saída adequada para classificação.==
 
-4. **Overfitting Potencial**: Sem finetuning, o modelo pode se apegar excessivamente a padrões do pré-treinamento não relevantes para a tarefa alvo.
+4. ==**Overfitting Potencial**: Sem finetuning, o modelo pode se apegar excessivamente a padrões do pré-treinamento não relevantes para a tarefa alvo.==
 
 5. **Ineficiência Computacional**: Usar o modelo completo sem adaptação pode ser computacionalmente ineficiente para tarefas simples.
 
@@ -279,15 +279,15 @@ torch.nn.init.zeros_(model.out_head.bias)
 
 #### Substituição da Camada de Saída: De Vocabulário para Classes
 
-A substituição da camada de saída é um passo crítico na adaptação do LLM para classificação. Essa mudança altera fundamentalmente a natureza do modelo [16]:
+==A substituição da camada de saída é um passo crítico na adaptação do LLM para classificação. Essa mudança altera fundamentalmente a natureza do modelo [16]:==
 
 1. **Camada Original**: 
    - Dimensões: `(hidden_size, vocab_size)` (e.g., `(768, 50257)` para GPT-2 pequeno)
-   - Função: Gerar probabilidades para cada token no vocabulário
+   - Função: ==Gerar probabilidades para cada token no vocabulário==
 
 2. **Nova Camada de Classificação**:
    - Dimensões: `(hidden_size, num_classes)` (e.g., `(768, 2)` para classificação binária)
-   - Função: Gerar logits para cada classe
+   - Função: ==Gerar logits para cada classe==
 
 Esta mudança pode ser representada matematicamente como:
 
@@ -334,7 +334,7 @@ Esta abordagem oferece várias vantagens:
 - Diminui o tempo de treinamento e o uso de memória
 - Preserva o conhecimento geral adquirido no pré-treinamento
 
-> 💡 **Dica**: O número ideal de camadas a serem finetuned pode variar dependendo do tamanho do dataset e da similaridade entre a tarefa de pré-treinamento e a tarefa alvo. Experimente com diferentes configurações para otimizar o desempenho.
+> 💡 **Dica**: ==O número ideal de camadas a serem finetuned pode variar dependendo do tamanho do dataset e da similaridade entre a tarefa de pré-treinamento e a tarefa alvo.== Experimente com diferentes configurações para otimizar o desempenho.
 
 #### Atenção Causal e suas Implicações para Tarefas de Classificação
 
@@ -344,7 +344,7 @@ A arquitetura GPT utiliza atenção causal, o que significa que cada token só p
 
 2. **Informação Contextual**: O último token tem acesso a toda a informação da sequência, tornando-o ideal para classificação.
 
-3. **Padding e Masking**: É crucial implementar masking adequado para lidar com sequências de comprimento variável e padding.
+3. **Padding e Masking**: ==É crucial implementar masking adequado para lidar com sequências de comprimento variável e padding.==
 
 A implementação da atenção causal pode ser representada matematicamente como:
 
@@ -539,9 +539,9 @@ optimizer = AdamW(model.parameters(), lr=5e-5, weight_decay=0.01)
 A escolha da learning rate (taxa de aprendizado) é crucial para o sucesso do finetuning. Algumas estratégias comuns incluem [24]:
 
 1. **Learning Rate Constante**: Simples, mas pode ser subótima.
-2. **Learning Rate Decay**: Diminui a LR ao longo do tempo, permitindo convergência fina.
-3. **Cyclical Learning Rates**: Alterna entre valores altos e baixos, potencialmente escapando de mínimos locais.
-4. **Learning Rate Warmup**: Começa com uma LR baixa e aumenta gradualmente, estabilizando o treinamento inicial.
+2. **Learning Rate Decay**:== Diminui a LR ao longo do tempo, permitindo convergência fina.==
+3. **Cyclical Learning Rates**: ==Alterna entre valores altos e baixos, potencialmente escapando de mínimos locais.==
+4. **Learning Rate Warmup**: ==Começa com uma LR baixa e aumenta gradualmente, estabilizando o treinamento inicial.==
 
 Uma abordagem eficaz é o uso de learning rate warmup seguido de decay:
 

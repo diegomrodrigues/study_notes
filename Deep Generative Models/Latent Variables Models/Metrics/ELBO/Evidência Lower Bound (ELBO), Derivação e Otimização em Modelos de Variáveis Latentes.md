@@ -6,7 +6,7 @@
 
 ### Introdução
 
-A Evidência Lower Bound (ELBO) é um conceito fundamental na inferência variacional e no treinamento de modelos de variáveis latentes, como os Variational Autoencoders (VAEs). O ELBO fornece um limite inferior tratável para a log-verossimilhança dos dados, que é muitas vezes intratável de se calcular diretamente [1]. Esta técnica é crucial para otimizar modelos probabilísticos complexos, permitindo a aprendizagem eficiente de distribuições posteriores aproximadas sobre variáveis latentes.
+A Evidência Lower Bound (ELBO) é um conceito fundamental na inferência variacional e no treinamento de modelos de variáveis latentes, como os Variational Autoencoders (VAEs). ==O ELBO fornece um limite inferior tratável para a log-verossimilhança dos dados, que é muitas vezes intratável de se calcular diretamente [1].== Esta técnica é crucial para otimizar modelos probabilísticos complexos, ==permitindo a aprendizagem eficiente de distribuições posteriores aproximadas sobre variáveis latentes.==
 
 Neste resumo, exploraremos a derivação detalhada do ELBO, sua interpretação matemática e estatística, e como ele é utilizado na prática para treinar modelos de variáveis latentes. Abordaremos também as nuances da otimização do ELBO e suas implicações para a qualidade dos modelos resultantes.
 
@@ -19,7 +19,7 @@ Neste resumo, exploraremos a derivação detalhada do ELBO, sua interpretação 
 | **Inferência Variacional**   | Técnica para aproximar distribuições posteriores intratáveis usando otimização [4]. |
 | **Distribuição Variacional** | Uma distribuição $q_\phi(z|x)$ que aproxima a verdadeira posterior $p(z|x)$ [5]. |
 
-> ✔️ **Ponto de Destaque**: O ELBO é fundamentalmente uma reformulação da log-verossimilhança que introduz uma distribuição variacional, tornando o problema de inferência tratável computacionalmente.
+> ✔️ **Ponto de Destaque**: ==O ELBO é fundamentalmente uma reformulação da log-verossimilhança que introduz uma distribuição variacional==, tornando o problema de inferência tratável computacionalmente.
 
 ### Derivação do ELBO
 
@@ -68,7 +68,7 @@ Onde $\text{KL}(q_\phi(z|x) || p(z))$ é a divergência de Kullback-Leibler entr
 
 O ELBO pode ser interpretado de várias maneiras:
 
-1. **Limite Inferior**: O ELBO fornece um limite inferior para a log-verossimilhança $\log p(x)$ [9].
+1. **Limite Inferior**: ==O ELBO fornece um limite inferior para a log-verossimilhança $\log p(x)$ [9].==
 
 2. **Balanço Reconstrução-Regularização**: O primeiro termo $\mathbb{E}_{q_\phi(z|x)} [\log p(x|z)]$ incentiva uma boa reconstrução dos dados, enquanto o termo KL age como regularizador [10].
 
@@ -80,7 +80,7 @@ O ELBO pode ser interpretado de várias maneiras:
 
 ### Otimização do ELBO
 
-A otimização do ELBO é geralmente realizada usando técnicas de gradiente estocástico. O desafio principal está em estimar o gradiente do ELBO com respeito aos parâmetros do modelo $\theta$ e os parâmetros variacionais $\phi$ [12].
+==A otimização do ELBO é geralmente realizada usando técnicas de gradiente estocástico.== O desafio principal está em ==estimar o gradiente do ELBO com respeito aos parâmetros do modelo $\theta$ e os parâmetros variacionais $\phi$ [12].==
 
 Um método popular é o estimador reparametrizado, introduzido no contexto dos VAEs [13]:
 

@@ -60,8 +60,7 @@ Esta equação demonstra que a ==log-verossimilhança pode ser decomposta em doi
 
 ### Condições para Igualdade com a Log-verossimilhança Verdadeira
 
-O ELBO se iguala à log-verossimilhança verdadeira quando a distribuição variacional $q(z)$ é exatamente igual à posterior verdadeira $p(z|x; \theta)$ [10]. Matematicamente, isso ocorre quando:
-
+==O ELBO se iguala à log-verossimilhança verdadeira quando a distribuição variacional $q(z)$ é exatamente igual à posterior verdadeira $p(z|x; \theta)$ [10].== Matematicamente, isso ocorre quando:
 $$
 D_{KL}(q(z) || p(z|x; \theta)) = 0
 $$
@@ -95,7 +94,7 @@ Onde:
 - $p(x|z)$ é o decoder
 - $p(z)$ é a prior sobre as variáveis latentes
 
-Esta formulação permite o treinamento end-to-end do VAE usando backpropagation e o "reparameterization trick" [15].
+==Esta formulação permite o treinamento end-to-end do VAE usando backpropagation e o "reparameterization trick" [15].==
 
 #### Questões Técnicas/Teóricas
 
