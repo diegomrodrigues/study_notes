@@ -28,26 +28,28 @@ def split_pdf(input_pdf, root_dir, config):
         print(f"Created: {output_path}")
 
 # Example usage
-input_pdf = "math-deep.pdf"  # Replace with your input PDF file name
+input_pdf = "eisenstein-nlp-notes.pdf"
 config = {
     #"Vector Spaces": (49, 104),
-    #"Matrices": (113, 134),
-    "Hadamard Matrices": (141, 162),
-    "Direct Sums": (167, 197),
-    "Determinants": (205, 237),
-    "Gaussian Elimination": (243, 312),
-    "Vector Norm and Matrix Norms": (323, 367),
-    "Solving Linear Systems": (373, 395),
-    "Dual Space": (399, 433),
-    "Euclidean Spaces": (437, 479),
-    "QR Decomposition": (491, 506),
-    "Hermitian Spaces": (513, 548),
-    "Eigenvectors & Eigenvalues": (553, 574),
-    "Unit Quaternions and Rotations": (585, 605),
-    "Spectral Theorems": (609, 638),
-    "Computing Eigenvalues": (645, 673),
-    "SVD & Polar Form": (731, 748),
-    "Applications": (753, 783)
+    "Linear Text Classification": (31, 64),
+    "Nonlinear Text Classification": (65, 86),
+    "Linguistic Classification": (87, 112),
+    "Unsupervised Learning": (113, 142),
+    "Language Models": (143, 162),
+    "Senquence Labeling": (163, 192),
+    "Linguistic Sequence Labeling": (193, 208),
+    "Formal Language Theory": (209, 242),
+    "Context-free Parsing": (243, 274),
+    "Dependency Parsing": (275, 299),
+    "Logical Semantics": (303, 322),
+    "Predicate-argument Semantics": (323, 342),
+    "Distributional Semantics": (343, 368),
+    "Reference Resolution": (369, 396),
+    "Discourse": (397, 418),
+    "Informtion Extraction": (421, 448),
+    "Machine Translation": (449, 474),
+    "Text Generation": (475, 491)
 }
+folder = "Natural Language Processing"
 
-split_pdf(input_pdf, "Linear Algebra", config)
+split_pdf(input_pdf, folder, config)
