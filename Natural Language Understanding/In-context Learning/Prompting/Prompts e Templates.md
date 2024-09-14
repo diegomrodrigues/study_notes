@@ -1,6 +1,6 @@
 ## Prompts e Templates: Estruturas Reutilizáveis para Engenharia de Prompts
 
-<image: Um diagrama mostrando um template de prompt com espaços vazios para input e instruções, conectado a múltiplos exemplos de prompts preenchidos>
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240913092240229.png" alt="image-20240913092240229" style="zoom: 80%;" />
 
 ### Introdução
 
@@ -11,14 +11,12 @@ Prompts e templates são componentes fundamentais na engenharia de prompts, uma 
 | Conceito               | Explicação                                                   |
 | ---------------------- | ------------------------------------------------------------ |
 | **Prompt**             | Uma instrução ou pergunta em linguagem natural fornecida a um LLM para direcionar sua saída [1] |
-| **Template de Prompt** | Uma estrutura reutilizável que contém slots para texto de entrada e instruções, usado para criar prompts consistentes [2] |
+| **Template de Prompt** | ==Uma estrutura reutilizável que contém slots para texto de entrada e instruções, usado para criar prompts consistentes [2]== |
 | **Demonstração**       | Exemplos incluídos no prompt para ilustrar o comportamento desejado do modelo [3] |
 
 > ⚠️ **Nota Importante**: A eficácia de um prompt depende não apenas de seu conteúdo, mas também de sua estrutura e formatação.
 
 ### Anatomia de um Template de Prompt
-
-<image: Um diagrama detalhado de um template de prompt, destacando suas partes componentes como instruções, slots para entrada, e demonstrações>
 
 Um template de prompt típico consiste em vários elementos-chave [2]:
 
@@ -37,7 +35,7 @@ Texto: {{input}}
 Sentimento:
 ```
 
-Neste template, `{{input}}` é um slot que será preenchido com o texto específico a ser analisado.
+==Neste template, `{{input}}` é um slot que será preenchido com o texto específico a ser analisado.==
 
 ### Tipos de Templates de Prompt
 
@@ -97,7 +95,7 @@ Tópico:
 
 #### Chain-of-Thought Prompting
 
-Chain-of-Thought (CoT) é uma técnica avançada que incentiva o modelo a mostrar seu raciocínio passo a passo, melhorando significativamente o desempenho em tarefas complexas de raciocínio [6][8].
+==Chain-of-Thought (CoT) é uma técnica avançada que incentiva o modelo a mostrar seu raciocínio passo a passo, melhorando significativamente o desempenho em tarefas complexas de raciocínio [6][8].==
 
 Exemplo de template CoT para resolução de problemas matemáticos:
 
@@ -135,7 +133,7 @@ Esta abordagem não apenas melhora a precisão das respostas, mas também torna 
 
 ### Otimização Automática de Prompts
 
-A otimização automática de prompts é uma área emergente que utiliza técnicas de busca e aprendizado de máquina para refinar templates de prompt e melhorar o desempenho do modelo [9][10].
+==A otimização automática de prompts é uma área emergente que utiliza técnicas de busca e aprendizado de máquina para refinar templates de prompt e melhorar o desempenho do modelo [9][10].==
 
 O processo típico de otimização automática de prompts inclui:
 

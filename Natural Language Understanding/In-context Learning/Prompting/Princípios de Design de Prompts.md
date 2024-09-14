@@ -1,10 +1,10 @@
 ## Princípios de Design de Prompts: A Importância de Prompts Claros e Não Ambíguos para Restringir a Geração e Guiar o Modelo para o Output Desejado
 
-<image: Uma ilustração mostrando um funil representando um prompt bem estruturado, guiando um fluxo de texto gerado por IA para um resultado específico e focado>
+![image-20240913092727807](C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240913092727807.png)
 
 ### Introdução
 
-O design de prompts é um aspecto crucial na utilização eficaz de Large Language Models (LLMs). Esta área de estudo foca na criação de instruções claras e não ambíguas que direcionam o modelo para gerar outputs desejados, restringindo efetivamente o espaço de possíveis respostas [1]. À medida que os LLMs se tornam mais sofisticados, a habilidade de criar prompts eficientes torna-se uma competência essencial para data scientists e engenheiros de IA, influenciando significativamente a qualidade e relevância das respostas geradas [2].
+O design de prompts é um aspecto crucial na utilização eficaz de Large Language Models (LLMs). ==Esta área de estudo foca na criação de instruções claras e não ambíguas que direcionam o modelo para gerar outputs desejados, restringindo efetivamente o espaço de possíveis respostas [1].== À medida que os LLMs se tornam mais sofisticados, a habilidade de criar prompts eficientes torna-se uma competência essencial para data scientists e engenheiros de IA, influenciando significativamente a qualidade e relevância das respostas geradas [2].
 
 ### Conceitos Fundamentais
 
@@ -12,13 +12,11 @@ O design de prompts é um aspecto crucial na utilização eficaz de Large Langua
 | ------------------------- | ------------------------------------------------------------ |
 | **Prompt**                | Uma instrução ou pergunta fornecida a um LLM para elicitar uma resposta específica [1]. |
 | **Contextual Generation** | O processo pelo qual um LLM gera texto baseado no contexto fornecido pelo prompt [3]. |
-| **Demonstrações**         | Exemplos incluídos no prompt para clarificar as instruções e melhorar o desempenho do modelo [4]. |
+| **Demonstrações**         | ==Exemplos incluídos no prompt para clarificar as instruções e melhorar o desempenho do modelo [4].== |
 
 > ⚠️ **Nota Importante**: A eficácia de um prompt não depende apenas de seu conteúdo, mas também de sua estrutura e clareza na comunicação da tarefa desejada.
 
 ### Design de Prompts Eficazes
-
-<image: Um diagrama mostrando a estrutura de um prompt eficaz, incluindo contexto, instrução clara, e possíveis demonstrações>
 
 O design de prompts eficazes é fundamental para obter resultados desejados de LLMs. Alguns princípios chave incluem:
 
@@ -28,7 +26,7 @@ O design de prompts eficazes é fundamental para obter resultados desejados de L
 
 3. **Restrição do Espaço de Resposta**: Prompts bem projetados limitam as possíveis continuações do modelo, focando na geração do conteúdo desejado [6].
 
-> ✔️ **Destaque**: Um prompt eficaz deve restringir as possíveis continuações do modelo de tal forma que qualquer continuação razoável cumpra a tarefa desejada [6].
+> ✔️ **Destaque**: ==Um prompt eficaz deve restringir as possíveis continuações do modelo de tal forma que qualquer continuação razoável cumpra a tarefa desejada [6].==
 
 #### 👍 Vantagens de Prompts Bem Projetados
 
@@ -47,8 +45,6 @@ O design de prompts eficazes é fundamental para obter resultados desejados de L
 #### Chain-of-Thought Prompting
 
 Chain-of-Thought prompting é uma técnica avançada que visa melhorar o desempenho dos LLMs em tarefas complexas de raciocínio [7]. Esta abordagem envolve a inclusão de etapas de raciocínio intermediárias no prompt, guiando o modelo através de um processo de pensamento estruturado.
-
-<image: Um fluxograma mostrando as etapas de um prompt chain-of-thought, desde a pergunta inicial até a resposta final, passando por etapas intermediárias de raciocínio>
 
 A eficácia do Chain-of-Thought prompting pode ser representada matematicamente como:
 

@@ -4,14 +4,14 @@
 
 ### Introdução
 
-Prompts preenchidos, também conhecidos como prompts instanciados, são uma técnica fundamental no campo de instrução e ajuste fino de modelos de linguagem grandes (LLMs). Eles são criados a partir de templates de prompts, que são estruturas predefinidas contendo slots vazios, que são então preenchidos com informações específicas para criar prompts completos e contextualizados [1]. Esta abordagem permite a geração eficiente de grandes volumes de dados de treinamento para tarefas de instrução, aproveitando datasets existentes e diretrizes de anotação [2].
+Prompts preenchidos, também conhecidos como prompts instanciados, são uma técnica fundamental no campo de instrução e ajuste fino de modelos de linguagem grandes (LLMs). ==Eles são criados a partir de templates de prompts, que são estruturas predefinidas contendo slots vazios, que são então preenchidos com informações específicas para criar prompts completos e contextualizados [1].== Esta abordagem permite a geração eficiente de grandes volumes de dados de treinamento para tarefas de instrução, aproveitando datasets existentes e diretrizes de anotação [2].
 
 ### Conceitos Fundamentais
 
 | Conceito               | Explicação                                                   |
 | ---------------------- | ------------------------------------------------------------ |
 | **Template de Prompt** | Uma estrutura predefinida contendo slots vazios para serem preenchidos com informações específicas. Serve como base para criar prompts instanciados [1]. |
-| **Prompt Preenchido**  | Um prompt completo criado ao preencher os slots de um template com informações específicas, como texto de entrada, perguntas ou instruções [1]. |
+| **Prompt Preenchido**  | ==Um prompt completo criado ao preencher os slots de um template com informações específicas, como texto de entrada, perguntas ou instruções [1].== |
 | **Instrução**          | Uma descrição em linguagem natural de uma tarefa a ser realizada, combinada com demonstrações rotuladas da tarefa [3]. |
 
 > ⚠️ **Nota Importante**: Os prompts preenchidos são cruciais para o ajuste fino de instruções (instruction tuning) em LLMs, permitindo que eles aprendam a seguir instruções e realizar tarefas diversas [3].
@@ -75,17 +75,15 @@ Beyoncé Giselle Knowles-Carter (nascida em 4 de setembro de 1981) é uma cantor
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Permitem a criação eficiente de grandes volumes de dados de treinamento [8] | Podem introduzir viés se os templates não forem cuidadosamente projetados [9] |
 | Facilitam o ajuste fino de LLMs para tarefas específicas [3] | A qualidade dos prompts depende fortemente da qualidade dos templates e dos dados de entrada [9] |
-| Aumentam a consistência nos formatos de entrada para LLMs [8] | Podem limitar a criatividade do modelo se os prompts forem muito restritivos [9] |
+| Aumentam a consistência nos formatos de entrada para LLMs [8] | ==Podem limitar a criatividade do modelo se os prompts forem muito restritivos [9]== |
 
 ### Técnicas Avançadas de Preenchimento de Prompts
-
-<image: Um diagrama mostrando diferentes técnicas de preenchimento de prompts, incluindo geração automática, paráfrase e seleção baseada em similaridade>
 
 1. **Geração Automática**: Utilização de LLMs para gerar automaticamente variações de prompts a partir de templates básicos [10].
 
 2. **Paráfrase**: Criação de múltiplas versões de um prompt através de técnicas de paráfrase, aumentando a diversidade do conjunto de treinamento [5].
 
-3. **Seleção Baseada em Similaridade**: Escolha dinâmica de demonstrações para incluir no prompt com base na similaridade com o exemplo atual [11].
+3. ==**Seleção Baseada em Similaridade**: Escolha dinâmica de demonstrações para incluir no prompt com base na similaridade com o exemplo atual [11].==
 
 A formulação matemática para a seleção baseada em similaridade pode ser expressa como:
 

@@ -1,10 +1,8 @@
 ## Engenharia de Prompts: Otimizando Instruções para Modelos de Linguagem
 
-<image: Um diagrama mostrando um fluxo circular entre um usuário, um prompt e um modelo de linguagem, com setas indicando iterações e refinamentos>
-
 ### Introdução
 
-A **engenharia de prompts** emergiu como uma disciplina crucial no campo da inteligência artificial, particularmente no contexto dos grandes modelos de linguagem (LLMs). Este processo envolve a criação e refinamento cuidadosos de instruções textuais para guiar o comportamento dos modelos de linguagem, permitindo que realizem tarefas específicas com maior precisão e eficácia [1]. À medida que os LLMs se tornaram mais sofisticados, a habilidade de projetar prompts eficazes tornou-se uma competência essencial para data scientists e engenheiros de IA.
+A **engenharia de prompts** emergiu como uma disciplina crucial no campo da inteligência artificial, particularmente no contexto dos grandes modelos de linguagem (LLMs). ==Este processo envolve a criação e refinamento cuidadosos de instruções textuais para guiar o comportamento dos modelos de linguagem, permitindo que realizem tarefas específicas com maior precisão e eficácia [1].== À medida que os LLMs se tornaram mais sofisticados, a habilidade de projetar prompts eficazes tornou-se uma competência essencial para data scientists e engenheiros de IA.
 
 > 💡 **Destaque**: A engenharia de prompts é uma forma de "programação em linguagem natural", onde as instruções para o modelo são fornecidas em texto simples, em vez de código formal.
 
@@ -25,7 +23,7 @@ A engenharia de prompts eficaz requer uma compreensão profunda das capacidades 
 
 #### 1. Few-shot Prompting
 
-O few-shot prompting envolve fornecer ao modelo alguns exemplos da tarefa desejada dentro do próprio prompt [3]. Por exemplo:
+==O few-shot prompting envolve fornecer ao modelo alguns exemplos da tarefa desejada dentro do próprio prompt [3].== Por exemplo:
 
 ```
 Q: What is the capital of France?
@@ -70,8 +68,6 @@ Esta abordagem encoraja o modelo a decompor problemas complexos em etapas mais s
 
 A otimização automática de prompts é uma área emergente que visa melhorar sistematicamente a eficácia dos prompts [8]. Este processo pode ser modelado como uma busca iterativa no espaço de possíveis prompts.
 
-<image: Um diagrama de fluxo mostrando o processo iterativo de otimização de prompts, com etapas de geração, avaliação e seleção>
-
 O algoritmo geral para otimização de prompts pode ser descrito como:
 
 ```python
@@ -104,7 +100,7 @@ Este algoritmo utiliza uma busca em feixe (beam search) para explorar eficientem
 A avaliação de prompts candidatos é uma etapa crítica no processo de otimização. Algumas abordagens incluem:
 
 1. **Accuracy-Based Scoring**: Avalia o desempenho do prompt em um conjunto de dados rotulados [10].
-2. **Perplexity**: Mede quão bem o modelo prevê uma sequência de tokens dado um prompt [11].
+2. ==**Perplexity**: Mede quão bem o modelo prevê uma sequência de tokens dado um prompt [11].==
 3. **Human-in-the-Loop**: Incorpora feedback humano na avaliação de prompts [12].
 
 A escolha do método de avaliação depende da tarefa específica e dos recursos disponíveis.
@@ -113,9 +109,9 @@ A escolha do método de avaliação depende da tarefa específica e dos recursos
 
 A geração de variantes de prompts é essencial para a exploração do espaço de soluções. Técnicas comuns incluem:
 
-1. **Paráfrase**: Usa modelos de linguagem para gerar variações semânticas do prompt original [13].
+1. ==**Paráfrase**: Usa modelos de linguagem para gerar variações semânticas do prompt original [13].==
 2. **Truncamento e Continuação**: Gera novos prompts completando versões truncadas do prompt atual [14].
-3. **Feedback-Driven Expansion**: Utiliza o desempenho em exemplos específicos para guiar a geração de novos prompts [15].
+3. ==**Feedback-Driven Expansion**: Utiliza o desempenho em exemplos específicos para guiar a geração de novos prompts [15].==
 
 #### Questões Técnicas
 

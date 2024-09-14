@@ -13,7 +13,7 @@ Prompts restritos são uma técnica avançada de engenharia de prompts que visa 
 | Conceito                  | Explicação                                                   |
 | ------------------------- | ------------------------------------------------------------ |
 | **Prompt Restrito**       | Uma técnica de prompting que limita explicitamente o espaço de respostas possíveis do modelo, fornecendo um formato ou estrutura específica para a saída desejada [1]. |
-| **Espaço de Saída**       | O conjunto de todas as respostas possíveis que um modelo de linguagem pode gerar. Prompts restritos visam reduzir este espaço para melhorar a precisão [3]. |
+| **Espaço de Saída**       | ==O conjunto de todas as respostas possíveis que um modelo de linguagem pode gerar. Prompts restritos visam reduzir este espaço para melhorar a precisão [3].== |
 | **Fidelidade ao Formato** | A capacidade do modelo de aderir consistentemente ao formato de saída especificado no prompt [4]. |
 
 ### Tipos de Prompts Restritos
@@ -184,7 +184,7 @@ No contexto de prompts restritos:
 - $X$ representa o prompt (incluindo as restrições)
 - $Y$ representa o espaço de saídas possíveis
 
-Prompts restritos eficazes reduzem $H(Y|X)$, diminuindo a incerteza sobre a saída esperada [18].
+==Prompts restritos eficazes reduzem $H(Y|X)$, diminuindo a incerteza sobre a saída esperada [18].==
 
 #### Questões Técnicas/Teóricas
 

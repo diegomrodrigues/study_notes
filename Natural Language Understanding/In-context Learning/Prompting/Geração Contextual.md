@@ -1,10 +1,10 @@
 ## Geração Contextual: Como prompts guiam modelos de linguagem fornecendo contexto para gerar o próximo token
 
-<image: Um diagrama mostrando um modelo de linguagem recebendo um prompt como entrada e gerando tokens de saída sequencialmente, com setas indicando o fluxo de informação do contexto para a previsão do próximo token>
+<img src="C:\Users\diego.rodrigues\AppData\Roaming\Typora\typora-user-images\image-20240913091808126.png" alt="image-20240913091808126" style="zoom:67%;" />
 
 ### Introdução
 
-A geração contextual é um conceito fundamental na área de modelos de linguagem de grande escala, especialmente no contexto de prompting e aprendizado em contexto. Este conceito se refere à capacidade de um modelo de linguagem gerar texto de forma coerente e relevante com base no contexto fornecido por um prompt [1]. A geração contextual está no cerne de como os modelos de linguagem são capazes de realizar uma ampla gama de tarefas simplesmente através de instruções em linguagem natural, sem a necessidade de treinamento específico para cada tarefa.
+A geração contextual é um conceito fundamental na área de modelos de linguagem de grande escala, especialmente no contexto de prompting e aprendizado em contexto. ==Este conceito se refere à capacidade de um modelo de linguagem gerar texto de forma coerente e relevante com base no contexto fornecido por um prompt [1].== A geração contextual está no cerne de como os modelos de linguagem são capazes de realizar uma ampla gama de tarefas simplesmente através de instruções em linguagem natural, sem a necessidade de treinamento específico para cada tarefa.
 
 ### Conceitos Fundamentais
 
@@ -12,7 +12,7 @@ A geração contextual é um conceito fundamental na área de modelos de linguag
 | ----------------------- | ------------------------------------------------------------ |
 | **Prompt**              | Uma instrução ou contexto fornecido ao modelo de linguagem para guiar sua geração de texto. Pode ser uma pergunta, uma instrução ou exemplos demonstrativos [1]. |
 | **Geração Contextual**  | O processo pelo qual um modelo de linguagem gera o próximo token com base na probabilidade condicionada ao contexto fornecido pelo prompt: P(wi\|w<i) [1]. |
-| **In-context Learning** | Aprendizado que melhora o desempenho do modelo ou reduz alguma perda, mas não envolve atualizações baseadas em gradiente nos parâmetros subjacentes do modelo [1]. |
+| **In-context Learning** | Aprendizado que melhora o desempenho do modelo ou reduz alguma perda, mas ==não envolve atualizações baseadas em gradiente nos parâmetros subjacentes do modelo [1].== |
 
 > ⚠️ **Nota Importante**: A geração contextual permite que modelos de linguagem realizem tarefas para as quais não foram especificamente treinados, simplesmente fornecendo instruções ou exemplos no prompt.
 
@@ -33,7 +33,7 @@ Onde:
 
 Esta equação representa a probabilidade softmax de cada token no vocabulário, condicionada ao contexto anterior [2].
 
-> ✔️ **Destaque**: A geração contextual permite que um único modelo de linguagem seja aplicado a uma ampla gama de tarefas, desde tradução e resumo até análise de sentimentos e inferência em linguagem natural, simplesmente alterando o prompt fornecido.
+> ✔️ **Destaque**: ==A geração contextual permite que um único modelo de linguagem seja aplicado a uma ampla gama de tarefas, desde tradução e resumo até análise de sentimentos e inferência em linguagem natural, simplesmente alterando o prompt fornecido.==
 
 ### Tipos de Prompts e seus Impactos na Geração Contextual
 
@@ -70,7 +70,7 @@ Os prompts podem assumir várias formas, cada uma influenciando de maneira únic
 
 ### Few-Shot Prompting e In-Context Learning
 
-O few-shot prompting é uma técnica poderosa que aproveita a capacidade de aprendizado em contexto dos modelos de linguagem. Nesta abordagem, o prompt inclui alguns exemplos rotulados (demonstrações) para guiar o modelo na realização da tarefa desejada [3].
+==O few-shot prompting é uma técnica poderosa que aproveita a capacidade de aprendizado em contexto dos modelos de linguagem.== Nesta abordagem, o prompt inclui alguns exemplos rotulados (demonstrações) para guiar o modelo na realização da tarefa desejada [3].
 
 Exemplo de um prompt few-shot para análise de sentimento:
 
