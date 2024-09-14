@@ -28,28 +28,22 @@ def split_pdf(input_pdf, root_dir, config):
         print(f"Created: {output_path}")
 
 # Example usage
-input_pdf = "eisenstein-nlp-notes.pdf"
+input_pdf = "Math Theory of Deep Learning.pdf"
 config = {
-    #"Vector Spaces": (49, 104),
-    "Linear Text Classification": (31, 64),
-    "Nonlinear Text Classification": (65, 86),
-    "Linguistic Classification": (87, 112),
-    "Unsupervised Learning": (113, 142),
-    "Language Models": (143, 162),
-    "Senquence Labeling": (163, 192),
-    "Linguistic Sequence Labeling": (193, 208),
-    "Formal Language Theory": (209, 242),
-    "Context-free Parsing": (243, 274),
-    "Dependency Parsing": (275, 299),
-    "Logical Semantics": (303, 322),
-    "Predicate-argument Semantics": (323, 342),
-    "Distributional Semantics": (343, 368),
-    "Reference Resolution": (369, 396),
-    "Discourse": (397, 418),
-    "Informtion Extraction": (421, 448),
-    "Machine Translation": (449, 474),
-    "Text Generation": (475, 491)
+    "Feedfoward Neural Networks": (15, 21),
+    "Universal Approximation": (22, 35),
+    "Splines": (36, 43),
+    "ReLU Neural Networks": (44, 88),
+    "High-dimensional Approximations": (89, 102),
+    "Interpolation": (103, 110),
+    "Training Neural Networks": (111, 139),
+    "Wide Neural Networks": (140, 165),
+    "Loss Landscape Analysis": (166, 175),
+    "Neural Networks Space": (176, 188),
+    "Generalization": (189, 206),
+    "Overparameterization": (207, 218),
+    "Adversarial Examples": (219, 233)
 }
-folder = "Natural Language Processing"
+folder = "Deep Learning"
 
 split_pdf(input_pdf, folder, config)
