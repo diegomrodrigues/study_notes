@@ -1,7 +1,5 @@
 ## Few-Shot Prompting: Aprimorando o Desempenho com Exemplos Rotulados
 
-<image: Um diagrama mostrando um modelo de linguagem grande recebendo um prompt com múltiplos exemplos rotulados, seguido por uma nova entrada não rotulada, e produzindo uma saída. O diagrama deve enfatizar visualmente como os exemplos no prompt guiam o modelo a gerar uma resposta para a nova entrada.>
-
 ### Introdução
 
 Few-shot prompting é uma técnica poderosa que permite melhorar significativamente o desempenho de grandes modelos de linguagem (LLMs) em diversas tarefas, sem a necessidade de fine-tuning ou modificações nos parâmetros do modelo [1]. Esta abordagem envolve a inclusão de exemplos rotulados (demonstrações) diretamente no prompt, fornecendo ao modelo um contexto rico para compreender e executar a tarefa desejada [2].
