@@ -4,15 +4,15 @@
 
 ## Introdução
 
-A representação **Bag-of-Words** (BoW) é uma técnica fundamental na área de processamento de linguagem natural (NLP) e classificação de texto [1]. Esta abordagem simplifica a representação de documentos de texto, convertendo-os em vetores numéricos que capturam a frequência das palavras, ignorando a ordem em que elas aparecem [2]. Apesar de sua simplicidade, o modelo BoW é surpreendentemente eficaz em muitas tarefas de NLP, fornecendo uma base sólida para algoritmos mais complexos [3].
+A representação **Bag-of-Words** (BoW) é uma técnica fundamental na área de processamento de linguagem natural (NLP) e classificação de texto [1]. ==Esta abordagem simplifica a representação de documentos de texto, convertendo-os em vetores numéricos que capturam a frequência das palavras, ignorando a ordem em que elas aparecem [2]==. Apesar de sua simplicidade, o modelo BoW é surpreendentemente eficaz em muitas tarefas de NLP, fornecendo uma base sólida para algoritmos mais complexos [3].
 
 ## Conceitos Fundamentais
 
 | Conceito                     | Explicação                                                   |
 | ---------------------------- | ------------------------------------------------------------ |
-| **Bag-of-Words**             | Representação vetorial de um documento onde cada elemento corresponde à contagem de uma palavra específica no vocabulário, ignorando a ordem das palavras [4]. |
+| **Bag-of-Words**             | ==Representação vetorial de um documento onde cada elemento corresponde à contagem de uma palavra específica no vocabulário==, ignorando a ordem das palavras [4]. |
 | **Vocabulário**              | Conjunto de todas as palavras únicas presentes no corpus de documentos [5]. |
-| **Vetor de Características** | Representação numérica de um documento, onde cada dimensão corresponde a uma palavra no vocabulário [6]. |
+| **Vetor de Características** | ==Representação numérica de um documento, onde cada dimensão corresponde a uma palavra no vocabulário [6].== |
 
 > ⚠️ **Nota Importante**: A representação BoW trata cada palavra como um token independente, perdendo informações sobre a estrutura gramatical e a ordem das palavras no texto original [7].
 
@@ -21,8 +21,6 @@ A representação **Bag-of-Words** (BoW) é uma técnica fundamental na área de
 > ✔️ **Destaque**: A eficácia do BoW reside em sua capacidade de capturar a essência temática de um documento através da frequência de palavras, permitindo comparações e análises estatísticas robustas [9].
 
 ## Formalização Matemática do Modelo Bag-of-Words
-
-<imagem: Um diagrama mostrando a transformação de um texto em um vetor esparso, com setas indicando como as palavras são mapeadas para índices no vetor.>
 
 A representação matemática do modelo Bag-of-Words é fundamental para entender sua implementação e aplicações em aprendizado de máquina [10]. Vamos formalizar o conceito:
 

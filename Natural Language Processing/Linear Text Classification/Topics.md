@@ -1,43 +1,91 @@
-## ~~Chapter 2: Linear Text Classification~~
+```mermaid
+mindmap
+  root((Linear Text Classification))
+    Fundamentals
+      Bag-of-Words Representation
+      Linear Classifiers
+      Multiclass Classification
+      Supervised Machine Learning
+    Classification Models
+      Naïve Bayes
+        Generative Model
+        Multinomial Naïve Bayes
+        Parameter Estimation
+        Smoothing
+      Perceptron
+        Error-Driven Classification
+        Perceptron Algorithm
+        Linear Separability
+        Averaged Perceptron
+      Support Vector Machine
+        Large-Margin Classification
+        Hinge Loss
+        Soft-Margin SVM
+        Regularization
+      Logistic Regression
+        Conditional Probability Modeling
+        Logistic Function
+        Maximum Conditional Likelihood
+        Maximum Entropy Classification
+    Optimization Techniques
+      Loss Functions
+        Zero-One Loss
+        Hinge Loss
+        Logistic Loss
+        L2 Regularization
+      Gradient Descent
+        Batch Optimization
+        Online Optimization
+        Second-Order Optimization
+      Stochastic Gradient Descent
+        Online Learning
+        Minibatch SGD
+      Adaptive Learning Rates
+        AdaGrad
+        Lazy Updating
+```
 
-### ~~2. Introduction~~
+## Chapter 2: Linear Text Classification
 
-- ~~**Bag-of-Words Representation:**  Representing text as a vector of word counts, ignoring word order.~~
-- ~~**Linear Classifiers:**  Classifying text based on a linear scoring function, computed as the inner product between a weight vector and a feature vector.~~
-- ~~**Weights and Feature Function:**  Defining weights (θ) as measures of word-label compatibility and the feature function (f(x, y)) as a mapping from word counts and labels to a feature vector.~~
-- ~~**Multiclass Classification:**  Extending linear classifiers to handle multiple labels by computing a score for each label and predicting the label with the highest score.~~
-- ~~**Supervised Machine Learning:**  Using labeled data to automatically learn the classification weights.~~
-- ~~**Probabilistic vs. Discriminative Approaches:**  Distinguishing between probabilistic classifiers (e.g., Naïve Bayes) and discriminative classifiers (e.g., perceptron, SVM).~~
+### 2. Introduction
 
-### ~~2.2 Naïve Bayes~~
+- **Bag-of-Words Representation:**  Representing text as a vector of word counts, ignoring word order.
+- **Linear Classifiers:**  Classifying text based on a linear scoring function, computed as the inner product between a weight vector and a feature vector.
+- **Weights and Feature Function:**  Defining weights (θ) as measures of word-label compatibility and the feature function (f(x, y)) as a mapping from word counts and labels to a feature vector.
+- **Multiclass Classification:**  Extending linear classifiers to handle multiple labels by computing a score for each label and predicting the label with the highest score.
+- **Supervised Machine Learning:**  Using labeled data to automatically learn the classification weights.
+- **Probabilistic vs. Discriminative Approaches:**  Distinguishing between probabilistic classifiers (e.g., Naïve Bayes) and discriminative classifiers (e.g., perceptron, SVM).
 
-- ~~**Generative Story:**  Describing Naïve Bayes as a generative model that assumes a joint probability distribution over labels and features.~~
-- ~~**Multinomial Naïve Bayes:**  Using the multinomial distribution to model the bag-of-words representation, assuming conditional independence of words given the label.~~
-- ~~**Categorical Distribution:**  Modeling the generation of individual tokens using the categorical distribution.~~
-- ~~**Types vs. Tokens:**  Distinguishing between word types (unique words in the vocabulary) and tokens (individual word occurrences).~~
-- ~~**Conditional Independence Assumption:**  Assuming that each token is independent of all other tokens, given the label.~~
-- ~~**Prediction Rule:**  Predicting the label that maximizes the joint log-probability, which can be computed as a vector inner product between weights and features.~~
-- ~~**Parameter Estimation:**  Estimating the parameters (μ, φ) of the categorical and multinomial distributions using relative frequency estimation (maximum likelihood).~~
-- ~~**Smoothing:**  Addressing the problem of zero probabilities by adding a pseudocount (Laplace smoothing) to avoid overfitting and high variance.~~
+### 2.2 Naïve Bayes
 
-### ~~2.3 The Perceptron~~
+- **Generative Story:**  Describing Naïve Bayes as a generative model that assumes a joint probability distribution over labels and features.
+- **Multinomial Naïve Bayes:**  Using the multinomial distribution to model the bag-of-words representation, assuming conditional independence of words given the label.
+- **Categorical Distribution:**  Modeling the generation of individual tokens using the categorical distribution.
+- **Types vs. Tokens:**  Distinguishing between word types (unique words in the vocabulary) and tokens (individual word occurrences).
+- **Conditional Independence Assumption:**  Assuming that each token is independent of all other tokens, given the label.
+- **Prediction Rule:**  Predicting the label that maximizes the joint log-probability, which can be computed as a vector inner product between weights and features.
+- **Parameter Estimation:**  Estimating the parameters (μ, φ) of the categorical and multinomial distributions using relative frequency estimation (maximum likelihood).
+- **Smoothing:**  Addressing the problem of zero probabilities by adding a pseudocount (Laplace smoothing) to avoid overfitting and high variance.
 
-- ~~**Error-Driven Classification:**  Introducing the perceptron as an error-driven classifier that updates weights based on misclassifications.~~
-- ~~**Perceptron Algorithm:**  Describing the perceptron algorithm and its update rule for adjusting weights based on classification errors.~~
-- ~~**Linear Separability:**  Defining linear separability and its relationship with the perceptron's ability to find a separator.~~
-- ~~**Averaged Perceptron:**  Improving the perceptron's performance by averaging the weights over training iterations.~~
+### 2.3 The Perceptron
 
-### ~~2.4 Loss Functions and Large-Margin Classification~~
+- **Error-Driven Classification:**  Introducing the perceptron as an error-driven classifier that updates weights based on misclassifications.
+- **Perceptron Algorithm:**  Describing the perceptron algorithm and its update rule for adjusting weights based on classification errors.
+- **Linear Separability:**  Defining linear separability and its relationship with the perceptron's ability to find a separator.
+- **Averaged Perceptron:**  Improving the perceptron's performance by averaging the weights over training iterations.
 
-- ~~**Loss Functions:**  Introducing the concept of loss functions as measures of classifier performance on individual instances.~~
-- ~~**Negative Log-Likelihood as Loss Function:**  Reframing maximum likelihood estimation as minimizing the negative log-likelihood loss.~~
-- ~~**Zero-One Loss:**  Defining the zero-one loss and its limitations due to non-convexity and useless derivatives.~~
-- ~~**Hinge Loss (Perceptron Loss):**  Introducing the hinge loss as the loss function optimized by the perceptron.~~
-- ~~**Margin and Large-Margin Classification:**  Defining the margin and motivating large-margin classification for improved generalization.~~
-- ~~**Margin Loss:**  Introducing the margin loss as a convex upper bound on the zero-one loss, encouraging a larger separation between correct and incorrect labels.~~
-- ~~**Online Support Vector Machine:**  Presenting the online support vector machine as an online algorithm that minimizes the margin loss.~~
-- ~~**Functional Margin vs. Geometric Margin:**  Distinguishing between functional margin (based on raw scores) and geometric margin (normalized by weight vector norm).~~
-- ~~**Constrained Optimization for Maximum Geometric Margin:**  Formulating the SVM objective as a constrained optimization problem to maximize the geometric margin.~~
+### 2.4 Loss Functions and Large-Margin Classification
+
+- **Loss Functions:**  Introducing the concept of loss functions as measures of classifier performance on individual instances.
+- **Negative Log-Likelihood as Loss Function:**  Reframing maximum likelihood estimation as minimizing the negative log-likelihood loss.
+- **Zero-One Loss:**  Defining the zero-one loss and its limitations due to non-convexity and useless derivatives.
+- **Hinge Loss (Perceptron Loss):**  Introducing the hinge loss as the loss function optimized by the perceptron.
+- **Margin and Large-Margin Classification:**  Defining the margin and motivating large-margin classification for improved generalization.
+- **Margin Loss:**  Introducing the margin loss as a convex upper bound on the zero-one loss, encouraging a larger separation between correct and incorrect labels.
+- **Online Support Vector Machine:**  Presenting the online support vector machine as an online algorithm that minimizes the margin loss.
+- **Functional Margin vs. Geometric Margin:**  Distinguishing between functional margin (based on raw scores) and geometric margin (normalized by weight vector norm).
+- **Constrained Optimization for Maximum Geometric Margin:**  Formulating the SVM objective as a constrained optimization problem to maximize the geometric margin.
+- ==PAREI AQUI==
 - **Slack Variables and Soft-Margin SVM:**  Introducing slack variables to allow for misclassifications and defining the soft-margin SVM.
 - **Regularization as a Prior:**  Interpreting regularization as imposing a prior distribution on the weights, favoring smaller weight values.
 

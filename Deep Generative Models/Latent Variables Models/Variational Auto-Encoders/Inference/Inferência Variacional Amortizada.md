@@ -30,13 +30,12 @@ A inferência variacional clássica enfrenta desafios significativos, principalm
 
 ### Formulação Matemática da Inferência Amortizada
 
-A ideia central da inferência amortizada é aprender uma função fϕ que mapeia diretamente x para λ [1]:
-
+==A ideia central da inferência amortizada é aprender uma função fϕ que mapeia diretamente x para λ [1]:==
 $$
 f_\phi: X \rightarrow \Lambda
 $$
 
-onde X é o espaço dos dados observados e Λ é o espaço dos parâmetros variacionais.
+==onde X é o espaço dos dados observados e Λ é o espaço dos parâmetros variacionais.==
 
 O objetivo de otimização é modificado para:
 
@@ -49,7 +48,7 @@ Onde:
 - θ são os parâmetros do modelo gerador
 - ϕ são os parâmetros da função de mapeamento
 
-> ❗ **Ponto de Atenção**: A função fϕ(x) pode ser interpretada como definindo a distribuição condicional qϕ(z|x), permitindo uma reformulação elegante do ELBO [7].
+> ❗ **Ponto de Atenção**: ==A função fϕ(x) pode ser interpretada como definindo a distribuição condicional qϕ(z|x),== permitindo uma reformulação elegante do ELBO [7].
 
 #### Questões Técnicas/Teóricas
 
