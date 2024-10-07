@@ -1,0 +1,633 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "nmContraparte": { "type": "string" },
+    "cdNifPrincipal": { "type": "string" },
+    "cdLoginResponsavel": { "type": "string" },
+    "cdGrpContraparte": { "type": "integer" },
+    "nmGrpContraparte": { "type": "string" },
+    "cdLinhaNegocio": { "type": "string" },
+    "nmLinhaNegocio": { "type": "string" },
+    "cdTpPessoa": { "type": "string" },
+    "tpPessoa": { "type": "string" },
+    "dtInicioRelacionamento": { "type": "string", "format": "date-time" },
+    "deObs": { "type": "string" },
+    "cdClienteExterno": { "type": "integer" },
+    "dtBloqueio": { "type": "string", "format": "date-time" },
+    "cdGerente": { "type": "string" },
+    "nmGerente": { "type": "string" },
+    "nmGerenteConcatenado": { "type": "string" },
+    "stGerente": { "type": "string" },
+    "cdRiscoCalculado": { "type": "integer" },
+    "nmRiscoCalculado": { "type": "string" },
+    "cdRiscoAtribuido": { "type": "integer" },
+    "nmRiscoAtribuido": { "type": "string" },
+    "cdContraparteInterno": { "type": "integer" },
+    "cdSituacao": { "type": "integer" },
+    "idInterno": { "type": "string" },
+    "idExterno": { "type": "string" },
+    "cdEmpresa": { "type": "string" },
+    "PESSOAS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nmContraparte": { "type": "string" },
+          "cdNif": { "type": "string" },
+          "cdLoginResponsavel": { "type": "string" },
+          "cdGrpContraparte": { "type": "integer" },
+          "nmGrpContraparte": { "type": "string" },
+          "cdLinhaNegocio": { "type": "string" },
+          "nmLinhaNegocio": { "type": "string" },
+          "cdTpPesssoa": { "type": "string" },
+          "deTpPessoa": { "type": "string" },
+          "dsTpCadastral": { "type": "string" },
+          "dtNascConstit": { "type": "string", "format": "date" },
+          "dtAberturaRelac": { "type": "string", "format": "date" },
+          "dtAtualizacaoCad": { "type": "string", "format": "date-time" },
+          "dtUltimaAtualizacaoCad": { "type": "string", "format": "date-time" },
+          "dtDesativacaoCad": { "type": "string", "format": "date" },
+          "dtUltimaAlteracaoAprov": { "type": "string", "format": "date-time" },
+          "cdPaisNascConstit": { "type": "string" },
+          "dsPaisNascConstit": { "type": "string" },
+          "cdPaisDomFiscal": { "type": "string" },
+          "dsPaisDomFiscal": { "type": "string" },
+          "cdSexo": { "type": "string" },
+          "dsEmail": { "type": "string" },
+          "cdEstadoCivil": { "type": "integer" },
+          "dsEstadoCivil": { "type": "string" },
+          "deOcupacao": { "type": "string" },
+          "cdOcupacao": { "type": "string" },
+          "flEstrangeiro": { "type": "integer" },
+          "cdCnae": { "type": "string" },
+          "dsCnae": { "type": "string" },
+          "nmTpSocietario": { "type": "string" },
+          "dsAtividadePrincipal": { "type": "string" },
+          "cdNifRelacionado": { "type": "string" },
+          "cdNifPrincipal": { "type": "string" },
+          "nmCargo": { "type": "string" },
+          "txParticipacao": { "type": "number" },
+          "dtValidadeProcuracao": { "type": "string", "format": "date" },
+          "classeSocial": { "type": "string" },
+          "rendaPresumida": { "type": "number" },
+          "escolaridade": { "type": "string" },
+          "capitalSocial": { "type": "number" },
+          "faturamentoPresumido": { "type": "number" },
+          "giin": { "type": "string" },
+          "nrRegistroGeral": { "type": "string" },
+          "deEmissorRg": { "type": "string" },
+          "deEstadoEmissorRg": { "type": "string" },
+          "dtEmissaoRg": { "type": "string", "format": "date" },
+          "dsGrupoEconomico": { "type": "string" },
+          "dtMandato": { "type": "string", "format": "date" },
+          "nmReduzido": { "type": "string" },
+          "taxNumber": { "type": "string" },
+          "cCif": { "type": "string" },
+          "gCif": { "type": "string" },
+          "nrCustodiante": { "type": "string" },
+          "cdBovespa": { "type": "string" },
+          "deLocalNascimento": { "type": "string" },
+          "cdSwift": { "type": "string" },
+          "contaSelic": { "type": "string" },
+          "nmNomeFantasia": { "type": "string" },
+          "nmSocial": { "type": "string" },
+          "nmApelido": { "type": "string" },
+          "cdFATCA": { "type": "string" },
+          "cdCRS": { "type": "string" },
+          "cdLEI": { "type": "string" },
+          "cdTIM": { "type": "string" },
+          "flBeneficiarioFinal": { "type": "integer" },
+          "cdCVM": { "type": "string" },
+          "flPEP": { "type": "integer" },
+          "flGrandesFortunas": { "type": "string" },
+          "flAdminCartoes": { "type": "string" },
+          "flFacilitadora": { "type": "string" },
+          "flEmpresaTrust": { "type": "string" },
+          "flRelacionamentoTerceiros": { "type": "string" },
+          "ipEletronico": { "type": "string" },
+          "NJUR": { "type": "string" },
+          "cdEmpresaReguladora": { "type": "string" },
+          "tpDemonstrativoRenda": { "type": "string" },
+          "origemCapital": { "type": "string" },
+          "cdRegimeCasamento": { "type": "integer" },
+          "cdPaisCetipNascConstit": { "type": "integer" },
+          "cdPaisCetipDomFiscal": { "type": "integer" },
+          "cdGrupoEconomico": { "type": "string" },
+          "nmEntidadeTrabalha": { "type": "string" },
+          "webSite": { "type": "string" }
+        }
+      }
+    },
+    "OUTRAS_INFORMACOES": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "flAtivosProblematicos": { "type": "string" },
+          "deNJUR": { "type": "string" },
+          "dsOrgaoRegulador": { "type": "string" },
+          "deUF": { "type": "string" },
+          "nmNaturalidade": { "type": "string" },
+          "cdCetipNaturalidade": { "type": "string" },
+          "dtCadastroCapital": { "type": "string", "format": "date" },
+          "flResidenteBrasil": { "type": "integer" },
+          "dsFonteReferencia": { "type": "string" },
+          "flAutorizaTrasmissao": { "type": "string" },
+          "dsNomeGestor": { "type": "string" },
+          "nrCpfGestor": { "type": "integer" },
+          "dsEmailGestor": { "type": "string" },
+          "dsInstituicaoTrabalho": { "type": "string" },
+          "flPessoaVinculado": { "type": "string" },
+          "suspeitaObito": { "type": "string" },
+          "pussuiVeiculos": { "type": "string" },
+          "dsFormaConstituicao": { "type": "string" },
+          "quantidadeProprietarios": { "type": "integer" },
+          "quantidadeFuncionarios": { "type": "integer" },
+          "codigoIBGE": { "type": "string" },
+          "qtdProp": { "type": "integer" },
+          "tpCompanhia": { "type": "string" },
+          "deSituacaoCobranca": { "type": "string" },
+          "idade": { "type": "integer" },
+          "dtObito": { "type": "string", "format": "date" },
+          "possuiSociedade": { "type": "string" },
+          "possuiProtesto": { "type": "string" },
+          "possuiFuncionarios": { "type": "string" },
+          "vlRendaInicial": { "type": "number" },
+          "vlRendaFinal": { "type": "number" },
+          "flPem": { "type": "string" },
+          "cdCartorio": { "type": "string" },
+          "caracterizacaoFatca": { "type": "integer" },
+          "classificacaoContratual": { "type": "string" },
+          "flIndicadorFilial": { "type": "string" },
+          "idTipoCliente": { "type": "integer" },
+          "deCetip": { "type": "string" },
+          "idTpComposicao": { "type": "integer" },
+          "cdTpRaiz": { "type": "string" },
+          "cdNatEmpresa": { "type": "string" },
+          "deNatEmpresa": { "type": "string" },
+          "cdSetorPp": { "type": "string" },
+          "cdTpSetor": { "type": "string" },
+          "cdConstCapital": { "type": "string" },
+          "cdTpFundo": { "type": "string" },
+          "cdVinculoEmpresarial": { "type": "string" },
+          "cdClassContratual": { "type": "string" },
+          "cdSisbacen": { "type": "string" },
+          "cdClassificacaoRisco": { "type": "string" },
+          "cdPaisOrigemCapital": { "type": "integer" },
+          "dsPaisOrigemCapital": { "type": "string" },
+          "cdGrpAtividadeBC": { "type": "integer" },
+          "dsGrpAtividadeBC": { "type": "string" },
+          "cdAtividadeBC": { "type": "integer" },
+          "dsAtividadeBC": { "type": "string" },
+          "nrInscricaoEstadual": { "type": "string" },
+          "cdCetipPais": { "type": "integer" },
+          "dsCetipPais": { "type": "string" },
+          "cdPaisNacionalidade": { "type": "integer" },
+          "nmNacionalidade": { "type": "string" },
+          "cdOcupacaoCetip": { "type": "integer" },
+          "dsOcupacaoCetip": { "type": "string" },
+          "cdAtividadeCetip": { "type": "string" },
+          "dsAtividadeCetip": { "type": "string" },
+          "cdPaisCetipOrigemCapital": { "type": "integer" },
+          "cdPaisCetipNacionalidade": { "type": "integer" },
+          "nrInscricaoMunicipal": { "type": "string" },
+          "cdEbiSetor": { "type": "integer" },
+          "cdEbiResidencia": { "type": "integer" },
+          "codExternoGrpAtivdadeBC": { "type": "string" },
+          "dsPartyGroup": { "type": "string" }
+        }
+      }
+    },
+    "COMPLEMENTOS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "cdRegimeTributacao": { "type": "string" },
+          "dsRegimeTributacao": { "type": "string" },
+          "idOrigemCapital": { "type": "integer" },
+          "deOrigemCapital": { "type": "string" },
+          "flPermissaoConsultaBC": { "type": "string" },
+          "flIndicacaoFactoring": { "type": "string" },
+          "flClienteHomebaking": { "type": "string" },
+          "cdPorte": { "type": "string" },
+          "cdPaisBacenOrigem": { "type": "integer" },
+          "dsPaisOrigem": { "type": "string" },
+          "flPepIdentificado": { "type": "string" },
+          "flPepMencionado": { "type": "string" },
+          "flListaMencionada": { "type": "string" },
+          "flListaIdentificada": { "type": "string" },
+          "flTribunalMencionado": { "type": "string" },
+          "flTribunalIdentificado": { "type": "string" },
+          "vlLatitude": { "type": "string" },
+          "vlLongitude": { "type": "string" },
+          "cdSinacorMaster": { "type": "integer" },
+          "dtCadastro": { "type": "string", "format": "date" },
+          "flDispensaBeneficiario": { "type": "string" },
+          "idCondicaoLegal": { "type": "integer" },
+          "nmCondicaoLegal": { "type": "string" },
+          "cdSinacor99": { "type": "string" },
+          "flRecuperacaoJudicial": { "type": "boolean" },
+          "nrNireJuntaComercial": { "type": "string" },
+          "cdPaisCetipOrigem": { "type": "integer" },
+          "dtInicialRelacionamento": { "type": "string", "format": "date" },
+          "dtFinalRelacionamento": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "CIDADANIAS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "cdNif1": { "type": "string" },
+          "cdNif2": { "type": "string" },
+          "cdPais1": { "type": "integer" },
+          "dsPais1": { "type": "string" },
+          "cdPais2": { "type": "integer" },
+          "dsPais2": { "type": "string" },
+          "cdPaisCetip1": { "type": "integer" },
+          "cdPaisCetip2": { "type": "integer" }
+        }
+      }
+    },
+    "ENDERECOS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "cdTpEndereco": { "type": "integer" },
+          "tpEndereco": { "type": "string" },
+          "dsEndereco": { "type": "string" },
+          "nrEndereco": { "type": "string" },
+          "dsComplemento": { "type": "string" },
+          "dsBairro": { "type": "string" },
+          "dsCidade": { "type": "string" },
+          "cdEstado": { "type": "string" },
+          "cdPais": { "type": "integer" },
+          "dsPais": { "type": "string" },
+          "cdCep": { "type": "string" },
+          "nrCxPostal": { "type": "string" },
+          "cdPaisCetip": { "type": "integer" }
+        }
+      }
+    },
+    "DOCUMENTOS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "dsTpDocumento": { "type": "string" },
+          "nrDocumento": { "type": "string" },
+          "dtValidade": { "type": "string", "format": "date" },
+          "cdPais": { "type": "integer" },
+          "dsPais": { "type": "string" },
+          "dtEmissao": { "type": "string", "format": "date" },
+          "deEmissor": { "type": "string" },
+          "cdPaisCetip": { "type": "integer" },
+          "deObservacao": { "type": "string" }
+        }
+      }
+    },
+    "TELEFONES": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "cdTpTelefone": { "type": "integer" },
+          "tpTelefone": { "type": "string" },
+          "dsTelefone": { "type": "string" },
+          "ddi": { "type": "string" },
+          "ddd": { "type": "string" },
+          "ramal": { "type": "string" }
+        }
+      }
+    },
+    "EMAILS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "documento": { "type": "string" },
+          "particular": { "type": "string" },
+          "ranking": { "type": "integer" },
+          "flPrincipal": { "type": "string" },
+          "flAssinaturaDigital": { "type": "string" }
+        }
+      }
+    },
+    "RECEITAS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "dsReceitaRenda": { "type": "string" },
+          "vlReceitaRenda": { "type": "number" },
+          "tpReceita": { "type": "string" },
+          "dtReceita": { "type": "string", "format": "date" },
+          "cdPaisOrigem": { "type": "integer" },
+          "dsPaisOrigem": { "type": "string" },
+          "anoFiscal": { "type": "integer" },
+          "idTipoReceita": { "type": "integer" },
+          "dsTipoReceita": { "type": "string" },
+          "cdPaisCetipOrigem": { "type": "integer" }
+        }
+      }
+    },
+    "DADOS_BANCARIOS": {
+		"type": "array",
+		"items": {
+		  "type": "object",
+		  "properties": {
+			"cdNif": { "type": "string" },
+			"nrConta": { "type": "string" },
+			"cdTpConta": { "type": "integer" },
+			"tpConta": { "type": "string" },
+			"dtAtivacao": { "type": "string", "format": "date" },
+			"cdBanco": { "type": "string" },
+			"deBanco": { "type": "string" },
+			"cdAgencia": { "type": "string" },
+			"idSubTpConta": { "type": "integer" },
+			"deSubTpConta": { "type": "string" },
+			"idFmtConta": { "type": "string" },
+			"dtDesativacao": { "type": "string", "format": "date" },
+			"cdGerente": { "type": "string" },
+			"deGerenteResponsavel": { "type": "string" },
+			"nrIBAN": { "type": "string" },
+			"tipoConta": { "type": "string" },
+			"dtInsercao": { "type": "string", "format": "date-time" },
+			"CoTitulares": {
+			  "type": "array",
+			  "items": {
+				"type": "object",
+				"properties": {
+				  "nmCotitular": { "type": "string" },
+				  "nrNifCotitular": { "type": "string" },
+				  "cdClienteCotitular": { "type": "integer" },
+				  "tpPessoaCotitular": { "type": "string" },
+				  "dsTpPessoaCotitular": { "type": "string" }
+				}
+			  }
+			}
+		  }
+		}
+	  },
+    "PATRIMONIOS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "dsPatrimonio": { "type": "string" },
+          "vlPatrimonio": { "type": "number" },
+          "vlPatrimonioLiquido": { "type": "number" },
+          "dtPatrimonioLiquido": { "type": "string", "format": "date" },
+          "cdPaisOrigem": { "type": "integer" },
+          "dsPaisOrigem": { "type": "string" },
+          "vlBaseCalculo": { "type": "number" },
+          "deDetalhes": { "type": "string" },
+          "idTipoPatrimonio": { "type": "integer" },
+          "dsTipoPatrimonio": { "type": "string" },
+          "cdPaisCetipOrigem": { "type": "integer" }
+        }
+      }
+    },
+    "CONTATOS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "nmContato": { "type": "string" },
+          "telefone": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "cdUsuario": { "type": "integer" },
+          "dtAlteracao": { "type": "string", "format": "date" },
+          "ddi": { "type": "string" }
+        }
+      }
+    },
+    "PARTICIPACOES_EMPRESAS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "nome": { "type": "string" },
+          "documento": { "type": "string" },
+          "documentoPart": { "type": "string" },
+          "pctParticipacao": { "type": "number" },
+          "dataEntrada": { "type": "string", "format": "date" },
+          "dataDesativacao": { "type": "string" }
+        }
+      }
+    },
+    "HISTORICO_PROFISSIONAL": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "cnpj": { "type": "string" },
+          "nome": { "type": "string" },
+          "cbo": { "type": "string" },
+          "nrPis": { "type": "string" },
+          "deCbo": { "type": "string" },
+          "vlRendaPresumida": { "type": "number" },
+          "dtAdmissao": { "type": "string", "format": "date" },
+          "idCondicaoEmprego": { "type": "integer" },
+          "nmCondicaoEmprego": { "type": "string" }
+        }
+      }
+    },
+    "FONTE_REFERENCIA": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "cdTipo": { "type": "string" },
+          "nmEmpresa": { "type": "string" },
+          "pontoContato": { "type": "string" },
+          "telefone": { "type": "string" }
+        }
+      }
+    },
+	"FUNDOS": {
+    "type": "array",
+	"minItems": 0,
+    "items": {
+      "type": "object",
+      "properties": {
+        "cdNif": { "type": "string" },
+        "nmCustodiante": { "type": "string" },
+        "nrCpfCnpjCustodiante": { "type": "integer" },
+        "nmGestor": { "type": "string" },
+        "nrCpfCnpjGestor": { "type": "integer" },
+        "nmAdministrador": { "type": "string" },
+        "nrCpfCnpjAdministrador": { "type": "integer" }
+      }
+    }
+  },
+	"ISENCOES": {
+    "type": "array",
+	"minItems": 0,
+    "items": {
+      "type": "object",
+      "properties": {
+        "cdNif": { "type": "string" },
+        "idIsencaoFiscal": { "type": "integer" },
+        "deIsencaoFiscal": { "type": "string" },
+        "idTpIsencao": { "type": "integer" },
+        "deTpIsencao": { "type": "string" },
+        "dtAtribuicao": { "type": "string", "format": "date" },
+        "dtVencimento": { "type": "string", "format": "date" },
+        "cdUsuario": { "type": "integer" },
+        "dtAlteracao": { "type": "string", "format": "date" }
+      }
+    }
+  },
+	"SUITABILITY": {
+    "type": "array",
+	"minItems": 0,
+    "items": {
+      "type": "object",
+      "properties": {
+        "cdNif": { "type": "string" },
+        "idPerfilInvestidor": { "type": "integer" },
+        "dePerfilInvestidor": { "type": "string" },
+        "dtAtribuicao": { "type": "string", "format": "date" },
+        "dtVencimento": { "type": "string", "format": "date" },
+        "cdSituacao": { "type": "string" },
+        "cdUsuario": { "type": "integer" },
+        "dtAlteracao": { "type": "string", "format": "date" },
+        "dtDesativacao": { "type": "string", "format": "date" },
+        "cdUsuarioDesativacao": { "type": "integer" }
+      }
+    }
+  },
+    "FIRMAS_PODERES": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "tipoProcesso": { "type": "string" },
+          "vlLimiteInicial": { "type": "number" },
+          "vlLimiteFinal": { "type": "number" },
+          "idPessoasFirmasPoderesAutorizadores": { "type": "integer" },
+          "dsAutorizador": { "type": "string" }
+        }
+      }
+    },
+    "FILIAIS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "cdNif": { "type": "string" },
+          "documentoMatriz": { "type": "string" }
+        }
+      }
+    },
+    "DECLARACOES": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "flEnderecoResIgualCorrespondencia": { "type": "string" },
+          "deOrigemPatrimonio": { "type": "string" },
+          "flPossuiFonteRenda": { "type": "string" },
+          "flPossuiContaExterior": { "type": "string" },
+          "flPrestaServicosExterior": { "type": "string" },
+          "flPrestaServicosExteriorDet": { "type": "string" },
+          "flPossuiVinculoOng": { "type": "string" },
+          "flPossuiVinculoOngDet": { "type": "string" }
+        }
+      }
+    },
+    "QUESTIONARIOS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "deQuestao": { "type": "string" },
+          "deResposta": { "type": "string" }
+        }
+      }
+    },
+    "INFOEXTRA": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "dsReceitaRenda": { "type": "string" },
+          "vlReceitaRenda": { "type": "number" }
+        }
+      }
+    },
+    "ARQUIVOS": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "guidArquivo": { "type": "string" }
+        }
+      }
+    },
+    "QUESTIONARIO_GLOBAL_PERSON": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "json": { "type": "string" }
+        }
+      }
+    },
+    "COMPLEMENTO_INFO_EXTRA": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "properties": {
+          "json": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": [
+    "nmContraparte",
+    "cdNifPrincipal",
+    "cdLoginResponsavel"
+  ]
+}

@@ -12,7 +12,7 @@ A Divergência Kullback-Leibler (KL) é uma medida fundamental na teoria da info
 
 | Conceito                     | Explicação                                                   |
 | ---------------------------- | ------------------------------------------------------------ |
-| **Divergência KL**           | Uma medida assimétrica que quantifica a diferença entre duas distribuições de probabilidade P e Q. Formalmente definida como a expectativa do logaritmo da razão entre as probabilidades. [1] |
+| **Divergência KL**           | ==Uma medida assimétrica que quantifica a diferença entre duas distribuições de probabilidade P e Q.== Formalmente definida como a expectativa do logaritmo da razão entre as probabilidades. [1] |
 | **Entropia Cruzada**         | Intimamente relacionada à divergência KL, mede a ineficiência de usar uma distribuição para codificar outra. [3] |
 | **Compressão de Informação** | A divergência KL pode ser interpretada como o número extra de bits necessários para codificar amostras de P usando um código otimizado para Q. [7] |
 
