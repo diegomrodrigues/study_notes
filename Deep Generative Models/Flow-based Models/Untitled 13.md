@@ -1,231 +1,180 @@
-# Definição e Arquitetura de Modelos de Fluxo Normalizador
+## Continuous Normalizing Flow: Uma Abordagem Avançada para Modelagem de Distribuições
 
-<image: Um diagrama ilustrando a transformação de uma distribuição simples (por exemplo, uma gaussiana) em uma distribuição complexa através de uma série de transformações invertíveis, representando o fluxo normalizador.>
+<imagem: Uma representação visual de um fluxo contínuo, mostrando a transformação de uma distribuição simples (por exemplo, uma Gaussiana) em uma distribuição mais complexa ao longo do tempo, com linhas de fluxo representando a evolução dos pontos no espaço>
 
-## Introdução
+### Introdução
 
-Os modelos de fluxo normalizador (Normalizing Flow Models) representam uma classe poderosa de modelos generativos que permitem a transformação de distribuições simples em distribuições complexas através de uma série de transformações invertíveis [1]. Estes modelos têm ganhado significativa atenção na comunidade de aprendizado de máquina devido à sua capacidade de modelar distribuições complexas de forma eficiente, mantendo a tratabilidade da função de verossimilhança [2].
+Os **Continuous Normalizing Flows** (CNFs) representam uma abordagem inovadora e poderosa na construção de modelos de fluxo normalizador tratáveis. Esta técnica, fundamentada na teoria das equações diferenciais ordinárias (ODEs), oferece uma perspectiva contínua para a transformação de distribuições probabilísticas [1]. 
 
-Este resumo abordará em profundidade a definição e arquitetura dos modelos de fluxo normalizador, explorando seus componentes fundamentais, propriedades matemáticas e aplicações práticas.
+> 💡 **Conceito Fundamental**: CNFs utilizam ODEs neurais para definir uma transformação contínua no tempo de uma distribuição base simples para uma distribuição de dados complexa.
 
-## Conceitos Fundamentais
+Os CNFs emergem como uma extensão natural dos fluxos normalizadores discretos, oferecendo vantagens únicas em termos de flexibilidade e eficiência computacional [1].
 
-| Conceito                     | Explicação                                                   |
-| ---------------------------- | ------------------------------------------------------------ |
-| **Fluxo Normalizador**       | Uma sequência de transformações invertíveis que mapeiam uma distribuição simples (prior) em uma distribuição complexa (target) [1]. |
-| **Transformação Invertível** | Uma função bijetora que mapeia pontos entre dois espaços, permitindo tanto a amostragem quanto a avaliação de densidade [3]. |
-| **Distribuição Prior**       | A distribuição inicial simples (geralmente uma gaussiana) que será transformada pelo fluxo [2]. |
-| **Jacobiano**                | A matriz de derivadas parciais da transformação, crucial para o cálculo da mudança de densidade [4]. |
+### Conceitos Fundamentais
 
-> ⚠️ **Nota Importante**: A invertibilidade das transformações é crucial para a eficiência computacional dos fluxos normalizadores, permitindo tanto a amostragem quanto a avaliação de densidade de forma tratável [3].
+| Conceito              | Explicação                                                   |
+| --------------------- | ------------------------------------------------------------ |
+| **Neural ODE**        | Uma formulação de rede neural como uma equação diferencial ordinária, permitindo a modelagem de transformações contínuas no tempo [2]. |
+| **Base Distribution** | Distribuição inicial simples (geralmente uma Gaussiana) que é transformada pelo fluxo [3]. |
+| **Flow Lines**        | Trajetórias que descrevem como pontos individuais da distribuição base evoluem ao longo do tempo sob a ação do fluxo [4]. |
 
-## Arquitetura Básica de um Modelo de Fluxo Normalizador
+> ⚠️ **Nota Importante**: A compreensão profunda das ODEs neurais é crucial para o entendimento dos CNFs, pois elas formam a base matemática para a transformação contínua da distribuição [5].
 
-<image: Um diagrama detalhado mostrando a arquitetura de um modelo de fluxo normalizador, incluindo a distribuição prior, as camadas de transformação invertível, e a distribuição resultante.>
+### Formulação Matemática do Continuous Normalizing Flow
 
-A arquitetura de um modelo de fluxo normalizador é composta por três componentes principais [5]:
+<imagem: Um diagrama mostrando a transformação de uma distribuição ao longo do tempo t, com equações diferenciais representando a evolução da densidade de probabilidade>
 
-1. **Distribuição Prior**: Tipicamente uma distribuição simples e fácil de amostrar, como uma gaussiana multivariada.
-2. **Sequência de Transformações Invertíveis**: Uma série de funções bijetoras que transformam a distribuição prior.
-3. **Mecanismo de Cálculo do Jacobiano**: Um método eficiente para calcular o determinante do Jacobiano das transformações.
-
-Matematicamente, podemos expressar um fluxo normalizador como [6]:
+A formulação matemática dos CNFs é baseada na teoria das ODEs neurais. Considere uma transformação definida por uma ODE neural:
 
 $$
-x = f_K \circ f_{K-1} \circ ... \circ f_1(z)
+\frac{d\mathbf{z}(t)}{dt} = \mathbf{f}(\mathbf{z}(t), \mathbf{w})
 $$
 
-Onde $z$ é uma amostra da distribuição prior, $x$ é a amostra transformada, e $f_1, ..., f_K$ são as transformações invertíveis.
+Onde $\mathbf{z}(t)$ representa o vetor de estado no tempo $t$, e $\mathbf{f}$ é uma função parametrizada por $\mathbf{w}$ [6].
 
-### Formalização Matemática
-
-A mudança de variáveis é o princípio fundamental por trás dos fluxos normalizadores. Para uma transformação invertível $f: \mathbb{R}^d \rightarrow \mathbb{R}^d$, a densidade da variável transformada $x = f(z)$ é dada por [7]:
+A transformação da densidade de probabilidade ao longo do fluxo é governada pela equação:
 
 $$
-p_X(x) = p_Z(f^{-1}(x)) \left|\det\left(\frac{\partial f^{-1}}{\partial x}\right)\right|
+\frac{d \ln p(\mathbf{z}(t))}{dt} = -\text{Tr} \left( \frac{\partial \mathbf{f}}{\partial \mathbf{z}(t)} \right)
 $$
 
-Onde $p_Z$ é a densidade da distribuição prior e $\frac{\partial f^{-1}}{\partial x}$ é o Jacobiano da transformação inversa.
+Onde $\text{Tr}$ denota o traço da matriz Jacobiana $\frac{\partial \mathbf{f}}{\partial \mathbf{z}(t)}$ [7].
 
-> ✔️ **Ponto de Destaque**: A eficiência computacional dos fluxos normalizadores depende criticamente da facilidade de calcular o determinante do Jacobiano [8].
+> ✔️ **Destaque**: Esta equação é fundamental, pois permite calcular a evolução da densidade de probabilidade sem a necessidade de calcular determinantes de matrizes Jacobianas completas, o que é computacionalmente custoso em altas dimensões [8].
 
-### Tipos de Transformações Invertíveis
+### Vantagens e Desafios dos Continuous Normalizing Flows
 
-Existem várias arquiteturas de transformações invertíveis utilizadas em fluxos normalizadores:
+#### 👍 Vantagens
+- Flexibilidade na modelagem de distribuições complexas [9]
+- Eficiência computacional em comparação com fluxos discretos [10]
+- Capacidade de lidar com dados de tempo contínuo [11]
 
-1. **Coupling Layers** [9]:
-   - Dividem o input em duas partes
-   - Aplicam uma transformação afim em uma parte, condicionada na outra
-   - Exemplo: Real NVP (Non-Volume Preserving)
+#### 👎 Desafios
+- Complexidade na implementação e treinamento [12]
+- Necessidade de técnicas avançadas de integração numérica [13]
 
-2. **Autoregressive Flows** [10]:
-   - Modelam a distribuição como um produto de condicionais
-   - Exemplo: Masked Autoregressive Flow (MAF)
+### Implementação e Treinamento
 
-3. **Continuous-Time Flows** [11]:
-   - Definem a transformação como a solução de uma equação diferencial ordinária (ODE)
-   - Exemplo: Neural ODEs
+A implementação de CNFs requer o uso de solvers de ODE para integrar as equações diferenciais. O treinamento pode ser realizado usando o método de sensibilidade adjunta, que é análogo ao backpropagation em redes neurais convencionais [14].
 
-Cada tipo de transformação oferece um trade-off entre expressividade e eficiência computacional.
+$$
+\mathbf{a}(t) = \frac{dL}{d\mathbf{z}(t)}
+$$
 
-#### Questões Técnicas/Teóricas
+A equação acima define o adjunto, que satisfaz sua própria ODE:
 
-1. Como o cálculo do determinante do Jacobiano afeta a escolha da arquitetura de um fluxo normalizador?
-2. Quais são as vantagens e desvantagens de usar coupling layers versus autoregressive flows em um modelo de fluxo normalizador?
+$$
+\frac{d\mathbf{a}(t)}{dt} = -\mathbf{a}(t)^T\nabla_\mathbf{z}\mathbf{f}(\mathbf{z}(t), \mathbf{w})
+$$
 
-## Implementação de um Fluxo Normalizador Simples
+O gradiente em relação aos parâmetros é então calculado como:
 
-Vamos considerar uma implementação simplificada de um fluxo normalizador usando PyTorch, focando em uma camada de acoplamento (coupling layer) [12]:
+$$
+\nabla_\mathbf{w}L = - \int_0^T \mathbf{a}(t)^T\nabla_\mathbf{w}\mathbf{f}(\mathbf{z}(t), \mathbf{w}) dt
+$$
 
-```python
-import torch
-import torch.nn as nn
+Estas equações permitem o treinamento eficiente de CNFs usando técnicas de otimização baseadas em gradiente [15].
 
-class CouplingLayer(nn.Module):
-    def __init__(self, input_dim, hidden_dim):
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.Linear(input_dim // 2, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, input_dim // 2 * 2)
-        )
-        
-    def forward(self, x):
-        x1, x2 = torch.chunk(x, 2, dim=1)
-        params = self.net(x1)
-        s, t = torch.chunk(params, 2, dim=1)
-        y1 = x1
-        y2 = x2 * torch.exp(s) + t
-        return torch.cat([y1, y2], dim=1)
-    
-    def inverse(self, y):
-        y1, y2 = torch.chunk(y, 2, dim=1)
-        params = self.net(y1)
-        s, t = torch.chunk(params, 2, dim=1)
-        x1 = y1
-        x2 = (y2 - t) * torch.exp(-s)
-        return torch.cat([x1, x2], dim=1)
-    
-    def log_det_jacobian(self, x):
-        x1, _ = torch.chunk(x, 2, dim=1)
-        params = self.net(x1)
-        s, _ = torch.chunk(params, 2, dim=1)
-        return torch.sum(s, dim=1)
+#### Perguntas Teóricas
 
-class NormalizingFlow(nn.Module):
-    def __init__(self, input_dim, hidden_dim, num_layers):
-        super().__init__()
-        self.layers = nn.ModuleList([
-            CouplingLayer(input_dim, hidden_dim) for _ in range(num_layers)
-        ])
-        
-    def forward(self, x):
-        log_det = 0
-        for layer in self.layers:
-            x = layer(x)
-            log_det += layer.log_det_jacobian(x)
-        return x, log_det
-    
-    def inverse(self, y):
-        for layer in reversed(self.layers):
-            y = layer.inverse(y)
-        return y
-```
+1. Derive a equação para a evolução da densidade de probabilidade em um CNF, começando pela equação de Liouville para conservação de probabilidade.
 
-Esta implementação demonstra os componentes essenciais de um fluxo normalizador:
-1. A transformação invertível (função `forward` e `inverse`)
-2. O cálculo do logaritmo do determinante do Jacobiano (`log_det_jacobian`)
-3. A composição de múltiplas camadas para formar o fluxo completo
+2. Compare matematicamente a eficiência computacional do cálculo do determinante Jacobiano em fluxos normalizadores discretos com o cálculo do traço em CNFs. Demonstre como isso se traduz em vantagem computacional para dimensões elevadas.
 
-> ❗ **Ponto de Atenção**: A eficiência do cálculo do determinante do Jacobiano é crucial para a performance do modelo. Neste exemplo, usamos uma estrutura especial (coupling layer) que permite um cálculo eficiente [13].
+3. Explique teoricamente como o método de sensibilidade adjunta se relaciona com o algoritmo de backpropagation em redes neurais feedforward. Derive as equações necessárias para demonstrar esta relação.
 
-## Propriedades e Vantagens dos Fluxos Normalizadores
+### Aplicações e Extensões
 
-1. **Tratabilidade da Verossimilhança**: Ao contrário de outros modelos generativos como VAEs ou GANs, os fluxos normalizadores permitem o cálculo exato da verossimilhança [14].
+Os CNFs têm aplicações em diversos campos, incluindo:
 
-2. **Amostragem Eficiente**: A geração de amostras é direta, envolvendo apenas a amostragem da distribuição prior seguida pela aplicação das transformações [15].
+- Geração de imagens [16]
+- Modelagem de séries temporais [17]
+- Inferência variacional [18]
 
-3. **Flexibilidade**: Podem modelar uma ampla gama de distribuições complexas [16].
+Uma extensão notável é o uso de CNFs em modelos de difusão, onde o fluxo contínuo é usado para modelar o processo de geração de dados [19].
 
-4. **Inferência Inversa**: A natureza invertível das transformações permite a inferência latente exata [17].
+> ❗ **Ponto de Atenção**: A escolha da arquitetura da rede neural que define $\mathbf{f}$ é crucial para o desempenho e a expressividade do modelo CNF [20].
 
-| 👍 Vantagens                   | 👎 Desvantagens                                               |
-| ----------------------------- | ------------------------------------------------------------ |
-| Verossimilhança exata [14]    | Restrições na arquitetura para manter a invertibilidade [18] |
-| Amostragem eficiente [15]     | Potencial complexidade computacional no treinamento [19]     |
-| Inferência latente exata [17] | Necessidade de dimensionalidade igual entre espaço latente e de dados [20] |
+### Otimizações e Técnicas Avançadas
 
-#### Questões Técnicas/Teóricas
+#### Estimador de Traço de Hutchinson
 
-1. Como a restrição de igual dimensionalidade entre o espaço latente e o espaço de dados afeta a aplicabilidade dos fluxos normalizadores em diferentes domínios?
-2. Quais são as implicações práticas da tratabilidade da verossimilhança em fluxos normalizadores para tarefas de modelagem probabilística?
+Para reduzir o custo computacional do cálculo do traço da Jacobiana, pode-se utilizar o estimador de traço de Hutchinson:
 
-## Aplicações e Extensões
+$$
+\text{Tr}(\mathbf{A}) \approx \frac{1}{M} \sum_{m=1}^M \epsilon_m^T \mathbf{A}\epsilon_m
+$$
 
-Os fluxos normalizadores têm encontrado aplicações em diversas áreas:
+Onde $\epsilon_m$ são vetores aleatórios com média zero e covariância unitária [21].
 
-1. **Geração de Imagens**: Modelando distribuições complexas de imagens [21].
-2. **Processamento de Áudio**: Síntese de voz e música [22].
-3. **Inferência Variacional**: Como parte de modelos variacionais mais complexos [23].
-4. **Aprendizado por Reforço**: Modelando políticas e funções de valor [24].
+#### Flow Matching
 
-Extensões recentes incluem:
+A técnica de flow matching melhora significativamente a eficiência do treinamento de CNFs, evitando a necessidade de backpropagation através do integrador e reduzindo os requisitos de memória [22].
 
-- **Fluxos Condicionais**: Incorporando informações condicionais para geração guiada [25].
-- **Fluxos Contínuos**: Usando equações diferenciais para definir transformações contínuas [26].
+#### Perguntas Teóricas
 
-## Conclusão
+1. Demonstre matematicamente por que o estimador de traço de Hutchinson é não-enviesado. Qual é o impacto da escolha de M no trade-off entre precisão e eficiência computacional?
 
-Os modelos de fluxo normalizador representam uma abordagem poderosa e matematicamente elegante para a modelagem de distribuições complexas. Sua capacidade de combinar tratabilidade da verossimilhança com expressividade os torna ferramentas valiosas no arsenal do aprendizado de máquina moderno [27]. 
+2. Derive a equação de evolução da densidade para um CNF unidimensional, começando pela conservação de probabilidade em intervalos infinitesimais. Como isso se generaliza para dimensões superiores?
 
-À medida que a pesquisa nesta área avança, podemos esperar ver aplicações ainda mais diversas e inovadoras, bem como melhorias na eficiência computacional e na expressividade dos modelos [28].
+3. Analise teoricamente o impacto da escolha da distribuição base na expressividade e eficiência de um modelo CNF. Como isso se compara com a escolha da distribuição prior em modelos VAE?
 
-### Questões Avançadas
+### Conclusão
 
-1. Como você compararia a eficácia dos fluxos normalizadores com outros modelos generativos como VAEs e GANs em termos de qualidade de amostra, diversidade e fidelidade à distribuição de dados?
+Os Continuous Normalizing Flows representam um avanço significativo na modelagem de distribuições probabilísticas complexas. Ao combinar a flexibilidade das redes neurais com a elegância matemática das equações diferenciais ordinárias, os CNFs oferecem uma abordagem poderosa e computacionalmente eficiente para uma variedade de tarefas em aprendizado de máquina e estatística [23].
 
-2. Considerando as limitações computacionais dos fluxos normalizadores em alta dimensionalidade, que estratégias você proporia para aplicá-los eficientemente em dados de alta dimensão como imagens de alta resolução?
+A capacidade de transformar continuamente distribuições simples em distribuições complexas, juntamente com métodos eficientes de treinamento como o método de sensibilidade adjunta, posiciona os CNFs como uma ferramenta promissora para futuras pesquisas e aplicações em áreas como geração de imagens, modelagem de séries temporais e inferência variacional [24].
 
-3. Explique como o princípio da mudança de variáveis é utilizado nos fluxos normalizadores e como isso se relaciona com o cálculo do determinante do Jacobiano. Quais são as implicações práticas desta relação para o design de arquiteturas eficientes?
+À medida que o campo evolui, espera-se que novas otimizações e extensões dos CNFs continuem a expandir suas capacidades e aplicabilidade, solidificando sua posição como uma técnica fundamental no toolkit do aprendizado de máquina moderno [25].
 
 ### Referências
 
-[1] "Normalizing Flow Models - Lecture Notes" (Trecho de Normalizing Flow Models - Lecture Notes)
+[1] "We can make use of a neural ordinary differential equation to define an alternative approach to the construction of tractable normalizing flow models... The resulting framework is known as a continuous normalizing flow..." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[2] "Normalizing flows have been reviewed by Kobyzev, Prince, and Brubaker (2019) and Papamakarios et al. (2019)." (Trecho de Deep Learning Foundation and Concepts)
+[2] "A neural ODE defines a highly flexible transformation from an input vector $\mathbf{z}(0)$ to an output vector $\mathbf{z}(T)$ in terms of a differential equation of the form" *(Trecho de Deep Learning Foundations and Concepts)*
 
-[3] "If we define a base distribution over the input vector $p(z(0))$ then the neural ODE propagates this forward through time to give a distribution $p(z(t))$ for each value of $t$, leading to a distribution over the output vector $p(z(T))$." (Trecho de Deep Learning Foundation and Concepts)
+[3] "If we define a base distribution over the input vector $p(\mathbf{z}(0))$ then the neural ODE propagates this forward through time to give a distribution $p(\mathbf{z}(t))$ for each value of $t$, leading to a distribution over the output vector $p(\mathbf{z}(T))$." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[4] "The Jacobian is defined as:" (Trecho de Deep Learning Foundation and Concepts)
+[4] "The flow lines show how points along the z-axis evolve as a function of t. Where the flow lines spread apart the density is reduced, and where they move together the density is increased." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[5] "Consider a directed, latent-variable model over observed variables $X$ and latent variables $Z$." (Trecho de Deep Learning Foundation and Concepts)
+[5] "To apply backpropagation to neural ODEs, we define a quantity called the adjoint given by" *(Trecho de Deep Learning Foundations and Concepts)*
 
-[6] "Using change of variables, the marginal likelihood $p(x)$ is given by:" (Trecho de Deep Learning Foundation and Concepts)
+[6] "We can make use of a neural ordinary differential equation to define an alternative approach to the construction of tractable normalizing flow models. A neural ODE defines a highly flexible transformation from an input vector $\mathbf{z}(0)$ to an output vector $\mathbf{z}(T)$ in terms of a differential equation of the form" *(Trecho de Deep Learning Foundations and Concepts)*
 
-[7] "By change of variables:" (Trecho de Deep Learning Foundation and Concepts)
+[7] "Chen et al. (2018) showed that for neural ODEs, the transformation of the density can be evaluated by integrating a differential equation given by" *(Trecho de Deep Learning Foundations and Concepts)*
 
-[8] "Computing likelihoods also requires the evaluation of determinants of $n \times n$ Jacobian matrices, where $n$ is the data dimensionality" (Trecho de Deep Learning Foundation and Concepts)
+[8] "Since (18.28) involves the trace of the Jacobian rather than the determinant, which arises in discrete normalizing flows, it might appear to be more computationally efficient." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[9] "Coupling flows, in which the linear transformation (18.11) is replaced by a more general" (Trecho de Deep Learning Foundation and Concepts)
+[9] "The resulting framework is known as a continuous normalizing flow and is illustrated in Figure 18.6." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[10] "A related formulation of normalizing flows can be motivated by noting that the joint distribution over a set of variables can always be written as the product of conditional distributions, one for each variable." (Trecho de Deep Learning Foundation and Concepts)
+[10] "Since (18.28) involves the trace of the Jacobian rather than the determinant, which arises in discrete normalizing flows, it might appear to be more computationally efficient." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[11] "The final approach to normalizing flows that we consider in this chapter will make use of deep neural networks defined in terms of an ordinary differential equation, or ODE." (Trecho de Deep Learning Foundation and Concepts)
+[11] "neural ODEs can naturally handle continuous-time data in which observations occur at arbitrary times." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[12] "Consider a training set $D = \{x_1, \ldots, x_N\}$ of independent data points, the log likelihood function is given from (18.1) by:" (Trecho de Deep Learning Foundation and Concepts)
+[12] "We now need to address the challenge of how to train a neural ODE, that is how to determine the value of w by optimizing a loss function." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[13] "Key idea: Choose transformations so that the resulting Jacobian matrix has special structure. For example, the determinant of a triangular matrix is the product of the diagonal entries, i.e., an $O(n)$ operation" (Trecho de Deep Learning Foundation and Concepts)
+[13] "This integration can be performed using standard ODE solvers." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[14] "Normalizing flows can be trained using the **adjoint sensitivity method** used for neural ODEs, which can be viewed as the continuous time equivalent of backpropagation." (Trecho de Deep Learning Foundation and Concepts)
+[14] "Continuous normalizing flows can be trained using the adjoint sensitivity method used for neural ODEs, which can be viewed as the continuous time equivalent of backpropagation." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[15] "Sampling from this density can be obtained by sampling from the base density $p(z(0))$, which is chosen to be a simple distribution such as a Gaussian, and propagating the values to the output by integrating (18.27) again using the ODE solver." (Trecho de Deep Learning Foundation and Concepts)
+[15] "The derivatives $\nabla_zf$ in (18.25) and $\nabla_wf$ in (18.26) can be evaluated efficiently using automatic differentiation." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[16] "Even though $p(z)$ is simple, the marginal $p_\theta(x)$ is very complex/flexible." (Trecho de Normalizing Flow Models - Lecture Notes)
+[16] "Continuous normalizing flows can be trained using the adjoint sensitivity method used for neural ODEs, which can be viewed as the continuous time equivalent of backpropagation." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[17] "What if we could easily "invert" $p(x | z)$ and compute $p(z | x)$ by design? How? Make $x = f_\theta(z)$ a deterministic and invertible function of $z$, so for any $x$ there is a unique corresponding $z$ (no enumeration)" (Trecho de Normalizing Flow Models - Lecture Notes)
+[17] "neural ODEs can naturally handle continuous-time data in which observations occur at arbitrary times." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[18] "Need to restrict parameters and non-linearity for the mapping to be invertible. For example," (Trecho de Deep Learning Foundation and Concepts)
+[18] "The resulting framework is known as a continuous normalizing flow and is illustrated in Figure 18.6." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[19] "In general, evaluating the determinant of a $D \times D$ matrix requires $O(D^3)$ operations, whereas evaluating the trace requires $O(D)$ operations." (Trecho de Deep Learning Foundation and Concepts)
+[19] "Significant improvements in training efficiency for continuous normalizing flows can be achieved using a technique called flow matching (Lipman et al., 2022). This brings normalizing flows closer to diffusion models" *(Trecho de Deep Learning Foundations and Concepts)*
 
-[20] "Note 1: unlike VAEs, $x, z$ need to be continuous and have the same dimension. For example, if $x \in \mathbb{R}^n$ then $z \in \mathbb
+[20] "To be able to model a wide range of distributions, we want the transformation function $x = f(z, w)$ to be highly flexible, and so we use a deep neural network architecture." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[21] "However, the cost of evaluating the trace can be reduced to $\mathcal{O}(D)$ by using Hutchinson's trace estimator (Grathwohl et al., 2018), which for a matrix" *(Trecho de Deep Learning Foundations and Concepts)*
+
+[22] "Significant improvements in training efficiency for continuous normalizing flows can be achieved using a technique called flow matching (Lipman et al., 2022). This brings normalizing flows closer to diffusion models and avoids the need for back-propagation through the integrator while significantly reducing memory requirements and enabling faster inference and more stable training." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[23] "We can make use of a neural ordinary differential equation to define an alternative approach to the construction of tractable normalizing flow models." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[24] "The resulting framework is known as a continuous normalizing flow and is illustrated in Figure 18.6." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[25] "Significant improvements in training efficiency for continuous normalizing flows can be achieved using a technique called flow matching (Lipman et al., 2022)." *(Trecho de Deep Learning Foundations and Concepts)*

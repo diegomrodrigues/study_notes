@@ -1,178 +1,187 @@
-## Otimização Alternada em GANs: Desafios e Equilíbrio Delicado
+# Representações Disentangled em GANs: Controlando Atributos na Geração de Imagens
 
-<image: Um diagrama mostrando duas redes neurais (gerador e discriminador) em um ciclo de feedback, com setas indicando atualizações alternadas e um símbolo de balança no centro representando o equilíbrio delicado>
+<imagem: Uma visualização esquemática mostrando um espaço latente multidimensional, com setas apontando para diferentes direções representando atributos como "sorriso", "orientação do rosto", "iluminação", etc. Ao lado, imagens geradas demonstrando a variação desses atributos.>
 
-### Introdução
+## Introdução
 
-As Generative Adversarial Networks (GANs) revolucionaram o campo da aprendizagem não supervisionada e da síntese de dados. No entanto, seu treinamento é notoriamente desafiador devido à natureza adversarial de sua formulação [1]. Um aspecto crucial desse desafio é o processo de **otimização alternada** entre o gerador e o discriminador, que requer um equilíbrio delicado para alcançar resultados estáveis e de alta qualidade [2]. Este estudo aprofundado explorará os desafios intrínsecos da otimização alternada em GANs, as estratégias para superá-los e as implicações para o desenvolvimento de modelos generativos robustos.
+As Redes Adversárias Generativas (GANs) revolucionaram a geração de imagens sintéticas, mas um avanço particularmente notável é o conceito de **representações disentangled**. Este conceito permite não apenas gerar imagens realistas, mas também controlar atributos específicos dessas imagens de maneira semântica e interpretável [1]. As representações disentangled emergiram como uma característica poderosa das GANs treinadas em conjuntos de dados complexos, como imagens de rostos, permitindo manipulações semânticas no espaço latente que se traduzem em alterações significativas e controladas nas imagens geradas [25].
 
-### Fundamentos Conceituais
+## Conceitos Fundamentais
 
-| Conceito                 | Explicação                                                   |
-| ------------------------ | ------------------------------------------------------------ |
-| **Otimização Alternada** | Processo de atualização sequencial dos parâmetros do gerador e do discriminador em GANs, visando alcançar um equilíbrio Nash [3]. |
-| **Equilíbrio Nash**      | Estado em que nenhum jogador (gerador ou discriminador) pode melhorar unilateralmente sua posição [4]. |
-| **Modo Collapse**        | Fenômeno onde o gerador produz apenas um subconjunto limitado de amostras, falhando em capturar toda a diversidade dos dados reais [5]. |
+| Conceito                        | Explicação                                                   |
+| ------------------------------- | ------------------------------------------------------------ |
+| **Espaço Latente**              | Um espaço multidimensional de baixa dimensão onde cada ponto corresponde a uma imagem potencial. Em GANs, este espaço é tipicamente amostrado para gerar novas imagens [1]. |
+| **Representações Disentangled** | Organização do espaço latente onde diferentes direções correspondem a atributos semânticos distintos e interpretáveis das imagens geradas [25]. |
+| **Interpolação Latente**        | Processo de mover-se suavemente entre pontos no espaço latente, resultando em transições suaves entre imagens geradas [1]. |
 
-> ⚠️ **Nota Importante**: A otimização alternada em GANs é fundamentalmente diferente da otimização convencional em redes neurais, pois envolve dois objetivos conflitantes que devem convergir para um equilíbrio delicado.
+> ⚠️ **Nota Importante**: A capacidade de controlar atributos específicos através de representações disentangled não é explicitamente treinada, mas emerge como uma propriedade das GANs bem treinadas em conjuntos de dados estruturados [25].
 
-### Desafios da Otimização Alternada em GANs
+## Emergência de Representações Disentangled
 
-<image: Um gráfico 3D mostrando a superfície de perda do gerador e do discriminador, com pontos de sela e vales estreitos representando os desafios de otimização>
+As representações disentangled em GANs são um fenômeno fascinante que emerge durante o treinamento, especialmente em arquiteturas de GANs profundas e convolucionais [1]. Este processo não é explicitamente codificado, mas surge como resultado da organização do espaço latente durante o treinamento adversário.
 
-A otimização alternada em GANs apresenta uma série de desafios únicos que tornam o treinamento notoriamente difícil [6]:
+### Propriedades Emergentes
 
-1. **Instabilidade de Treinamento**: A natureza adversarial do treinamento pode levar a oscilações e divergência [7].
+1. **Continuidade Semântica**: Movimentos suaves no espaço latente resultam em alterações graduais e semanticamente coerentes nas imagens geradas [1].
 
-2. **Sensibilidade a Hiperparâmetros**: Pequenas mudanças nas taxas de aprendizado ou arquiteturas podem ter impactos significativos no desempenho [8].
+2. **Correspondência Atributo-Direção**: Direções específicas no espaço latente correspondem a atributos semânticos interpretáveis, como orientação facial, presença de óculos, ou expressão [25].
 
-3. **Equilíbrio Delicado**: Manter um equilíbrio entre o gerador e o discriminador é crucial, mas desafiador [9].
+3. **Ortogonalidade de Atributos**: Diferentes atributos tendem a se alinhar com direções aproximadamente ortogonais no espaço latente, permitindo manipulações independentes [25].
 
-4. **Modo Collapse**: O gerador pode falhar em capturar toda a diversidade dos dados reais [5].
+### Mecanismo de Emergência
 
-5. **Gradientes Instáveis**: Os gradientes podem se tornar muito grandes ou muito pequenos, levando a problemas de treinamento [10].
+O mecanismo exato pelo qual as representações disentangled emergem não é completamente compreendido, mas algumas hipóteses incluem:
 
-#### Análise Matemática da Instabilidade
+- **Regularização Implícita**: O processo adversário pode atuar como uma forma de regularização, incentivando a formação de representações eficientes e separáveis [1].
+- **Estrutura do Conjunto de Dados**: Conjuntos de dados com variações estruturadas (como faces) podem guiar a rede a aprender representações que capturam essas variações de forma separável [25].
 
-Para entender melhor a instabilidade, consideremos a função objetivo minimax do GAN original [1]:
+## Manipulação de Atributos no Espaço Latente
+
+A manipulação de atributos em GANs com representações disentangled é realizada através de operações vetoriais no espaço latente [25]. Este processo pode ser formalizado matematicamente:
+
+Seja $z \in \mathbb{R}^d$ um vetor no espaço latente $d$-dimensional, e $G(z)$ a função do gerador que mapeia $z$ para uma imagem. A manipulação de um atributo $a$ pode ser expressa como:
 
 $$
-\min_G \max_D V(D,G) = \mathbb{E}_{x\sim p_{data}(x)}[\log D(x)] + \mathbb{E}_{z\sim p_z(z)}[\log(1-D(G(z)))]
+G(z + \alpha v_a)
 $$
 
 Onde:
-- $G$ é o gerador
-- $D$ é o discriminador
-- $p_{data}(x)$ é a distribuição dos dados reais
-- $p_z(z)$ é a distribuição do ruído de entrada do gerador
+- $v_a$ é o vetor de direção correspondente ao atributo $a$
+- $\alpha$ é um escalar que controla a intensidade da manipulação
 
-A atualização dos parâmetros segue:
+> 💡 **Insight**: A linearidade das operações no espaço latente contrasta com a não-linearidade das transformações no espaço de imagens, permitindo manipulações complexas através de operações simples [25].
+
+### Exemplo: Aritmética Vetorial em Faces
+
+Um exemplo concreto da manipulação de atributos é a "aritmética de faces" [25]:
 
 $$
-\theta_D \leftarrow \theta_D + \eta \nabla_{\theta_D} V(D,G)
-$$
-$$
-\theta_G \leftarrow \theta_G - \eta \nabla_{\theta_G} V(D,G)
+G(z_{\text{homem com óculos}}) - G(z_{\text{homem sem óculos}}) + G(z_{\text{mulher sem óculos}}) \approx G(z_{\text{mulher com óculos}})
 $$
 
-Onde $\eta$ é a taxa de aprendizado.
+Esta operação demonstra como atributos como "gênero" e "presença de óculos" podem ser manipulados independentemente no espaço latente.
 
-> ✔️ **Destaque**: A dinâmica dessas atualizações pode levar a um comportamento oscilatório ou divergente, especialmente se as taxas de aprendizado não forem cuidadosamente ajustadas [11].
+## Aplicações e Implicações
 
-### Estratégias para Mitigar os Desafios
+As representações disentangled em GANs têm diversas aplicações e implicações significativas:
 
-1. **Regularização do Discriminador**: Técnicas como gradient penalty [12] ou spectral normalization [13] podem estabilizar o treinamento.
+1. **Edição de Imagens Controlada**: Permite modificações precisas em atributos específicos de imagens geradas [25].
+2. **Transferência de Estilo**: Facilita a transferência de características específicas entre imagens [1].
+3. **Geração Condicional**: Possibilita a geração de imagens com atributos específicos desejados [25].
+4. **Estudo de Vieses**: Permite analisar e potencialmente mitigar vieses em modelos de geração de imagens [25].
 
-2. **Arquiteturas Especializadas**: Modelos como WGAN [14] e SNGAN [13] introduzem modificações arquiteturais para melhorar a estabilidade.
+> ❗ **Ponto de Atenção**: A capacidade de manipular atributos de forma tão precisa levanta questões éticas sobre a criação e manipulação de imagens sintéticas [25].
 
-3. **Ajuste Adaptativo de Hiperparâmetros**: Métodos como o Two Time-Scale Update Rule (TTUR) [15] ajustam dinamicamente as taxas de aprendizado.
+## Desafios e Limitações
 
-4. **Técnicas de Ensemble**: Treinar múltiplos modelos e fazer ensemble pode mitigar o modo collapse [16].
+Apesar do potencial, as representações disentangled em GANs enfrentam desafios:
 
-5. **Inicialização e Normalização Cuidadosas**: Técnicas como equalized learning rate e pixel normalization podem ajudar na estabilidade [17].
+1. **Não-Garantia de Emergência**: Nem todas as GANs desenvolvem representações disentangled de forma consistente [1].
+2. **Dificuldade de Quantificação**: Medir o grau de "disentanglement" de uma representação é um problema em aberto [25].
+3. **Limitação a Atributos Observáveis**: As representações são limitadas aos atributos presentes e variáveis no conjunto de treinamento [25].
 
-#### Exemplo Técnico: Gradient Penalty
+## Avanços Recentes e Direções Futuras
 
-O WGAN-GP [12] introduz um termo de penalidade de gradiente para estabilizar o treinamento:
+Pesquisas recentes têm focado em:
 
-```python
-import torch
+1. **GANs Condicionais**: Incorporando informações de atributos diretamente no processo de treinamento [25].
+2. **Técnicas de Regularização**: Desenvolvendo métodos para incentivar explicitamente o disentanglement durante o treinamento [1].
+3. **Interpretabilidade**: Melhorando nossa compreensão das representações aprendidas pelas GANs [25].
 
-def compute_gradient_penalty(D, real_samples, fake_samples):
-    alpha = torch.rand(real_samples.size(0), 1, 1, 1)
-    interpolates = (alpha * real_samples + ((1 - alpha) * fake_samples)).requires_grad_(True)
-    d_interpolates = D(interpolates)
-    fake = torch.ones(real_samples.size(0), 1)
-    gradients = torch.autograd.grad(
-        outputs=d_interpolates,
-        inputs=interpolates,
-        grad_outputs=fake,
-        create_graph=True,
-        retain_graph=True,
-        only_inputs=True,
-    )[0]
-    gradients = gradients.view(gradients.size(0), -1)
-    gradient_penalty = ((gradients.norm(2, dim=1) - 1) ** 2).mean()
-    return gradient_penalty
+## Conclusão
 
-# Uso na função de perda
-lambda_gp = 10
-d_loss = -torch.mean(D(real_samples)) + torch.mean(D(fake_samples)) + lambda_gp * compute_gradient_penalty(D, real_samples, fake_samples)
-```
+As representações disentangled em GANs representam um avanço significativo na geração e manipulação de imagens sintéticas. Elas oferecem um controle sem precedentes sobre atributos específicos, abrindo novas possibilidades em edição de imagens, transferência de estilo e geração condicional. Ao mesmo tempo, levantam questões importantes sobre interpretabilidade, robustez e implicações éticas da manipulação de imagens sintéticas [25].
 
-Este código implementa a penalidade de gradiente que força o gradiente do discriminador a ter norma próxima de 1, estabilizando o treinamento.
+À medida que a pesquisa avança, é provável que vejamos aplicações cada vez mais sofisticadas e um entendimento mais profundo dos mecanismos subjacentes a essas representações poderosas.
 
-#### Questões Técnicas/Teóricas
+## Seções Teóricas Avançadas
 
-1. Como o gradient penalty ajuda a estabilizar o treinamento de GANs? Explique matematicamente.
-2. Quais são as vantagens e desvantagens de usar técnicas de ensemble para mitigar o modo collapse em GANs?
+### Como as Representações Disentangled Emergem Durante o Treinamento de GANs?
 
-### Avanços Recentes e Perspectivas Futuras
+Para entender a emergência de representações disentangled, precisamos analisar o processo de treinamento das GANs do ponto de vista da teoria da informação e da otimização.
 
-Pesquisas recentes têm explorado abordagens inovadoras para melhorar a otimização alternada em GANs:
+Considere uma GAN com um gerador $G$ e um discriminador $D$. O objetivo do treinamento pode ser expresso como a minimização da divergência de Jensen-Shannon entre a distribuição dos dados reais $p_{data}$ e a distribuição gerada $p_G$:
 
-1. **Métodos de Otimização Baseados em Consenso**: Técnicas que buscam um equilíbrio mais robusto entre gerador e discriminador [18].
+$$
+\min_G \max_D V(D,G) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1-D(G(z)))]
+$$
 
-2. **GANs com Múltiplos Discriminadores**: Abordagens que utilizam vários discriminadores para fornecer feedback mais diversificado ao gerador [19].
+Durante o treinamento, o gerador $G$ aprende implicitamente uma transformação do espaço latente $Z$ para o espaço de dados $X$. A hipótese é que, para minimizar eficientemente a divergência, $G$ deve aprender a mapear variações no espaço latente para variações semanticamente significativas no espaço de dados.
 
-3. **Técnicas de Augmentação de Dados**: Estratégias que aumentam a diversidade dos dados de treinamento para mitigar o modo collapse [20].
+Podemos formalizar isso considerando a informação mútua $I(Z;X)$ entre o espaço latente e o espaço de dados:
 
-4. **Aprendizado por Currículo em GANs**: Métodos que introduzem gradualmente a complexidade dos dados durante o treinamento [21].
+$$
+I(Z;X) = H(Z) - H(Z|X)
+$$
 
-> 💡 **Insight**: A compreensão profunda da dinâmica de otimização em GANs está levando a abordagens cada vez mais sofisticadas e eficazes para lidar com os desafios intrínsecos desses modelos.
+onde $H$ denota a entropia. A maximização de $I(Z;X)$ durante o treinamento incentiva o gerador a preservar a informação do espaço latente, potencialmente levando a representações disentangled.
 
-### Conclusão
+Esta formulação teórica sugere que o disentanglement emerge como um subproduto da otimização da GAN, mas não garante sua ocorrência. Fatores como a arquitetura da rede, a dimensionalidade do espaço latente e a estrutura do conjunto de dados influenciam significativamente este processo.
 
-A otimização alternada em GANs representa um desafio fundamental na fronteira da aprendizagem de máquina e da inteligência artificial. Embora os desafios sejam significativos, as estratégias e avanços discutidos neste estudo demonstram o progresso contínuo na compreensão e melhoria desses modelos poderosos. A busca por métodos de treinamento mais estáveis e eficientes continua sendo uma área ativa de pesquisa, prometendo impactos significativos em diversas aplicações de geração de dados e aprendizado não supervisionado.
+### Qual é a Relação Entre Representações Disentangled e o Problema de Mode Collapse em GANs?
 
-### Questões Avançadas
+O mode collapse é um problema comum em GANs onde o gerador falha em capturar toda a diversidade da distribuição dos dados, produzindo apenas um subconjunto limitado de saídas. As representações disentangled e o mode collapse estão intrinsecamente relacionados através da capacidade do gerador de explorar eficientemente o espaço latente.
 
-1. Como você projetaria um experimento para investigar empiricamente o trade-off entre a capacidade do discriminador e a qualidade das amostras geradas em uma GAN?
+Considere o gerador $G: Z \to X$ como uma função que mapeia o espaço latente $Z$ para o espaço de dados $X$. O mode collapse pode ser formalizado como uma redução na entropia da distribuição gerada:
 
-2. Considerando as limitações da otimização alternada, quais abordagens alternativas você proporia para treinar modelos generativos adversariais?
+$$
+H(G(Z)) < H(X)
+$$
 
-3. Discuta as implicações teóricas e práticas de usar múltiplos discriminadores em uma GAN. Como isso afeta a convergência e a qualidade das amostras geradas?
+onde $X$ representa a distribuição real dos dados.
 
-### Referências
+As representações disentangled, por outro lado, implicam que pequenas perturbações em diferentes direções do espaço latente resultam em mudanças semanticamente significativas e independentes no espaço de dados. Matematicamente, isso pode ser expresso através do Jacobiano da transformação $G$:
 
-[1] "Generative models use machine learning algorithms to learn a distribution from a set of training data and then generate new examples from that distribution." (Excerpt from Deep Learning Foundations and Concepts)
+$$
+J_G(z) = \frac{\partial G(z)}{\partial z}
+$$
 
-[2] "Although GANs can produce high quality results, they are not easy to train successfully due to the adversarial learning." (Excerpt from Deep Generative Models)
+Uma representação disentangled ideal teria um Jacobiano com estrutura aproximadamente diagonal, indicando que diferentes dimensões do espaço latente afetam características independentes no espaço de dados.
 
-[3] "GANs are unique from all the other model families that we have seen so far, such as autoregressive models, VAEs, and normalizing flow models, because we do not train them using maximum likelihood." (Excerpt from Stanford Notes)
+A relação entre disentanglement e mode collapse pode ser entendida considerando que um mapeamento que preserva eficientemente a estrutura do espaço latente (disentangled) é menos propenso a colapsar múltiplos pontos do espaço latente em um único ponto no espaço de dados (mode collapse).
 
-[4] "The generator and discriminator networks are therefore working against each other, hence the term 'adversarial'. This is an example of a zero-sum game in which any gain by one network represents a loss to the other." (Excerpt from Deep Learning Foundations and Concepts)
+Formalmente, podemos expressar isso como uma condição no determinante do Jacobiano:
 
-[5] "One challenge that can arise is called mode collapse, in which the generator network weights adapt during training such that all latent-variable samples z are mapped to a subset of possible valid outputs." (Excerpt from Deep Learning Foundations and Concepts)
+$$
+|\det(J_G(z))| > \epsilon
+$$
 
-[6] "Although GANs have been successfully applied to several domains and tasks, working with them in practice is challenging because of their: (1) unstable optimization procedure, (2) potential for mode collapse, (3) difficulty in evaluation." (Excerpt from Stanford Notes)
+para algum $\epsilon > 0$ e para todos os $z$ no suporte de $p_z$. Esta condição assegura que o mapeamento $G$ é localmente injetivo, reduzindo a probabilidade de mode collapse.
 
-[7] "During optimization, the generator and discriminator loss often continue to oscillate without converging to a clear stopping point." (Excerpt from Stanford Notes)
+Esta análise teórica sugere que promover representações disentangled pode ser uma estratégia eficaz para mitigar o mode collapse em GANs, estabelecendo uma conexão profunda entre estes dois aspectos fundamentais do treinamento de GANs.
 
-[8] "Additionally, you may also need to pay special attention to hyperparameters, e.g., learning rates." (Excerpt from Deep Generative Models)
+### Como Podemos Quantificar o Grau de Disentanglement em Representações Aprendidas por GANs?
 
-[9] "The key idea of generative adversarial networks, or GANs, is to introduce a second discriminator network, which is trained jointly with the generator network and which provides a training signal to update the weights of the generator." (Excerpt from Deep Learning Foundations and Concepts)
+Quantificar o grau de disentanglement em representações aprendidas por GANs é um problema desafiador e ainda em aberto na pesquisa. No entanto, podemos propor algumas métricas e abordagens teóricas para abordar esta questão.
 
-[10] "Because d(g(z, w), φ) is equal to zero across the region spanned by the generated samples, small changes in the parameters w of the generative network produce very little change in the output of the discriminator and so the gradients are small and learning proceeds slowly." (Excerpt from Deep Learning Foundations and Concepts)
+Uma abordagem possível é baseada na **Independência Estatística** entre as dimensões do espaço latente. Considerando um vetor latente $z = (z_1, ..., z_d)$, podemos definir uma medida de disentanglement baseada na informação mútua entre as diferentes dimensões:
 
-[11] "The main problem of GANs is unstable learning and a phenomenon called mode collapse, namely, a GAN samples beautiful images but only from some regions of the observable space." (Excerpt from Deep Generative Models)
+$$
+D_I = 1 - \frac{1}{d(d-1)} \sum_{i \neq j} \frac{I(z_i; z_j)}{\sqrt{H(z_i)H(z_j)}}
+$$
 
-[12] "The Wasserstein GAN indicated that we can look elsewhere for alternative formulations of the adversarial loss." (Excerpt from Deep Generative Models)
+onde $I(z_i; z_j)$ é a informação mútua entre $z_i$ e $z_j$, e $H(z_i)$ é a entropia de $z_i$. Um valor de $D_I$ próximo a 1 indica alto grau de disentanglement.
 
-[13] "Alternatively, spectral normalization could be applied [13] by using the power iteration method." (Excerpt from Deep Generative Models)
+Outra abordagem envolve a análise da **Linearidade das Transformações** no espaço latente. Podemos definir uma métrica baseada na linearidade das mudanças no espaço de dados em resposta a perturbações lineares no espaço latente:
 
-[14] "In [12] it was claimed that the adversarial loss could be formulated differently using the Wasserstein distance (a.k.a. the earth-mover distance)" (Excerpt from Deep Generative Models)
+$$
+D_L = \frac{1}{d} \sum_{i=1}^d \frac{\|\nabla_z G(z) \cdot e_i\|_2}{\|\nabla_z G(z)\|_F}
+$$
 
-[15] "Moreover, you may also need to pay special attention to hyperparameters, e.g., learning rates. It requires a bit of experience or simply time to play around with learning rate values in your problem." (Excerpt from Deep Generative Models)
+onde $e_i$ é o i-ésimo vetor da base canônica, $\nabla_z G(z)$ é o Jacobiano de $G$ em $z$, e $\|\cdot\|_F$ denota a norma de Frobenius. Um valor alto de $D_L$ indica que perturbações em direções específicas do espaço latente resultam em mudanças consistentes no espaço de dados.
 
-[16] "Most fixes to these challenges are empirically driven, and there has been a significant amount of work put into developing new architectures, regularization schemes, and noise perturbations in an attempt to circumvent these issues." (Excerpt from Stanford Notes)
+Finalmente, podemos considerar a **Ortogonalidade dos Efeitos** das diferentes dimensões latentes:
 
-[17] "Soumith Chintala has a nice link outlining various tricks of the trade to stabilize GAN training." (Excerpt from Stanford Notes)
+$$
+D_O = 1 - \frac{2}{d(d-1)} \sum_{i<j} \frac{|\langle \nabla_z G(z) \cdot e_i, \nabla_z G(z) \cdot e_j \rangle|}{\|\nabla_z G(z) \cdot e_i\|_2 \|\nabla_z G(z) \cdot e_j\|_2}
+$$
 
-[18] "The f-GAN optimizes the variant of the two-sample test objective that we have discussed so far, but using a very general notion of distance: the f-divergence." (Excerpt from Stanford Notes)
+Um valor alto de $D_O$ indica que diferentes dimensões do espaço latente afetam características ortogonais no espaço de dados.
 
-[19] "There are two components in a GAN: (1) a generator and (2) a discriminator." (Excerpt from Stanford Notes)
+Estas métricas fornecem uma base teórica para quantificar o disentanglement, mas cada uma captura aspectos diferentes do fenômeno. Na prática, uma combinação destas métricas, juntamente com avaliações qualitativas, pode fornecer uma compreensão mais completa do grau de disentanglement em representações aprendidas por GANs.
 
-[20] "We can think about this objective as the generator trying to minimize the divergence estimate, while the discriminator tries to tighten the lower bound." (Excerpt from Stanford Notes)
+## Referências
 
-[21] "CycleGAN enforces a property known as cycle consistency, which states that if we can go from X to Y^ via G, then we should also be able to go from Y^ to X via F." (Excerpt from Stanford Notes)
+[1] "Samples generated by a deep convolutional GAN trained on images of bedrooms. Each row is generated by taking a smooth walk through latent space between randomly generated locations. We see smooth transitions, with each image plausibly looking like a bedroom. In the bottom row, for example, we see a TV on the wall gradually morph into a window." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[25] "Moreover, it is possible to identify directions in latent space that correspon

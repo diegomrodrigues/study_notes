@@ -37,18 +37,6 @@ Format your output as follows:
 
 ...
 
-
-
-Here is the text to analyze:
-
-<text>
-
-{{TEXT}}
-
-</text>
-
-
-
 For each {{CHAPTER}}, carefully read through the content and identify the key concepts, techniques, and functionalities discussed. Create a list of topics and subtopics that accurately represent the advanced material covered in the text. Ensure that you do not skip any subchapters or subsections, as each may contain important information for the study guide.
 
 
@@ -61,7 +49,7 @@ Here's an example of a well-structured output for a section:
 
 
 
-1. **Linear Regression Models:**
+**1. Linear Regression Models:**
 
 
 
@@ -88,3 +76,7 @@ Here's an example of a well-structured output for a section:
 
 
 Ensure that your output follows this structure and level of detail for each chapter and subchapter in the provided text. Do not skip any sections, and maintain a high level of specificity and relevance to the source material.
+
+
+
+Here is the text to analyze:

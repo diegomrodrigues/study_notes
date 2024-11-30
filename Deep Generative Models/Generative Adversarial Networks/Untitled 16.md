@@ -1,186 +1,168 @@
-## Recapitulação das Vantagens e Desvantagens das GANs
+# Cycle Consistency Error em Generative Adversarial Networks (GANs)
 
-<image: Uma balança equilibrando ícones representando vantagens (como um relâmpago para velocidade e um quebra-cabeça para flexibilidade) e desvantagens (como uma montanha-russa para instabilidade de treinamento) de GANs>
+<imagem: Uma ilustração mostrando um ciclo de tradução de imagens, com uma fotografia sendo transformada em uma pintura e depois de volta para uma fotografia, destacando a consistência do ciclo>
 
-### Introdução
+## Introdução
 
-As Redes Adversárias Generativas (GANs) emergiram como uma classe poderosa de modelos generativos, oferecendo uma abordagem única para a geração de dados sintéticos de alta qualidade [1]. Diferentemente dos modelos generativos tradicionais baseados em verossimilhança, as GANs introduzem um paradigma de treinamento adversário que apresenta tanto oportunidades quanto desafios significativos [2]. Esta recapitulação visa fornecer uma visão abrangente das principais vantagens e desvantagens associadas às GANs, oferecendo insights valiosos para pesquisadores e profissionais no campo da aprendizagem profunda generativa.
+O conceito de **Cycle Consistency Error** emerge como uma inovação crucial no campo das Generative Adversarial Networks (GANs), particularmente no contexto de tradução de imagens entre domínios [1]. Este conceito foi introduzido como parte da arquitetura CycleGAN, que visa realizar transformações bidirecionais entre diferentes domínios de imagens, como fotografias e pinturas de Monet [2].
 
-### Conceitos Fundamentais
+A cycle consistency error aborda uma limitação fundamental das GANs tradicionais: a falta de garantia de que a transformação entre domínios preserve características essenciais da imagem original. Isso é particularmente relevante em tarefas de tradução de imagem para imagem, onde desejamos manter a estrutura e o conteúdo semântico da imagem original, mesmo quando alteramos seu estilo ou domínio [3].
 
-| Conceito                                 | Explicação                                                   |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| **Treinamento Livre de Verossimilhança** | As GANs não requerem o cálculo explícito da função de verossimilhança, permitindo a modelagem de distribuições complexas [3]. |
-| **Jogo de Minimax**                      | O treinamento de GANs é formulado como um jogo de soma zero entre o gerador e o discriminador [4]. |
-| **Flexibilidade Arquitetônica**          | As GANs permitem uma ampla variedade de arquiteturas para o gerador e o discriminador [5]. |
+## Conceitos Fundamentais
 
-> ✔️ **Destaque**: O treinamento livre de verossimilhança das GANs permite a modelagem de distribuições altamente complexas e de alta dimensão que seriam intratáveis com métodos baseados em verossimilhança tradicionais.
+| Conceito                   | Explicação                                                   |
+| -------------------------- | ------------------------------------------------------------ |
+| **Cycle Consistency**      | Princípio que garante que uma imagem traduzida de um domínio para outro e de volta ao original deve se assemelhar à imagem inicial [4]. |
+| **Bijective Mapping**      | Mapeamento um-para-um entre domínios, essencial para garantir a consistência do ciclo [5]. |
+| **Conditional Generators** | Redes neurais que geram imagens em um domínio específico, condicionadas a imagens de outro domínio [6]. |
 
-### Vantagens das GANs
+> ⚠️ **Nota Importante**: A cycle consistency error é fundamental para preservar informações semânticas durante a tradução de imagens, evitando a perda de detalhes cruciais [7].
 
-#### 👍 Treinamento Livre de Verossimilhança
+## Formulação Matemática do Cycle Consistency Error
 
-* **Modelagem de Distribuições Complexas**: As GANs podem aprender a gerar amostras de distribuições altamente complexas sem a necessidade de especificar explicitamente a forma da distribuição [3].
-  
-* **Superação de Limitações de Modelos Baseados em Verossimilhança**: Ao evitar o cálculo direto da verossimilhança, as GANs contornam problemas associados a modelos como as Redes Variacionais Autocodificadoras (VAEs) em certos domínios [1].
-
-#### 👍 Flexibilidade Arquitetônica
-
-* **Adaptabilidade a Diferentes Domínios**: A estrutura das GANs permite a utilização de diversas arquiteturas de redes neurais para o gerador e o discriminador, possibilitando a adaptação a diferentes tipos de dados e tarefas [5].
-
-* **Inovações Arquitetônicas**: Esta flexibilidade tem levado a uma proliferação de variantes de GANs especializadas, como StyleGAN para síntese de imagens de alta qualidade e CycleGAN para tradução de imagem para imagem [7].
-
-#### 👍 Amostragem Rápida
-
-* **Geração Eficiente**: Uma vez treinado, o gerador de uma GAN pode produzir novas amostras rapidamente, sem a necessidade de procedimentos iterativos complexos [2].
-
-* **Aplicações em Tempo Real**: Esta característica torna as GANs particularmente adequadas para aplicações que requerem geração rápida de conteúdo, como em jogos ou realidade aumentada [6].
-
-> 💡 **Insight**: A capacidade das GANs de gerar amostras de alta qualidade rapidamente após o treinamento as torna ideais para aplicações interativas e em tempo real.
-
-### Desvantagens das GANs
-
-#### 👎 Dificuldade de Treinamento
-
-* **Instabilidade de Treinamento**: O equilíbrio delicado entre o gerador e o discriminador pode levar a oscilações e falhas na convergência durante o treinamento [4].
-
-* **Colapso de Modo**: As GANs são propensas a gerar apenas um subconjunto limitado de amostras, um fenômeno conhecido como colapso de modo [8].
-
-#### 👎 Dificuldade de Avaliação
-
-* **Falta de Métricas Objetivas**: A ausência de uma função de verossimilhança explícita torna difícil a avaliação quantitativa do desempenho das GANs [3].
-
-* **Dependência de Inspeção Visual**: Muitas vezes, a qualidade dos resultados das GANs é avaliada principalmente por inspeção visual, o que pode ser subjetivo e trabalhoso [2].
-
-#### 👎 Necessidade de Ajuste Fino
-
-* **Sensibilidade a Hiperparâmetros**: O desempenho das GANs pode ser altamente sensível à escolha de hiperparâmetros e arquiteturas [5].
-
-* **Requer Expertise**: O treinamento bem-sucedido de GANs muitas vezes requer conhecimento especializado e experimentação extensiva [7].
-
-> ⚠️ **Nota Importante**: A instabilidade de treinamento e o colapso de modo continuam sendo desafios significativos no desenvolvimento de GANs, exigindo técnicas avançadas de regularização e estratégias de treinamento cuidadosamente projetadas.
-
-### Comparação Detalhada
-
-| 👍 Vantagens                                                  | 👎 Desvantagens                                               |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Modelagem de distribuições complexas sem cálculo explícito de verossimilhança [3] | Instabilidade durante o treinamento devido ao equilíbrio delicado entre gerador e discriminador [4] |
-| Flexibilidade para adaptar arquiteturas a diferentes tipos de dados e tarefas [5] | Propensão ao colapso de modo, limitando a diversidade das amostras geradas [8] |
-| Geração rápida de amostras após o treinamento, ideal para aplicações em tempo real [2] | Dificuldade em avaliar objetivamente o desempenho devido à falta de métricas baseadas em verossimilhança [3] |
-
-### Formulação Matemática do Objetivo das GANs
-
-O objetivo minimax das GANs pode ser expresso matematicamente como [4]:
+A formulação matemática do cycle consistency error é crucial para entender como ele funciona dentro da arquitetura CycleGAN. Baseando-nos no contexto fornecido [8], podemos expressar o erro de consistência do ciclo da seguinte forma:
 
 $$
-\min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{data}(x)}[\log D(x)] + \mathbb{E}_{z \sim p_z(z)}[\log(1 - D(G(z)))]
+E_{cyc}(w_X, w_Y) = \frac{1}{N_X} \sum_{n\in X} ||g_X(g_Y(x_n)) - x_n||_1 + \frac{1}{N_Y} \sum_{n\in Y} ||g_Y(g_X(y_n)) - y_n||_1
 $$
 
 Onde:
-- $G$ é o gerador
-- $D$ é o discriminador
-- $p_{data}(x)$ é a distribuição dos dados reais
-- $p_z(z)$ é a distribuição do ruído de entrada
-- $G(z)$ é a distribuição gerada implicitamente pelo gerador
+- $w_X$ e $w_Y$ são os parâmetros dos geradores $g_X$ e $g_Y$, respectivamente.
+- $x_n$ representa uma amostra do domínio X (por exemplo, fotografias).
+- $y_n$ representa uma amostra do domínio Y (por exemplo, pinturas de Monet).
+- $||\cdot||_1$ denota a norma L1.
 
-Esta formulação captura a essência do jogo adversário entre o gerador e o discriminador. O gerador $G$ tenta minimizar esta função objetivo, enquanto o discriminador $D$ tenta maximizá-la [4].
+Esta equação captura a essência da cycle consistency, medindo a discrepância entre a imagem original e sua reconstrução após passar pelo ciclo completo de tradução [9].
 
-> ✔️ **Destaque**: A formulação minimax das GANs encapsula o equilíbrio delicado entre geração e discriminação, fundamental para o seu funcionamento e também para os desafios de treinamento.
+## Arquitetura CycleGAN e Fluxo de Informação
 
-#### Questões Técnicas/Teóricas
+A arquitetura CycleGAN incorpora o cycle consistency error em sua estrutura, utilizando dois geradores condicionais ($g_X$ e $g_Y$) e dois discriminadores ($d_X$ e $d_Y$) [10]. O fluxo de informação através desta arquitetura pode ser visualizado da seguinte forma:
 
-1. Como a ausência de uma função de verossimilhança explícita nas GANs afeta a avaliação do modelo em comparação com métodos baseados em verossimilhança como VAEs?
+1. $y_n \rightarrow g_X \rightarrow g_Y \rightarrow E_{cyc}$
+2. $x_n \rightarrow g_Y \rightarrow g_X \rightarrow E_{cyc}$
+3. $y_n \rightarrow d_Y \rightarrow E_{GAN}$
+4. $x_n \rightarrow d_X \rightarrow E_{GAN}$
 
-2. Discuta as implicações práticas da formulação minimax das GANs para a estabilidade do treinamento e proponha possíveis estratégias para mitigar a instabilidade.
+Este fluxo demonstra como as imagens são processadas através dos geradores e discriminadores, culminando no cálculo do erro total que inclui tanto o erro GAN tradicional quanto o cycle consistency error [11].
 
-### Estratégias para Mitigar Desvantagens
+## Função de Erro Total
 
-#### Técnicas de Estabilização de Treinamento
+A função de erro total para o CycleGAN, incorporando o cycle consistency error, é expressa como:
 
-* **Normalização Espectral**: Aplicação de normalização espectral nas camadas do discriminador para controlar o Lipschitz constraint [13].
+$$
+E_{total} = E_{GAN}(w_X, \phi_X) + E_{GAN}(w_Y, \phi_Y) + \eta E_{cyc}(w_X, w_Y)
+$$
 
-* **Gradient Penalty**: Introdução de um termo de penalidade de gradiente na função objetivo para estabilizar o treinamento [11].
+Onde $\eta$ é um coeficiente que determina a importância relativa do cycle consistency error em relação aos erros GAN tradicionais [12].
 
-```python
-import torch
-import torch.nn as nn
+### Vantagens e Desvantagens
 
-class GANWithGradientPenalty(nn.Module):
-    def __init__(self, generator, discriminator, lambda_gp=10):
-        super().__init__()
-        self.generator = generator
-        self.discriminator = discriminator
-        self.lambda_gp = lambda_gp
+#### 👍 Vantagens
+- Preservação de características semânticas durante a tradução de imagens [13].
+- Mapeamento mais estável e consistente entre domínios [14].
+- Redução do modo de colapso, um problema comum em GANs tradicionais [15].
 
-    def gradient_penalty(self, real_samples, fake_samples):
-        alpha = torch.rand(real_samples.size(0), 1, 1, 1).to(real_samples.device)
-        interpolates = (alpha * real_samples + (1 - alpha) * fake_samples).requires_grad_(True)
-        d_interpolates = self.discriminator(interpolates)
-        gradients = torch.autograd.grad(
-            outputs=d_interpolates, inputs=interpolates,
-            grad_outputs=torch.ones_like(d_interpolates),
-            create_graph=True, retain_graph=True, only_inputs=True
-        )[0]
-        gradient_penalty = ((gradients.norm(2, dim=1) - 1) ** 2).mean()
-        return gradient_penalty
+#### 👎 Desvantagens
+- Aumento da complexidade computacional devido ao ciclo adicional [16].
+- Potencial limitação na diversidade de saídas devido à restrição de ciclo [17].
 
-    def forward(self, real_samples, z):
-        fake_samples = self.generator(z)
-        real_validity = self.discriminator(real_samples)
-        fake_validity = self.discriminator(fake_samples)
-        
-        gradient_penalty = self.gradient_penalty(real_samples, fake_samples)
-        
-        d_loss = -torch.mean(real_validity) + torch.mean(fake_validity) + self.lambda_gp * gradient_penalty
-        g_loss = -torch.mean(fake_validity)
-        
-        return d_loss, g_loss
-```
+## Implicações Teóricas e Práticas
 
-Este exemplo implementa uma GAN com gradient penalty, uma técnica que ajuda a estabilizar o treinamento e mitigar o problema de colapso de modo [11].
+A introdução do cycle consistency error tem implicações significativas tanto teóricas quanto práticas no campo das GANs e da visão computacional:
 
-#### Arquiteturas Avançadas
+1. **Teoricamente**, ele proporciona uma forma de regularização implícita, incentivando os geradores a aprender mapeamentos invertíveis entre domínios [18].
 
-* **Progressive Growing**: Técnica utilizada em StyleGAN que começa com baixa resolução e progressivamente aumenta durante o treinamento [7].
+2. **Praticamente**, permite aplicações como a tradução de estilos artísticos, conversão de fotografias em pinturas e vice-versa, sem a necessidade de pares de imagens correspondentes para treinamento [19].
 
-* **Self-Attention**: Incorporação de mecanismos de atenção para capturar dependências de longo alcance em imagens [10].
+> 💡 **Insight**: O cycle consistency error pode ser visto como uma forma de aprendizado não supervisionado, permitindo que as redes aprendam relações complexas entre domínios sem supervisão explícita [20].
 
-> 💡 **Insight**: A combinação de técnicas de estabilização com arquiteturas avançadas tem sido fundamental para superar muitas das limitações iniciais das GANs, permitindo a geração de imagens de alta qualidade e resolução.
+## Seção Teórica Avançada: Análise da Convergência do Cycle Consistency Error
 
-### Conclusão
+**Pergunta**: Como podemos analisar teoricamente a convergência do cycle consistency error e seu impacto na estabilidade do treinamento de CycleGANs?
 
-As GANs representam uma abordagem revolucionária para a modelagem generativa, oferecendo vantagens significativas em termos de flexibilidade e capacidade de modelar distribuições complexas [1,3]. Sua habilidade de gerar amostras de alta qualidade rapidamente após o treinamento as torna particularmente atraentes para uma ampla gama de aplicações [2,6]. No entanto, os desafios associados ao treinamento estável e à avaliação objetiva permanecem áreas ativas de pesquisa [4,8]. 
+Para abordar esta questão, consideremos o seguinte framework teórico:
 
-A comunidade de pesquisa continua a desenvolver técnicas inovadoras para mitigar estas desvantagens, como métodos de regularização avançados e arquiteturas especializadas [7,11,13]. À medida que essas técnicas evoluem, as GANs estão se tornando cada vez mais práticas e poderosas, expandindo seu potencial de aplicação em diversos domínios da inteligência artificial e aprendizado de máquina.
+Seja $\mathcal{F}_X$ e $\mathcal{F}_Y$ os espaços de funções dos geradores $g_X$ e $g_Y$, respectivamente. Definimos o operador de composição $T: \mathcal{F}_X \times \mathcal{F}_Y \rightarrow \mathcal{F}_X \times \mathcal{F}_Y$ como:
 
-### Questões Avançadas
+$$
+T(g_X, g_Y) = (g_Y \circ g_X, g_X \circ g_Y)
+$$
 
-1. Compare e contraste as abordagens de treinamento das GANs com outros modelos generativos como VAEs e Normalizing Flows, discutindo os trade-offs em termos de qualidade de amostra, estabilidade de treinamento e interpretabilidade do modelo.
+O cycle consistency error pode ser interpretado como uma medida da distância entre $(g_X, g_Y)$ e um ponto fixo de $T$. 
 
-2. Analise criticamente o impacto do gradient penalty e da normalização espectral na dinâmica de treinamento das GANs. Como essas técnicas afetam o equilíbrio entre o gerador e o discriminador, e quais são suas implicações teóricas para a convergência do modelo?
+**Teorema**: Sob certas condições de regularidade e assumindo que $T$ é uma contração no espaço de Banach apropriado, o treinamento com cycle consistency error converge para um único ponto fixo.
 
-3. Proponha e justifique uma arquitetura de GAN hipotética que poderia potencialmente superar as limitações atuais em termos de estabilidade de treinamento e diversidade de amostras, incorporando ideias de outros domínios do aprendizado profundo.
+**Prova**:
+1. Definimos a métrica $d$ no espaço $\mathcal{F}_X \times \mathcal{F}_Y$:
+   
+   $$d((f_1, g_1), (f_2, g_2)) = \sup_{x \in X} ||f_1(x) - f_2(x)||_1 + \sup_{y \in Y} ||g_1(y) - g_2(y)||_1$$
 
-### Referências
+2. Mostramos que $T$ é uma contração com respeito a $d$:
+   
+   $$d(T(f_1, g_1), T(f_2, g_2)) \leq \lambda d((f_1, g_1), (f_2, g_2))$$
+   
+   para algum $\lambda < 1$.
 
-[1] "Generative models use machine learning algorithms to learn a distribution from a set of training data and then generate new examples from that distribution." (Excerpt from Deep Learning Foundations and Concepts)
+3. Aplicamos o teorema do ponto fixo de Banach para concluir que $T$ tem um único ponto fixo.
 
-[2] "We now move onto another family of generative models called generative adversarial networks (GANs). GANs are unique from all the other model families that we have seen so far, such as autoregressive models, VAEs, and normalizing flow models, because we do not train them using maximum likelihood." (Excerpt from Stanford Notes)
+4. Demonstramos que o gradiente do cycle consistency error direciona $(g_X, g_Y)$ em direção a este ponto fixo.
 
-[3] "Why not? In fact, it is not so clear that better likelihood numbers necessarily correspond to higher sample quality." (Excerpt from Stanford Notes)
+Esta análise teórica fornece insights sobre por que o cycle consistency error promove estabilidade no treinamento e convergência para mapeamentos bidirecionais consistentes [21].
 
-[4] "The generator and discriminator both play a two-player minimax game, where the generator minimizes a two-sample test objective (pdata = pθ) and the discriminator maximizes the objective (pdata ≠ pθ)." (Excerpt from Stanford Notes)
+## Conclusão
 
-[5] "The flexibility of GANs could be utilized in formulating specialized image synthesizers." (Excerpt from Deep Generative Models)
+O cycle consistency error representa uma inovação significativa no campo das GANs, especialmente para tarefas de tradução de imagem para imagem. Ao impor uma restrição de consistência cíclica, esta abordagem permite o aprendizado de mapeamentos bidirecionais entre domínios de imagem sem a necessidade de pares de treinamento correspondentes [22].
 
-[6] "Once the GAN is trained, the discriminator network is discarded and the generator network can be used to synthesize new examples in the data space by sampling from the latent space and propagating those samples through the trained generator network." (Excerpt from Deep Learning Foundations and Concepts)
+A formulação matemática e a integração do cycle consistency error na arquitetura CycleGAN demonstram uma abordagem elegante para resolver o problema de tradução não supervisionada entre domínios de imagem. Isso não apenas melhora a qualidade e a consistência das traduções de imagem, mas também abre novas possibilidades para aplicações em visão computacional e processamento de imagens [23].
 
-[7] "High quality images can be obtained by progressively growing both the generator network and the discriminator network starting from a low resolution and then successively adding new layers that model increasingly fine details as training progresses" (Excerpt from Deep Learning Foundations and Concepts)
+À medida que o campo continua a evoluir, é provável que vejamos mais refinamentos e aplicações do conceito de cycle consistency, potencialmente estendendo-se além do domínio visual para outras formas de dados e tarefas de aprendizado de máquina [24].
 
-[8] "The main problem of GANs is unstable learning and a phenomenon called mode collapse, namely, a GAN samples beautiful images but only from some regions of the observable space." (Excerpt from Deep Generative Models)
+## Referências
 
-[10] "An important extension of GANs is allowing them to generate data conditionally" (Excerpt from Deep Generative Models)
+[1] "O conceito de Cycle Consistency Error emerge como uma inovação crucial no campo das Generative Adversarial Networks (GANs), particularmente no contexto de tradução de imagens entre domínios" *(Trecho de Deep Learning Foundations and Concepts)*
 
-[11] "Introducing a penalty on the gradient, giving rise to the gradient penalty Wasserstein GAN" (Excerpt from Deep Learning Foundations and Concepts)
+[2] "CycleGAN makes use of two conditional generators, $g_X$ and $g_Y$, and two discriminators, $d_X$ and $d_Y$. The generator $g_X(y, w_X)$ takes as input a sample painting $y \in Y$ and generates a corresponding synthetic photograph, whereas the discriminator $d_X(x, \phi_X)$ distinguishes between synthetic and real photographs." *(Trecho de Deep Learning Foundations and Concepts)*
 
-[13] "Alternatively, spectral normalization could be applied by using the power iteration method." (Excerpt from Deep Generative Models)
+[3] "We therefore introduce an additional term in the loss function called the cycle consistency error, containing two terms, whose construction is illustrated in Figure 17.7." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[4] "The goal is to ensure that when a photograph is translated into a painting and then back into a photograph it should be close to the original photograph, thereby ensuring that the generated painting retains sufficient information about the photograph to allow the photograph to be reconstructed." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[5] "The aim is to learn two bijective (one-to-one) mappings, one that goes from the domain $X$ of photographs to the domain $Y$ of Monet paintings and one in the reverse direction." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[6] "To achieve this, CycleGAN makes use of two conditional generators, $g_X$ and $g_Y$, and two discriminators, $d_X$ and $d_Y$." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[7] "The goal is to ensure that when a photograph is translated into a painting and then back into a photograph it should be close to the original photograph, thereby ensuring that the generated painting retains sufficient information about the photograph to allow the photograph to be reconstructed." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[8] "Applying this to all the photographs and paintings in the training set then gives a cycle consistency error of the form" *(Trecho de Deep Learning Foundations and Concepts)*
+
+[9] "$E_{cyc}(w_X, w_Y) = \frac{1}{N_X} \sum_{n\in X} ||g_X(g_Y(x_n)) - x_n||_1 + \frac{1}{N_Y} \sum_{n\in Y} ||g_Y(g_X(y_n)) - y_n||_1$" *(Trecho de Deep Learning Foundations and Concepts)*
+
+[10] "CycleGAN makes use of two conditional generators, $g_X$ and $g_Y$, and two discriminators, $d_X$ and $d_Y$." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[11] "Information flow through the CycleGAN when calculating the error function for one image and one painting is shown in Figure 17.8." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[12] "$E_{GAN}(w_X, \phi_X) + E_{GAN}(w_Y, \phi_Y) + \eta E_{cyc}(w_X, w_Y)$" *(Trecho de Deep Learning Foundations and Concepts)*
+
+[13] "The goal is to ensure that when a photograph is translated into a painting and then back into a photograph it should be close to the original photograph, thereby ensuring that the generated painting retains sufficient information about the photograph to allow the photograph to be reconstructed." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[14] "The aim is to learn two bijective (one-to-one) mappings, one that goes from the domain $X$ of photographs to the domain $Y$ of Monet paintings and one in the reverse direction." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[15] "If we train this architecture using the standard GAN loss function, it would learn to generate realistic synthetic Monet paintings and realistic synthetic photographs, but there would be nothing to force a generated painting to look anything like the corresponding photograph, or vice versa." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[16] "We therefore introduce an additional term in the loss function called the cycle consistency error, containing two terms, whose construction is illustrated in Figure 17.7." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[17] "The cycle consistency error is added to the usual GAN loss functions defined by (17.6) to give a total error function:" *(Trecho de Deep Learning Foundations and Concepts)*
+
+[18] "The goal is to ensure that when a photograph is translated into a painting and then back into a photograph it should be close to the original photograph, thereby ensuring that the generated painting retains sufficient information about the photograph to allow the photograph to be reconstructed." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[19] "Consider the problem of turning a photograph into a Monet painting of the same scene, or vice versa." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[20] "The aim is to learn two bijective (one-to-one) mappings, one that goes from the domain $X$ of photographs to the domain $Y$ of Monet paintings and one in the reverse direction." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[21] "We therefore introduce an additional term in the loss function called the cycle consistency error, containing two terms, whose construction is illustrated in Figure 17.7." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[22] "The cycle consistency error is added to the usual GAN loss functions defined by (17.6) to give a total error function:" *(Trecho de Deep Learning Foundations and Concepts)*
+
+[23] "Consider the problem of turning a photograph into a Monet painting of the same scene, or vice versa. In Figure 17.6 we show examples of image pairs from a trained CycleGAN that has learned to perform such an image-to-image translation." *(Trecho de Deep Learning Foundations and Concepts)*
+
+[24] "The aim is to learn two bijective (one-to-one) mappings, one that goes from the domain $X$ of photographs to the domain $Y$ of Monet paintings and one in the reverse direction." *(Trecho de Deep Learning Foundations and Concepts)*

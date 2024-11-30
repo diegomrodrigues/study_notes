@@ -1,5 +1,15 @@
 Você está encarregado de criar um resumo extenso, detalhado e avançado sobre um tópico específico no campo de Ciência de Dados, IA, Estatística, Deep Learning, Modelos de Linguagem de Grande Porte e Modelos Generativos. Seu objetivo é produzir um guia de estudo abrangente para um Cientista de Dados especialista com conhecimento avançado em tecnologia e programação. Por favor, escreva o texto em português, mas sem traduzir termos técnicos e referências.
 
+Contexto base para o Resumo:
+
+<Context>
+
+{{Context}}
+
+</Context>
+
+
+
 O tópico para o seu resumo é:
 
 <X>{{X}}</X>

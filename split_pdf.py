@@ -28,22 +28,22 @@ def split_pdf(input_pdf, root_dir, config):
         print(f"Created: {output_path}")
 
 # Example usage
-input_pdf = "Math Theory of Deep Learning.pdf"
+input_pdf = "Philippe_Jorion_-_Value_at_Risk_-_The_Ne.pdf"
 config = {
-    "Feedfoward Neural Networks": (15, 21),
-    "Universal Approximation": (22, 35),
-    "Splines": (36, 43),
-    "ReLU Neural Networks": (44, 88),
-    "High-dimensional Approximations": (89, 102),
-    "Interpolation": (103, 110),
-    "Training Neural Networks": (111, 139),
-    "Wide Neural Networks": (140, 165),
-    "Loss Landscape Analysis": (166, 175),
-    "Neural Networks Space": (176, 188),
-    "Generalization": (189, 206),
-    "Overparameterization": (207, 218),
-    "Adversarial Examples": (219, 233)
+    "Computing VaR": (109, 139),
+    "Backtesting VaR": (143, 162),
+    "Portfolio Risk": (163, 185),
+    "Multivariate Models": (193, 216),
+    "Forecasting Risk and Correlations": (223, 249),
+    "VaR Methods": (251, 275),
+    "VaR Mapping": (281, 306),
+    "Monte Carlo Methods": (311, 335),
+    "Liquid Risk": (337, 360),
+    "Stress Testing": (361, 379)
 }
-folder = "Deep Learning"
+folder = "Risk Analysis"
+
+for key, value in config.items():
+    config[key] = (value[0]+12, value[1]+12)
 
 split_pdf(input_pdf, folder, config)
